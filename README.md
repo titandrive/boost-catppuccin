@@ -1,13 +1,14 @@
 # Boost Catppuccin
 
-Adds separate **Catppuccin Latte** and **Catppuccin Macchiato** choices to Boost for Reddit **1.12.12**. Boost's original Light, Dark Grey, AMOLED Black and other themes retain their original styling. Catppuccin uses mauve accents, palette card surfaces and popup menus. Version 0.2.1 also themes image viewers and uses mauve download/HD icons. The image retains its full-window zoom area, with transparent toolbar and caption backgrounds so the picture remains visible behind the controls.
+Adds separate **Catppuccin Latte** and **Catppuccin Macchiato** choices to Boost for Reddit **1.12.12**. Boost's original Light, Dark Grey, AMOLED Black and other themes retain their original styling. Catppuccin uses mauve accents, palette card surfaces and popup menus. Version 0.2.2 also themes image viewers and uses mauve download/HD icons. The image retains its full-window zoom area, with transparent toolbar and caption backgrounds so the picture remains visible behind the controls.
 
 This app uses code from Patcheddit. To learn more, visit https://reddit.com/r/patcheddit
 
 ## Install or upgrade
 
-1. Download `boost-catppuccin-0.2.1.mpp` from this fork's release.
-2. Import it in Morphe Manager under **Patch sources → Add patch source → Local**.
+1. Download `boost-catppuccin-0.2.2.mpp` from this fork's release.
+2. Add `https://github.com/titandrive/boost-catppuccin` in Morphe Manager under **Patch sources → Add patch source → Remote**, or import the `.mpp` under **Local**. The source is named **Boost - Catppuccin**.
+   If you previously added this repository and it appeared as **Patcheddit**, remove that source and add it again; its cached upstream version is higher than this standalone bundle.
 3. For an already patched Boost APK, select only **Catppuccin theme**. For a stock APK, include the normal Patcheddit patches too.
 4. Patch and install with your existing Manager signing key.
 5. In Boost's theme selector, choose **Catppuccin Latte** or **Catppuccin Macchiato**. These appear alongside the original themes. Wallpaper accents are bypassed only for these two selections.
@@ -24,7 +25,7 @@ Requires Python 3, JDK 21+, and an Android SDK with platform/build tools. Set `J
 python3 tools/build_catppuccin.py
 ```
 
-Output: `build/boost-catppuccin-0.2.1.mpp`. The standalone build uses pinned public tooling and includes JVM classes and Android DEX. The inherited full bundle still uses upstream's Gradle build and GitHub Packages dependencies.
+Output: `build/boost-catppuccin-0.2.2.mpp`. The standalone build uses pinned public tooling and includes JVM classes and Android DEX. The inherited full bundle still uses upstream's Gradle build and GitHub Packages dependencies.
 
 ## Validation
 
