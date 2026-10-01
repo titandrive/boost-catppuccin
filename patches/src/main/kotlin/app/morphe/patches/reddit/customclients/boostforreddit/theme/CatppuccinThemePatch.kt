@@ -5,6 +5,7 @@ import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.resourcePatch
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import com.android.tools.smali.dexlib2.Opcode
@@ -276,17 +277,27 @@ val catppuccinThemePatch = bytecodePatch(
         for ((name, colors) in mapOf(
             "k" to ("0xffe6e9ef" to "0xff1e2030"),
             "l" to ("0xffe6e9ef" to "0xff1e2030"),
-            "w" to ("0xff4c4f69" to "0xffcad3f5"),
+            "w" to ("0xff4c4f69" to "0xfff4dbd6"),
             "e" to ("0xff4c4f69" to "0xffcad3f5"),
             "o" to ("0xff6c6f85" to "0xffa5adcb"),
             "x" to ("0xff4c4f69" to "0xffcad3f5"),
             "f" to ("0xff8839ef" to "0xffc6a0f6"),
         )) {
             val method = utils.methods.single { it.name == name }
+            // Rebuild w's prefix once, including when upgrading from the broken 0.2.5.
+            // A single labeled insertion avoids stale branch offsets in Patcher 1.15.
+            if (name == "w") {
+                val original = method.implementation!!.instructions.indexOfFirst {
+                    val ref = (it as? ReferenceInstruction)?.reference as? MethodReference
+                    ref?.definingClass == "Lhe/f0;" && ref.name == "H"
+                }
+                require(original >= 0)
+                if (original > 0) method.removeInstructions(0, original)
+            }
             if (method.implementation!!.instructions.any {
                 ((it as? ReferenceInstruction)?.reference as? StringReference)?.string == headerMarker
             }) continue
-            method.addInstructions(0, """
+            method.addInstructionsWithLabels(0, """
                 const-string v0, "$headerMarker"
                 invoke-static {}, Lid/b;->v0()Lid/b;
                 move-result-object v0
@@ -305,29 +316,12 @@ val catppuccinThemePatch = bytecodePatch(
                 nop
             """)
         }
-        val unread = utils.methods.single { it.name == "w" }
-        val unreadMarker = "Catppuccin unread title brightness"
-        if (unread.implementation!!.instructions.none {
-            ((it as? ReferenceInstruction)?.reference as? StringReference)?.string == unreadMarker
-        }) unread.addInstructions(0, """
-                const-string v0, "$unreadMarker"
-                invoke-static {}, Lid/b;->v0()Lid/b;
-                move-result-object v0
-                invoke-virtual {v0}, Lid/b;->D3()I
-                move-result v0
-                const/16 v1, 18
-                if-ne v0, v1, :original_title
-                const v0, 0xfff4dbd6
-                return v0
-                :original_title
-                nop
-        """)
         // Override saved rainbow palettes only for the two Catppuccin selections.
         val depth = mutableClassDefBy("Lid/b;").methods.single { it.name == "K1" }
         val commentMarker = "Catppuccin comment depth palette"
         if (depth.implementation!!.instructions.none {
             ((it as? ReferenceInstruction)?.reference as? StringReference)?.string == commentMarker
-        }) depth.addInstructions(0, """
+        }) depth.addInstructionsWithLabels(0, """
                 const-string v0, "$commentMarker"
                 invoke-virtual {p0}, Lid/b;->D3()I
                 move-result v0
@@ -506,7 +500,7 @@ val catppuccinThemePatch = bytecodePatch(
                     val field = (instructions[index - 1] as? ReferenceInstruction)?.reference as? com.android.tools.smali.dexlib2.iface.reference.FieldReference
                     val role = listOf("k", "j", "l", "m", "n").indexOf(field?.name)
                     require(role >= 0)
-                    author.addInstructions(index + 1, "const/16 v0, $role\ninvoke-static {p1, v0}, Lhe/f0;->catppuccinUsername(Landroid/widget/TextView;I)V")
+                    author.addInstructionsWithLabels(index + 1, "const/16 v0, $role\ninvoke-static {p1, v0}, Lhe/f0;->catppuccinUsername(Landroid/widget/TextView;I)V")
                 }
             }
         }

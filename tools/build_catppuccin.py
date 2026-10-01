@@ -53,9 +53,9 @@ def main():
         'org.jetbrains.kotlin.cli.jvm.K2JVMCompiler', '-no-stdlib', '-no-reflect',
         '-classpath', os.pathsep.join(map(str, (morphe, annotations))),
         '-language-version', '2.2', '-jvm-target', '11', '-d', classes, SOURCE)
-    bundle = ROOT / 'build/boost-catppuccin-0.2.5.mpp'
+    bundle = ROOT / 'build/boost-catppuccin-0.2.6.mpp'
     manifest = ('Manifest-Version: 1.0\nName: Boost - Catppuccin\n'
-        'Description: Catppuccin themes for Boost\nVersion: 0.2.5\n'
+        'Description: Catppuccin themes for Boost\nVersion: 0.2.6\n'
         'Author: titandrive\nSource: https://github.com/titandrive/boost-catppuccin\n'
         'License: GPL-3.0 with upstream NOTICE conditions\n\n')
     with zipfile.ZipFile(bundle, 'w', zipfile.ZIP_DEFLATED) as archive:

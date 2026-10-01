@@ -81,3 +81,10 @@ for flavor in ('Latte', 'Macchiato'):
 # Saved read-color preferences still run through the original getter.
 assert utils.split('.method public static m(')[1].split('.end method')[0] == next(stock.glob('smali*/he/f0.smali')).read_text().split('.method public static m(')[1].split('.end method')[0]
 print('PASS: scoped comment depth/role hooks, original rainbow presets and read colors preserved.')
+
+# One title prefix: stacking two insertions corrupted jumps in Android Patcher 1.15.
+title = utils.split('.method public static w(')[1].split('.end method')[0]
+assert 'Catppuccin unread title brightness' not in title
+assert title.count('Catppuccin header palette') == 1
+assert '-0xb242a' in title  # Macchiato Rosewater
+print('PASS: unread title uses a single palette prefix.')
