@@ -1847,4 +1847,74 @@
       <item android:id="@id/action_settings" android:visible="false" android:orderInCategory="100" android:title="@string/action_settings" app:showAsAction="never" />
     </menu>
   </file>
+  <file path="res/values/arrays.xml" mode="items">
+    <string-array name="pref_theme_values">
+      <item>7</item>
+      <item>15</item>
+      <item>16</item>
+      <item>0</item>
+      <item>10</item>
+      <item>9</item>
+      <item>8</item>
+      <item>11</item>
+      <item>12</item>
+      <item>5</item>
+      <item>3</item>
+      <item>6</item>
+      <item>1</item>
+      <item>2</item>
+    </string-array>
+    <string-array name="pref_theme_values_classic">
+      <item>0</item>
+      <item>5</item>
+      <item>3</item>
+      <item>6</item>
+      <item>1</item>
+      <item>2</item>
+    </string-array>
+    <string-array name="pref_theme_values_classic_night">
+      <item>5</item>
+      <item>3</item>
+      <item>6</item>
+      <item>1</item>
+      <item>2</item>
+      <item>0</item>
+    </string-array>
+    <string-array name="pref_theme_values_material">
+      <item>7</item>
+      <item>15</item>
+      <item>16</item>
+      <item>10</item>
+      <item>9</item>
+      <item>8</item>
+      <item>11</item>
+      <item>12</item>
+    </string-array>
+    <string-array name="pref_theme_values_material_night">
+      <item>10</item>
+      <item>9</item>
+      <item>8</item>
+      <item>11</item>
+      <item>12</item>
+      <item>7</item>
+      <item>15</item>
+      <item>16</item>
+    </string-array>
+    <string-array name="pref_theme_values_night">
+      <item>10</item>
+      <item>9</item>
+      <item>8</item>
+      <item>11</item>
+      <item>12</item>
+      <item>5</item>
+      <item>3</item>
+      <item>6</item>
+      <item>1</item>
+      <item>2</item>
+      <item>0</item>
+      <item>7</item>
+      <item>15</item>
+      <item>16</item>
+    </string-array>
+  </file>
 </restore>

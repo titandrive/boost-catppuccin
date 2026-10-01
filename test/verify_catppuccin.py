@@ -40,3 +40,16 @@ menu=next(patched.glob('smali*/com/rubenmayayo/reddit/ui/compose/FormatActivity.
 assert '-0x395f0a' in menu and '-0x77c611' in menu
 assert 'setIconTintList' in menu
 print('PASS: original styles/widgets/layouts and resource IDs preserved; distinct Catppuccin slots and scoped send tint registered.')
+
+assert 'catppuccinViewerTheme' in utils and 'catppuccinViewerControls' in utils
+for activity in ('ImageActivity', 'MediaImageActivity', 'HDImageActivity', 'GalleryActivity'):
+    code = next(patched.glob(f'smali*/com/rubenmayayo/reddit/ui/activities/{activity}.smali')).read_text()
+    assert '->catppuccinViewerTheme' in code and '->catppuccinViewer(' in code, activity
+    create = code.split('.method protected onCreate(')[1].split('.end method')[0]
+    # The old hook before return was bypassed by branches targeting that return.
+    assert create.index('setContentView') < create.index('->catppuccinViewer(') < create.index('Lbutterknife/ButterKnife;->bind'), activity
+print('PASS: image viewers call scoped palette helpers; original viewer resources remain unchanged.')
+
+assert 'catppuccinViewerImageBounds' not in utils
+assert utils.count('invoke-virtual {v0, v4}, Landroid/view/View;->setBackgroundColor(I)V') >= 2
+print('PASS: full-window image canvas with transparent control panels.')

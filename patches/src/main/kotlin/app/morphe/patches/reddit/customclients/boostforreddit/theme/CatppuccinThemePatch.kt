@@ -7,8 +7,14 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
+import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
+import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import javax.xml.parsers.DocumentBuilderFactory
@@ -257,6 +263,185 @@ val catppuccinThemePatch = bytecodePatch(
                 :cat_done
                 const/4 p1, 1
             """)
+        }
+        // Media activities use a separate black theme and hard-coded backgrounds.
+        // Keep their original behavior unless one of our two selections is active.
+        if (utils.methods.none { it.name == "catppuccinViewer" }) {
+            fun helper(name: String, parameters: List<String>, registers: Int, code: String) {
+                utils.directMethods.add(ImmutableMethod(utils.type, name,
+                    parameters.map { ImmutableMethodParameter(it, emptySet(), null) }, "V",
+                    AccessFlags.PUBLIC.value or AccessFlags.STATIC.value, null, null,
+                    MutableMethodImplementation(registers)).toMutable().apply { addInstructions(0, code) })
+            }
+            helper("catppuccinViewerTheme", listOf("Landroid/app/Activity;"), 3, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :apply
+                const/16 v1, 18
+                if-ne v0, v1, :done
+                :apply
+                invoke-static {p0}, Lhe/f0;->N(Landroid/app/Activity;)I
+                :done
+                return-void
+            """)
+            helper("catppuccinViewerControls", listOf("Landroid/view/View;", "I"), 6, """
+                if-eqz p0, :done
+                instance-of v0, p0, Landroid/widget/TextView;
+                if-eqz v0, :image
+                move-object v0, p0
+                check-cast v0, Landroid/widget/TextView;
+                invoke-virtual {v0, p1}, Landroid/widget/TextView;->setTextColor(I)V
+                :image
+                instance-of v0, p0, Landroid/widget/ImageView;
+                if-eqz v0, :children
+                move-object v0, p0
+                check-cast v0, Landroid/widget/ImageView;
+                invoke-static {p1}, Landroid/content/res/ColorStateList;->valueOf(I)Landroid/content/res/ColorStateList;
+                move-result-object v1
+                invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setImageTintList(Landroid/content/res/ColorStateList;)V
+                :children
+                instance-of v0, p0, Landroid/view/ViewGroup;
+                if-eqz v0, :done
+                check-cast p0, Landroid/view/ViewGroup;
+                const/4 v0, 0
+                :loop
+                invoke-virtual {p0}, Landroid/view/ViewGroup;->getChildCount()I
+                move-result v1
+                if-ge v0, v1, :done
+                invoke-virtual {p0, v0}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
+                move-result-object v2
+                invoke-static {v2, p1}, Lhe/f0;->catppuccinViewerControls(Landroid/view/View;I)V
+                add-int/lit8 v0, v0, 1
+                goto :loop
+                :done
+                return-void
+            """)
+            // Reserve image space between controls instead of painting opaque panels over zoomed content.
+            helper("catppuccinViewer", listOf("Landroid/app/Activity;"), 7, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :done
+                const v1, 0xff24273a
+                const v2, 0xff24273a
+                const v3, 0xffcad3f5
+                goto :apply
+                :latte
+                const v1, 0xffeff1f5
+                const v2, 0xffeff1f5
+                const v3, 0xff4c4f69
+                :apply
+                invoke-virtual {p0}, Landroid/app/Activity;->getWindow()Landroid/view/Window;
+                move-result-object v0
+                invoke-virtual {v0}, Landroid/view/Window;->getDecorView()Landroid/view/View;
+                move-result-object v4
+                invoke-virtual {v4, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                invoke-virtual {v0, v2}, Landroid/view/Window;->setStatusBarColor(I)V
+                invoke-virtual {v0, v2}, Landroid/view/Window;->setNavigationBarColor(I)V
+                const v0, 0x7f0a01ac
+                invoke-virtual {p0, v0}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
+                move-result-object v0
+                if-eqz v0, :main
+                invoke-virtual {v0, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                :main
+                const v0, 0x7f0a0374
+                invoke-virtual {p0, v0}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
+                move-result-object v0
+                if-eqz v0, :bottom
+                invoke-virtual {v0, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                :bottom
+                const v0, 0x7f0a015c
+                invoke-virtual {p0, v0}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
+                move-result-object v0
+                if-eqz v0, :toolbar
+                const/4 v4, 0
+                invoke-virtual {v0, v4}, Landroid/view/View;->setBackgroundColor(I)V
+                invoke-static {v0, v3}, Lhe/f0;->catppuccinViewerControls(Landroid/view/View;I)V
+                :toolbar
+                const v0, 0x7f0a0668
+                invoke-virtual {p0, v0}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
+                move-result-object v0
+                if-eqz v0, :done
+                const/4 v4, 0
+                invoke-virtual {v0, v4}, Landroid/view/View;->setBackgroundColor(I)V
+                invoke-static {v0, v3}, Lhe/f0;->catppuccinViewerControls(Landroid/view/View;I)V
+                :done
+                return-void
+            """)
+            helper("catppuccinViewerMenu", listOf("Landroid/view/Menu;"), 7, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :done
+                const v1, 0xffcad3f5
+                const v4, 0xffc6a0f6
+                goto :apply
+                :latte
+                const v1, 0xff4c4f69
+                const v4, 0xff8839ef
+                :apply
+                invoke-static {v1}, Landroid/content/res/ColorStateList;->valueOf(I)Landroid/content/res/ColorStateList;
+                move-result-object v1
+                invoke-static {v4}, Landroid/content/res/ColorStateList;->valueOf(I)Landroid/content/res/ColorStateList;
+                move-result-object v4
+                const/4 v0, 0
+                :loop
+                invoke-interface {p0}, Landroid/view/Menu;->size()I
+                move-result v2
+                if-ge v0, v2, :done
+                invoke-interface {p0, v0}, Landroid/view/Menu;->getItem(I)Landroid/view/MenuItem;
+                move-result-object v2
+                invoke-interface {v2}, Landroid/view/MenuItem;->getItemId()I
+                move-result v3
+                const v5, 0x7f0a004f
+                if-eq v3, v5, :accent
+                const v5, 0x7f0a0065
+                if-eq v3, v5, :accent
+                invoke-interface {v2, v1}, Landroid/view/MenuItem;->setIconTintList(Landroid/content/res/ColorStateList;)Landroid/view/MenuItem;
+                goto :next
+                :accent
+                invoke-interface {v2, v4}, Landroid/view/MenuItem;->setIconTintList(Landroid/content/res/ColorStateList;)Landroid/view/MenuItem;
+                :next
+                add-int/lit8 v0, v0, 1
+                goto :loop
+                :done
+                return-void
+            """)
+            for (name in listOf("ImageActivity", "MediaImageActivity", "HDImageActivity", "GalleryActivity")) {
+                val activity = mutableClassDefBy("Lcom/rubenmayayo/reddit/ui/activities/$name;")
+                activity.methods.firstOrNull { it.name == "onCreateOptionsMenu" }?.let { menu ->
+                    val inflate = menu.implementation!!.instructions.indexOfFirst {
+                        val reference = (it as? ReferenceInstruction)?.reference as? MethodReference
+                        reference?.definingClass == "Landroid/view/MenuInflater;" && reference.name == "inflate"
+                    }
+                    check(inflate >= 0)
+                    menu.addInstructions(inflate + 1,
+                        """
+                            invoke-static {p0}, Lhe/f0;->catppuccinViewer(Landroid/app/Activity;)V
+                            invoke-static {p1}, Lhe/f0;->catppuccinViewerMenu(Landroid/view/Menu;)V
+                        """)
+                }
+                val create = activity.methods.single { it.name == "onCreate" }
+                val content = create.implementation!!.instructions.indexOfFirst {
+                    ((it as? ReferenceInstruction)?.reference as? MethodReference)?.name == "setContentView"
+                }
+                check(content >= 0)
+                create.addInstructions(content + 1,
+                    "invoke-static {p0}, Lhe/f0;->catppuccinViewer(Landroid/app/Activity;)V")
+                create.addInstructions(0,
+                    "invoke-static {p0}, Lhe/f0;->catppuccinViewerTheme(Landroid/app/Activity;)V")
+            }
         }
     }
 }
