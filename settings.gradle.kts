@@ -1,4 +1,4 @@
-rootProject.name = "patcheddit"
+rootProject.name = "boost-catppuccin"
 
 pluginManagement {
     repositories {

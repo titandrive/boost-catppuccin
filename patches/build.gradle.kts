@@ -2,12 +2,12 @@ group = "app.morphe"
 
 patches {
     about {
-        name = "Patcheddit"
-        description = "Morphe Patches for Reddit"
-        source = "git@github.com:wchill/patcheddit.git"
-        author = "wchill"
-        contact = "w@chill.dev"
-        website = "https://github.com/wchill/patcheddit"
+        name = "Boost Catppuccin"
+        description = "Catppuccin themes for Boost, based on Patcheddit"
+        source = "https://github.com/titandrive/boost-catppuccin"
+        author = "titandrive (based on wchill)"
+        contact = "https://github.com/titandrive/boost-catppuccin/issues"
+        website = "https://github.com/titandrive/boost-catppuccin"
         license = "Additional conditions under GPL section 7 apply: attribution and project name restrictions. See LICENSE file."
     }
 }

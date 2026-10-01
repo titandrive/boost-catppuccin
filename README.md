@@ -1,3 +1,60 @@
+# Boost Catppuccin
+
+Catppuccin Latte and Macchiato with mauve accents for **Boost for Reddit 1.12.12**.
+The optional **Catppuccin theme** patch covers classic and Material themes. It replaces
+Light and Dark Grey (and their Material equivalents) in the existing theme picker.
+Other base themes remain available. Classic and Material accent variants use mauve while a
+Catppuccin base is selected; saved custom text colors may still override defaults.
+
+This app uses code from Patcheddit. To learn more, visit https://reddit.com/r/patcheddit
+
+## Install the standalone theme patch
+
+1. Download `boost-catppuccin-0.1.0.mpp` from this fork's release.
+2. In Morphe Manager, open **Patch sources**, choose **Add patch source → Local**,
+   and select the `.mpp` file. Enable advanced/expert mode to combine sources.
+3. Select Boost **1.12.12** and enable **Catppuccin theme**. Keep your existing
+   Patcheddit patches when patching a stock APK. When applying only this theme to
+   an already patched APK, select only **Catppuccin theme**.
+4. Patch and install using the same Morphe signing key as your installed Boost.
+5. In Boost's **Settings → Theme**, turn off **Wallpaper colors** (dynamic colors).
+   Select **Catppuccin Latte** for the light theme and **Catppuccin Macchiato** for
+   the dark theme. The Material equivalents work with Boost's Material UI.
+
+The theme-only patch preserves the APK's app bytecode, including existing API
+configuration. This repository does not distribute Boost APKs or API credentials.
+
+## Build without a GitHub Packages token
+
+Requires Python 3, JDK 21+, and an Android SDK with platform/build tools installed.
+Set `JAVA_HOME` and `ANDROID_HOME`, then run:
+
+```sh
+python3 tools/build_catppuccin.py
+```
+
+Output: `build/boost-catppuccin-0.1.0.mpp`. This standalone build downloads pinned
+public Morphe Desktop and Kotlin tooling and includes both JVM classes and Android
+DEX. The full inherited patch bundle still uses upstream's Gradle build and its
+GitHub Packages dependencies.
+
+## Validation
+
+Apply the standalone bundle with Morphe Desktop, decode the output with Apktool,
+then run:
+
+```sh
+python3 test/verify_catppuccin.py original.apk patched.apk original-decoded patched-decoded
+```
+
+This checks that application bytecode and existing resource IDs are unchanged and verifies the compiled
+classic/Material theme palettes, accent variants, snackbar styling, theme names,
+and required attribution. Test APKs and build caches are excluded from Git.
+
+---
+
+The original project's documentation follows.
+
 # 👋🧩 Patcheddit
 
 Morphe compatible patches for third party Reddit apps.
