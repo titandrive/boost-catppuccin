@@ -68,3 +68,17 @@ for name, items in styles.items():
             key = ('color', value.removeprefix('@color/'))
             assert int(after_ids[key], 16) != 0, f'{name}: {attr} has no resource ID'
 print('PASS: Material navigation text colors have nonzero color resource IDs.')
+
+for flavor, base, mauve in [('Latte', '#eff1f5', '#8839ef'), ('Macchiato', '#24273a', '#c6a0f6')]:
+    for role in ('Card', 'FullCard', 'MiniCard'):
+        assert resolve_color(styles[f'Catppuccin.{flavor}.{role}']['cardBackgroundColor']) == base
+    assert resolve_color(styles[f'Catppuccin.{flavor}.floatingActionButtonStyle']['backgroundTint']) == mauve
+    assert resolve_color(styles[f'Catppuccin.{flavor}.PopupMenu']['android:popupBackground']) in ('#ccd0da', '#363a4f')
+android = '{http://schemas.android.com/apk/res/android}'
+app = '{http://schemas.android.com/apk/res-auto}'
+menu = ET.parse(decoded / 'res/menu/menu_reply.xml').getroot()
+send = next(e for e in menu.iter('item') if e.get(android+'id') == '@id/action_send')
+assert send.get(app+'iconTint') == '?HighlightTextColor'
+fab = ET.parse(decoded / 'res/layout/fab_subreddit.xml').getroot()
+assert fab.get(app+'menu_colorNormal') == '?HighlightTextColor'
+print('PASS: three card styles, mauve FAB/send arrow, and popup surfaces verified.')

@@ -79,6 +79,11 @@
     <item name="snackbarButtonStyle">@style/Catppuccin.SnackbarButton</item>
     <item name="ToolbarTheme">@style/Catppuccin.Latte.Toolbar</item>
     <item name="PopupTheme">@style/Catppuccin.Latte.Popup</item>
+    <item name="FeedCardStyle">@style/Catppuccin.Latte.Card</item>
+    <item name="FeedFullCardStyle">@style/Catppuccin.Latte.FullCard</item>
+    <item name="FeedMiniCardStyle">@style/Catppuccin.Latte.MiniCard</item>
+    <item name="floatingActionButtonStyle">@style/Catppuccin.Latte.floatingActionButtonStyle</item>
+    <item name="floatingActionButtonSmallStyle">@style/Catppuccin.Latte.floatingActionButtonSmallStyle</item>
   </style>
   <style name="Catppuccin.Latte.Snackbar" parent="@style/Widget.MaterialComponents.Snackbar">
     <item name="backgroundTint">@color/catppuccin_latte_mantle</item>
@@ -97,6 +102,8 @@
     <item name="colorOnSurface">@color/catppuccin_latte_text</item>
     <item name="colorPrimary">@color/catppuccin_latte_mauve</item>
     <item name="colorSecondary">@color/catppuccin_latte_mauve</item>
+    <item name="colorControlNormal">@color/catppuccin_latte_text</item>
+    <item name="popupMenuStyle">@style/Catppuccin.Latte.PopupMenu</item>
   </style>
   <style name="Catppuccin.Macchiato" parent="">
     <item name="android:colorBackground">@color/catppuccin_macchiato_base</item>
@@ -177,6 +184,11 @@
     <item name="snackbarButtonStyle">@style/Catppuccin.SnackbarButton</item>
     <item name="ToolbarTheme">@style/Catppuccin.Macchiato.Toolbar</item>
     <item name="PopupTheme">@style/Catppuccin.Macchiato.Popup</item>
+    <item name="FeedCardStyle">@style/Catppuccin.Macchiato.Card</item>
+    <item name="FeedFullCardStyle">@style/Catppuccin.Macchiato.FullCard</item>
+    <item name="FeedMiniCardStyle">@style/Catppuccin.Macchiato.MiniCard</item>
+    <item name="floatingActionButtonStyle">@style/Catppuccin.Macchiato.floatingActionButtonStyle</item>
+    <item name="floatingActionButtonSmallStyle">@style/Catppuccin.Macchiato.floatingActionButtonSmallStyle</item>
   </style>
   <style name="Catppuccin.Macchiato.Snackbar" parent="@style/Widget.MaterialComponents.Snackbar">
     <item name="backgroundTint">@color/catppuccin_macchiato_mantle</item>
@@ -195,11 +207,71 @@
     <item name="colorOnSurface">@color/catppuccin_macchiato_text</item>
     <item name="colorPrimary">@color/catppuccin_macchiato_mauve</item>
     <item name="colorSecondary">@color/catppuccin_macchiato_mauve</item>
+    <item name="colorControlNormal">@color/catppuccin_macchiato_text</item>
+    <item name="popupMenuStyle">@style/Catppuccin.Macchiato.PopupMenu</item>
   </style>
   <style name="Catppuccin.SnackbarText" parent="@style/Widget.MaterialComponents.Snackbar.TextView">
     <item name="android:textColor">?attr/PrimaryTextColor</item>
   </style>
   <style name="Catppuccin.SnackbarButton" parent="@style/Widget.MaterialComponents.Button.TextButton.Snackbar">
     <item name="android:textColor">?attr/colorSecondary</item>
+  </style>
+  <style name="Catppuccin.Latte.Card" parent="@style/Widget.Boost.Material.Feed.CardView">
+    <item name="cardBackgroundColor">@color/catppuccin_latte_base</item>
+    <item name="strokeColor">@color/catppuccin_latte_surface0</item>
+    <item name="cardElevation">0dp</item>
+    <item name="strokeWidth">1dp</item>
+  </style>
+  <style name="Catppuccin.Latte.FullCard" parent="@style/Widget.Boost.Material.Feed.CardView.Full">
+    <item name="cardBackgroundColor">@color/catppuccin_latte_base</item>
+    <item name="strokeColor">@color/catppuccin_latte_surface0</item>
+    <item name="cardElevation">0dp</item>
+    <item name="strokeWidth">1dp</item>
+  </style>
+  <style name="Catppuccin.Latte.MiniCard" parent="@style/Widget.Boost.Material.Feed.CardView.Mini">
+    <item name="cardBackgroundColor">@color/catppuccin_latte_base</item>
+    <item name="strokeColor">@color/catppuccin_latte_surface0</item>
+    <item name="cardElevation">0dp</item>
+    <item name="strokeWidth">1dp</item>
+  </style>
+  <style name="Catppuccin.Latte.floatingActionButtonStyle" parent="@style/Widget.Boost.Material.FloatingActionButton">
+    <item name="backgroundTint">@color/catppuccin_latte_mauve</item>
+    <item name="tint">@color/catppuccin_latte_base</item>
+  </style>
+  <style name="Catppuccin.Latte.floatingActionButtonSmallStyle" parent="@style/Widget.Boost.Material.FloatingActionButton.Small">
+    <item name="backgroundTint">@color/catppuccin_latte_mauve</item>
+    <item name="tint">@color/catppuccin_latte_base</item>
+  </style>
+  <style name="Catppuccin.Latte.PopupMenu" parent="@style/Widget.AppCompat.PopupMenu">
+    <item name="android:popupBackground">@color/catppuccin_latte_surface0</item>
+  </style>
+  <style name="Catppuccin.Macchiato.Card" parent="@style/Widget.Boost.Material.Feed.CardView">
+    <item name="cardBackgroundColor">@color/catppuccin_macchiato_base</item>
+    <item name="strokeColor">@color/catppuccin_macchiato_surface0</item>
+    <item name="cardElevation">0dp</item>
+    <item name="strokeWidth">1dp</item>
+  </style>
+  <style name="Catppuccin.Macchiato.FullCard" parent="@style/Widget.Boost.Material.Feed.CardView.Full">
+    <item name="cardBackgroundColor">@color/catppuccin_macchiato_base</item>
+    <item name="strokeColor">@color/catppuccin_macchiato_surface0</item>
+    <item name="cardElevation">0dp</item>
+    <item name="strokeWidth">1dp</item>
+  </style>
+  <style name="Catppuccin.Macchiato.MiniCard" parent="@style/Widget.Boost.Material.Feed.CardView.Mini">
+    <item name="cardBackgroundColor">@color/catppuccin_macchiato_base</item>
+    <item name="strokeColor">@color/catppuccin_macchiato_surface0</item>
+    <item name="cardElevation">0dp</item>
+    <item name="strokeWidth">1dp</item>
+  </style>
+  <style name="Catppuccin.Macchiato.floatingActionButtonStyle" parent="@style/Widget.Boost.Material.FloatingActionButton">
+    <item name="backgroundTint">@color/catppuccin_macchiato_mauve</item>
+    <item name="tint">@color/catppuccin_macchiato_crust</item>
+  </style>
+  <style name="Catppuccin.Macchiato.floatingActionButtonSmallStyle" parent="@style/Widget.Boost.Material.FloatingActionButton.Small">
+    <item name="backgroundTint">@color/catppuccin_macchiato_mauve</item>
+    <item name="tint">@color/catppuccin_macchiato_crust</item>
+  </style>
+  <style name="Catppuccin.Macchiato.PopupMenu" parent="@style/Widget.AppCompat.PopupMenu">
+    <item name="android:popupBackground">@color/catppuccin_macchiato_surface0</item>
   </style>
 </resources>

@@ -30,8 +30,8 @@ private fun isAccentVariant(name: String, base: String): Boolean =
 private fun flavorForStyle(name: String): String? = when {
     name == "LightTheme" || name.startsWith("LightTheme.") -> "Latte"
     name == "DarkTheme" || name.startsWith("DarkTheme.") -> "Macchiato"
-    name == "MaterialLightTheme" || isAccentVariant(name, "MaterialLightTheme") -> "Latte"
-    name == "MaterialDarkTheme" || isAccentVariant(name, "MaterialDarkTheme") -> "Macchiato"
+    name == "MaterialLightTheme" || name == "MaterialLightTheme.Dynamic" || isAccentVariant(name, "MaterialLightTheme") -> "Latte"
+    name == "MaterialDarkTheme" || name == "MaterialDarkTheme.Dynamic" || isAccentVariant(name, "MaterialDarkTheme") -> "Macchiato"
     else -> null
 }
 
@@ -95,6 +95,33 @@ val catppuccinThemePatch = resourcePatch(
         }
         check(seen.containsAll(listOf("LightTheme", "DarkTheme", "MaterialLightTheme", "MaterialDarkTheme"))) {
             "Boost's expected theme resources were not found. Use Boost 1.12.12."
+        }
+
+        // These custom controls otherwise inherit wallpaper accents from Material overlays.
+        for (file in get("res/layout").listFiles().orEmpty()) {
+            if (!file.name.endsWith(".xml")) continue
+            document("res/layout/${file.name}").use { xml ->
+                val nodes = xml.getElementsByTagName("*")
+                for (index in 0 until nodes.length) {
+                    val element = nodes.item(index) as Element
+                    for (attribute in listOf("fab:menu_colorNormal", "fab:menu_colorPressed")) {
+                        if (element.hasAttribute(attribute))
+                            element.setAttribute(attribute, "?attr/HighlightTextColor")
+                    }
+                    if (element.getAttribute("android:id") == "@id/edit_text")
+                        element.setAttribute("android:textColorHint", "?attr/SecondaryTextColor")
+                    if (element.getAttribute("android:id") == "@id/send_button")
+                        element.setAttribute("android:tint", "?attr/HighlightTextColor")
+                }
+            }
+        }
+        document("res/menu/menu_reply.xml").use { xml ->
+            val items = xml.getElementsByTagName("item")
+            for (index in 0 until items.length) {
+                val item = items.item(index) as Element
+                if (item.getAttribute("android:id") == "@id/action_send")
+                    item.setAttribute("app:iconTint", "?attr/HighlightTextColor")
+            }
         }
 
         val labels = mapOf(

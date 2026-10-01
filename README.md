@@ -8,6 +8,9 @@ Catppuccin base is selected; saved custom text colors may still override default
 
 This app uses code from Patcheddit. To learn more, visit https://reddit.com/r/patcheddit
 
+Version 0.1.2 refines all three card layouts with palette surfaces and subtle outlines,
+uses mauve floating buttons and reply arrows, and themes popup menu backgrounds.
+
 ## Recover from the 0.1.0 startup crash
 
 Version 0.1.1 fixes a bottom-navigation crash caused by raw text-color values.
@@ -17,7 +20,7 @@ The patch can safely be reapplied and does not require clearing app data.
 
 ## Install the standalone theme patch
 
-1. Download `boost-catppuccin-0.1.1.mpp` from this fork's release.
+1. Download `boost-catppuccin-0.1.2.mpp` from this fork's release.
 2. In Morphe Manager, open **Patch sources**, choose **Add patch source → Local**,
    and select the `.mpp` file. Enable advanced/expert mode to combine sources.
 3. Select Boost **1.12.12** and enable **Catppuccin theme**. Keep your existing
@@ -40,7 +43,7 @@ Set `JAVA_HOME` and `ANDROID_HOME`, then run:
 python3 tools/build_catppuccin.py
 ```
 
-Output: `build/boost-catppuccin-0.1.1.mpp`. This standalone build downloads pinned
+Output: `build/boost-catppuccin-0.1.2.mpp`. This standalone build downloads pinned
 public Morphe Desktop and Kotlin tooling and includes both JVM classes and Android
 DEX. The full inherited patch bundle still uses upstream's Gradle build and its
 GitHub Packages dependencies.
