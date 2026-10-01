@@ -56,6 +56,19 @@ val catppuccinThemePatch = resourcePatch(
         ).use { DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(it) }
         val styles = templates.documentElement.elements().associateBy { it.getAttribute("name") }
         val seen = mutableSetOf<String>()
+        val palette = checkNotNull(
+            CatppuccinResources::class.java.classLoader.getResourceAsStream("catppuccin/palette.xml"),
+        ).use { DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(it) }
+        // Material navigation resolves text colors through TypedValue.resourceId.
+        // Raw #hex style values have resourceId = 0 and crash during inflation.
+        document("res/values/colors.xml").use { xml ->
+            for (color in palette.documentElement.elements()) {
+                xml.documentElement.elements()
+                    .firstOrNull { it.getAttribute("name") == color.getAttribute("name") }
+                    ?.let { xml.documentElement.removeChild(it) }
+                xml.documentElement.appendChild(xml.importNode(color, true))
+            }
+        }
 
         // Update qualified resources too, so an API-specific style cannot undo the palette.
         for (directory in get("res").listFiles().orEmpty()) {
@@ -72,6 +85,9 @@ val catppuccinThemePatch = resourcePatch(
                 if (directory.name == "values") {
                     for ((name, style) in styles) {
                         if (name in setOf("Catppuccin.Latte", "Catppuccin.Macchiato")) continue
+                        xml.documentElement.elements()
+                            .firstOrNull { it.getAttribute("name") == name }
+                            ?.let { xml.documentElement.removeChild(it) }
                         xml.documentElement.appendChild(xml.importNode(style, true))
                     }
                 }
@@ -108,6 +124,10 @@ val catppuccinThemePatch = resourcePatch(
                     setAttribute("android:summary", ATTRIBUTION)
                     setAttribute("android:selectable", "false")
                 }
+                val existing = xml.getElementsByTagName("Preference")
+                (0 until existing.length).mapNotNull { existing.item(it) as? Element }
+                    .filter { it.getAttribute("android:key") == "catppuccin_patch_attribution" }
+                    .forEach { it.parentNode.removeChild(it) }
                 xml.documentElement.appendChild(preference)
             }
         }

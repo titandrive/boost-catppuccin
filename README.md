@@ -8,9 +8,16 @@ Catppuccin base is selected; saved custom text colors may still override default
 
 This app uses code from Patcheddit. To learn more, visit https://reddit.com/r/patcheddit
 
+## Recover from the 0.1.0 startup crash
+
+Version 0.1.1 fixes a bottom-navigation crash caused by raw text-color values.
+Import the new `.mpp` to replace the local 0.1.0 source, then apply only
+**Catppuccin theme** to your installed Boost using the same Manager/signing key.
+The patch can safely be reapplied and does not require clearing app data.
+
 ## Install the standalone theme patch
 
-1. Download `boost-catppuccin-0.1.0.mpp` from this fork's release.
+1. Download `boost-catppuccin-0.1.1.mpp` from this fork's release.
 2. In Morphe Manager, open **Patch sources**, choose **Add patch source → Local**,
    and select the `.mpp` file. Enable advanced/expert mode to combine sources.
 3. Select Boost **1.12.12** and enable **Catppuccin theme**. Keep your existing
@@ -33,7 +40,7 @@ Set `JAVA_HOME` and `ANDROID_HOME`, then run:
 python3 tools/build_catppuccin.py
 ```
 
-Output: `build/boost-catppuccin-0.1.0.mpp`. This standalone build downloads pinned
+Output: `build/boost-catppuccin-0.1.1.mpp`. This standalone build downloads pinned
 public Morphe Desktop and Kotlin tooling and includes both JVM classes and Android
 DEX. The full inherited patch bundle still uses upstream's Gradle build and its
 GitHub Packages dependencies.
@@ -49,7 +56,9 @@ python3 test/verify_catppuccin.py original.apk patched.apk original-decoded patc
 
 This checks that application bytecode and existing resource IDs are unchanged and verifies the compiled
 classic/Material theme palettes, accent variants, snackbar styling, theme names,
-and required attribution. Test APKs and build caches are excluded from Git.
+and required attribution. A separate test copy of 0.1.1 also launched successfully
+on a Samsung phone running Android 17, with bottom navigation working. The check verifies that Material navigation text colors
+have nonzero resource IDs to prevent the 0.1.0 startup crash. Test APKs and build caches are excluded from Git.
 
 ---
 

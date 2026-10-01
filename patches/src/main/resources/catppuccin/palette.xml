@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <color name="catppuccin_latte_base">#eff1f5</color>
+  <color name="catppuccin_latte_mantle">#e6e9ef</color>
+  <color name="catppuccin_latte_surface0">#ccd0da</color>
+  <color name="catppuccin_latte_mauve">#8839ef</color>
+  <color name="catppuccin_latte_text">#4c4f69</color>
+  <color name="catppuccin_latte_subtext0">#6c6f85</color>
+  <color name="catppuccin_latte_blue">#1e66f5</color>
+  <color name="catppuccin_latte_green">#40a02b</color>
+  <color name="catppuccin_latte_red">#d20f39</color>
+  <color name="catppuccin_latte_overlay0">#9ca0b0</color>
+  <color name="catppuccin_macchiato_base">#24273a</color>
+  <color name="catppuccin_macchiato_mantle">#1e2030</color>
+  <color name="catppuccin_macchiato_surface0">#363a4f</color>
+  <color name="catppuccin_macchiato_mauve">#c6a0f6</color>
+  <color name="catppuccin_macchiato_text">#cad3f5</color>
+  <color name="catppuccin_macchiato_crust">#181926</color>
+  <color name="catppuccin_macchiato_subtext0">#a5adcb</color>
+  <color name="catppuccin_macchiato_blue">#8aadf4</color>
+  <color name="catppuccin_macchiato_green">#a6da95</color>
+  <color name="catppuccin_macchiato_red">#ed8796</color>
+  <color name="catppuccin_macchiato_overlay0">#6e738d</color>
+</resources>

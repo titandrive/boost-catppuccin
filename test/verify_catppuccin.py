@@ -27,6 +27,13 @@ with zipfile.ZipFile(original) as before, zipfile.ZipFile(patched) as after:
 
 styles = {e.attrib['name']: {i.attrib['name']: i.text for i in e}
           for e in ET.parse(decoded / 'res/values/styles.xml').getroot()}
+colors = {e.attrib['name']: e.text for e in ET.parse(decoded / 'res/values/colors.xml').getroot()}
+
+def resolve_color(value):
+    while value.startswith('@color/'):
+        value = colors[value.removeprefix('@color/')]
+    return '#' + value.lower()[-6:]
+
 for name, base, text, accent in [
     ('LightTheme', '#eff1f5', '#4c4f69', '#8839ef'),
     ('MaterialLightTheme', '#eff1f5', '#4c4f69', '#8839ef'),
@@ -34,17 +41,16 @@ for name, base, text, accent in [
     ('MaterialDarkTheme', '#24273a', '#cad3f5', '#c6a0f6'),
 ]:
     def color(key):
-        value = styles[name][key].lower()
-        return '#' + value[-6:]
+        return resolve_color(styles[name][key])
     assert color('ContentBackground') == base, name
     assert color('PrimaryTextColor') == text, name
     assert color('colorSecondary') == accent, name
     assert 'Catppuccin' in styles[name]['snackbarTextViewStyle'], name
 assert styles['Catppuccin.SnackbarText']['android:textColor'] == '?PrimaryTextColor'
-assert styles['MaterialLightTheme.TealA700']['colorSecondary'].lower().endswith('8839ef')
-assert styles['MaterialDarkTheme.TealA700']['colorSecondary'].lower().endswith('c6a0f6')
-assert styles['LightTheme.TealA700']['colorSecondary'].lower().endswith('8839ef')
-assert styles['DarkTheme.TealA700']['colorSecondary'].lower().endswith('c6a0f6')
+assert resolve_color(styles['MaterialLightTheme.TealA700']['colorSecondary']) == '#8839ef'
+assert resolve_color(styles['MaterialDarkTheme.TealA700']['colorSecondary']) == '#c6a0f6'
+assert resolve_color(styles['LightTheme.TealA700']['colorSecondary']) == '#8839ef'
+assert resolve_color(styles['DarkTheme.TealA700']['colorSecondary']) == '#c6a0f6'
 labels = {e.attrib['name']: e.text for e in ET.parse(decoded / 'res/values/strings.xml').getroot()}
 assert labels['theme_material_light'] == 'Catppuccin Latte (Material)'
 assert labels['theme_material_dark'] == 'Catppuccin Macchiato (Material)'
@@ -52,3 +58,13 @@ for name in ('pref_about.xml', 'pref_about_v2.xml'):
     xml = (decoded / 'res/xml' / name).read_text()
     assert 'This app uses code from Patcheddit. To learn more, visit https://reddit.com/r/patcheddit' in xml
 print(f'PASS: {len(dex_files)} DEX files unchanged; all four theme slots, accent variants, snackbar text, labels and attribution verified.')
+
+# Regression: Material bottom navigation loads textColorSecondary by resource ID.
+for name, items in styles.items():
+    if name.startswith(('LightTheme', 'DarkTheme', 'MaterialLightTheme', 'MaterialDarkTheme')) and 'Catppuccin' in items.get('snackbarTextViewStyle', ''):
+        for attr in ('android:textColorPrimary', 'android:textColorSecondary'):
+            value = items[attr]
+            assert value.startswith('@color/'), f'{name}: {attr} must be a resource reference'
+            key = ('color', value.removeprefix('@color/'))
+            assert int(after_ids[key], 16) != 0, f'{name}: {attr} has no resource ID'
+print('PASS: Material navigation text colors have nonzero color resource IDs.')
