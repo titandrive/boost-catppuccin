@@ -24,8 +24,12 @@ private object CatppuccinResources
 private const val ATTRIBUTION =
     "This app uses code from Patcheddit. To learn more, visit https://reddit.com/r/patcheddit"
 
-private fun Element.elements(): List<Element> =
-    (0 until childNodes.length).mapNotNull { childNodes.item(it) as? Element }
+private fun Element.elements(): List<Element> {
+    // Android getChildNodes() copies every child into a new NodeList. Fetching it
+    // again for each item makes resource edits quadratic and takes minutes.
+    val nodes = childNodes
+    return (0 until nodes.length).mapNotNull { nodes.item(it) as? Element }
+}
 
 /** Replace individual items so inherited widget behavior and resource IDs are retained. */
 private fun mergeItems(target: Element, source: Element) {
