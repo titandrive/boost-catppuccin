@@ -5,6 +5,7 @@ import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.resourcePatch
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -303,6 +304,211 @@ val catppuccinThemePatch = bytecodePatch(
                 :cat_header_original
                 nop
             """)
+        }
+        val unread = utils.methods.single { it.name == "w" }
+        val unreadMarker = "Catppuccin unread title brightness"
+        if (unread.implementation!!.instructions.none {
+            ((it as? ReferenceInstruction)?.reference as? StringReference)?.string == unreadMarker
+        }) unread.addInstructions(0, """
+                const-string v0, "$unreadMarker"
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 18
+                if-ne v0, v1, :original_title
+                const v0, 0xfff4dbd6
+                return v0
+                :original_title
+                nop
+        """)
+        // Override saved rainbow palettes only for the two Catppuccin selections.
+        val depth = mutableClassDefBy("Lid/b;").methods.single { it.name == "K1" }
+        val commentMarker = "Catppuccin comment depth palette"
+        if (depth.implementation!!.instructions.none {
+            ((it as? ReferenceInstruction)?.reference as? StringReference)?.string == commentMarker
+        }) depth.addInstructions(0, """
+                const-string v0, "$commentMarker"
+                invoke-virtual {p0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :cat_depth_latte
+                const/16 v1, 18
+                if-ne v0, v1, :cat_depth_original
+                const/16 v0, 11
+                new-array v0, v0, [I
+                const v2, 0xffc6a0f6
+                const/16 v1, 1
+                aput v2, v0, v1
+                const v2, 0xffed8796
+                const/16 v1, 2
+                aput v2, v0, v1
+                const v2, 0xfff5a97f
+                const/16 v1, 3
+                aput v2, v0, v1
+                const v2, 0xffeed49f
+                const/16 v1, 4
+                aput v2, v0, v1
+                const v2, 0xffa6da95
+                const/16 v1, 5
+                aput v2, v0, v1
+                const v2, 0xff8bd5ca
+                const/16 v1, 6
+                aput v2, v0, v1
+                const v2, 0xff91d7e3
+                const/16 v1, 7
+                aput v2, v0, v1
+                const v2, 0xff7dc4e4
+                const/16 v1, 8
+                aput v2, v0, v1
+                const v2, 0xff8aadf4
+                const/16 v1, 9
+                aput v2, v0, v1
+                const v2, 0xffb7bdf8
+                const/16 v1, 10
+                aput v2, v0, v1
+                return-object v0
+                :cat_depth_latte
+                const/16 v0, 11
+                new-array v0, v0, [I
+                const v2, 0xff8839ef
+                const/16 v1, 1
+                aput v2, v0, v1
+                const v2, 0xffd20f39
+                const/16 v1, 2
+                aput v2, v0, v1
+                const v2, 0xfffe640b
+                const/16 v1, 3
+                aput v2, v0, v1
+                const v2, 0xffdf8e1d
+                const/16 v1, 4
+                aput v2, v0, v1
+                const v2, 0xff40a02b
+                const/16 v1, 5
+                aput v2, v0, v1
+                const v2, 0xff179299
+                const/16 v1, 6
+                aput v2, v0, v1
+                const v2, 0xff04a5e5
+                const/16 v1, 7
+                aput v2, v0, v1
+                const v2, 0xff209fb5
+                const/16 v1, 8
+                aput v2, v0, v1
+                const v2, 0xff1e66f5
+                const/16 v1, 9
+                aput v2, v0, v1
+                const v2, 0xff7287fd
+                const/16 v1, 10
+                aput v2, v0, v1
+                return-object v0
+                :cat_depth_original
+                nop
+        """)
+        if (utils.methods.none { it.name == "catppuccinUsername" }) {
+            fun usernameHelper(name: String, params: List<String>, code: String) {
+                utils.directMethods.add(ImmutableMethod(utils.type, name,
+                    params.map { ImmutableMethodParameter(it, emptySet(), null) }, "V",
+                    AccessFlags.PUBLIC.value or AccessFlags.STATIC.value, null, null,
+                    MutableMethodImplementation(5)).toMutable().apply { addInstructions(0, code) })
+            }
+            usernameHelper("catppuccinUsername", listOf("Landroid/widget/TextView;", "I"), """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :done
+                const/16 v1, 0
+                if-ne p1, v1, :m0
+                const v0, 0xffc6a0f6
+                goto :tint
+                :m0
+                const/16 v1, 1
+                if-ne p1, v1, :m1
+                const v0, 0xff8aadf4
+                goto :tint
+                :m1
+                const/16 v1, 2
+                if-ne p1, v1, :m2
+                const v0, 0xffeed49f
+                goto :tint
+                :m2
+                const/16 v1, 3
+                if-ne p1, v1, :m3
+                const v0, 0xffa6da95
+                goto :tint
+                :m3
+                const v0, 0xffed8796
+                goto :tint
+                :latte
+                const/16 v1, 0
+                if-ne p1, v1, :l0
+                const v0, 0xff8839ef
+                goto :tint
+                :l0
+                const/16 v1, 1
+                if-ne p1, v1, :l1
+                const v0, 0xff1e66f5
+                goto :tint
+                :l1
+                const/16 v1, 2
+                if-ne p1, v1, :l2
+                const v0, 0xff7287fd
+                goto :tint
+                :l2
+                const/16 v1, 3
+                if-ne p1, v1, :l3
+                const v0, 0xff40a02b
+                goto :tint
+                :l3
+                const v0, 0xffd20f39
+                :tint
+                invoke-virtual {p0}, Landroid/view/View;->getBackground()Landroid/graphics/drawable/Drawable;
+                move-result-object v1
+                if-eqz v1, :done
+                invoke-virtual {v1}, Landroid/graphics/drawable/Drawable;->mutate()Landroid/graphics/drawable/Drawable;
+                move-result-object v1
+                invoke-virtual {v1, v0}, Landroid/graphics/drawable/Drawable;->setTint(I)V
+                :done
+                return-void
+            """)
+            usernameHelper("catppuccinUsernameText", listOf("Landroid/widget/TextView;", "I"), """
+                const/4 v0, -1
+                if-ne p1, v0, :apply
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :light
+                const/16 v1, 18
+                if-ne v0, v1, :apply
+                const p1, 0xff24273a
+                goto :apply
+                :light
+                const p1, 0xffeff1f5
+                :apply
+                invoke-virtual {p0, p1}, Landroid/widget/TextView;->setTextColor(I)V
+                return-void
+            """)
+            val author = mutableClassDefBy("Lcom/rubenmayayo/reddit/ui/adapters/CommentViewHolder;").methods.single { it.name == "I" }
+            val instructions = author.implementation!!.instructions.toList()
+            for (index in instructions.indices.reversed()) {
+                val ref = (instructions[index] as? ReferenceInstruction)?.reference
+                if (ref is MethodReference && ref.name == "setTextColor") {
+                    val call = instructions[index] as com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+                    author.replaceInstruction(index, "invoke-static {v${call.registerC}, v${call.registerD}}, Lhe/f0;->catppuccinUsernameText(Landroid/widget/TextView;I)V")
+                }
+                if (ref is MethodReference && ref.name == "setBackground") {
+                    val field = (instructions[index - 1] as? ReferenceInstruction)?.reference as? com.android.tools.smali.dexlib2.iface.reference.FieldReference
+                    val role = listOf("k", "j", "l", "m", "n").indexOf(field?.name)
+                    require(role >= 0)
+                    author.addInstructions(index + 1, "const/16 v0, $role\ninvoke-static {p1, v0}, Lhe/f0;->catppuccinUsername(Landroid/widget/TextView;I)V")
+                }
+            }
         }
         if (utils.methods.none { it.name == "catppuccinViewer" }) {
             fun helper(name: String, parameters: List<String>, registers: Int, code: String) {

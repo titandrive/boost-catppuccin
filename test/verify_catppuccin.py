@@ -14,6 +14,7 @@ for directory in (stock/'res').glob('values*'):
  if not p.exists():continue
  original=items(p); actual=items(patched/'res'/directory.name/'styles.xml')
  for name,value in original.items():
+  if name.startswith("Catppuccin."): continue
   assert actual[name]==value, f'Original theme/widget changed: {directory.name}/{name}'
 styles=items(patched/'res/values/styles.xml')
 for flavor in ['Latte','Macchiato']:
@@ -59,5 +60,24 @@ for name in ('k', 'l', 'w', 'x', 'f', 'e', 'o'):
     body = utils.split(f'.method public static {name}(Landroid/content/Context;)I')[1].split('.end method')[0]
     assert body.count('Catppuccin header palette') == 1, name
     assert '0x11' in body and '0x12' in body and 'Lid/b;->D3()I' in body, name
-    assert body.index('Catppuccin header palette') < body.index('Lid/b;->D3()I'), name
+    assert 'Lid/b;->D3()I' in body.split('Catppuccin header palette')[1], name
 print('PASS: scoped, idempotent header palette overrides saved toolbar colors.')
+
+# Comment depth arrays and role badges are selected at runtime, never globally.
+prefs = next(patched.glob('smali*/id/b.smali')).read_text()
+depth = prefs.split('.method public K1(')[1].split('.end method')[0]
+assert depth.count('Catppuccin comment depth palette') == 1
+assert '0x11' in depth and '0x12' in depth
+assert depth.count('aput') == 21  # 20 palette accents + the original custom palette loop
+assert 'getIntArray' in depth and 'Ljava/lang/String;->split' in depth
+assert semantic(E.parse(stock/'res/values/arrays.xml').getroot()) == semantic(E.parse(patched/'res/values/arrays.xml').getroot())
+author = next(patched.glob('smali*/com/rubenmayayo/reddit/ui/adapters/CommentViewHolder.smali')).read_text()
+author = author.split('.method private I(')[1].split('.end method')[0]
+assert author.count('->catppuccinUsername(') == 5
+assert author.count('->catppuccinUsernameText(') == 7
+assert '0xfff4dbd6' in Path(__file__).resolve().parents[1].joinpath('patches/src/main/kotlin/app/morphe/patches/reddit/customclients/boostforreddit/theme/CatppuccinThemePatch.kt').read_text()
+for flavor in ('Latte', 'Macchiato'):
+ assert styles['Catppuccin.'+flavor][1]['ReadTextColor'] == '@color/catppuccin_'+flavor.lower()+'_subtext0'
+# Saved read-color preferences still run through the original getter.
+assert utils.split('.method public static m(')[1].split('.end method')[0] == next(stock.glob('smali*/he/f0.smali')).read_text().split('.method public static m(')[1].split('.end method')[0]
+print('PASS: scoped comment depth/role hooks, original rainbow presets and read colors preserved.')
