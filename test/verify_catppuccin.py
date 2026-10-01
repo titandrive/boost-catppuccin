@@ -53,3 +53,11 @@ print('PASS: image viewers call scoped palette helpers; original viewer resource
 assert 'catppuccinViewerImageBounds' not in utils
 assert utils.count('invoke-virtual {v0, v4}, Landroid/view/View;->setBackgroundColor(I)V') >= 2
 print('PASS: full-window image canvas with transparent control panels.')
+
+# Catppuccin header colors must win over saved custom toolbar colors.
+for name in ('k', 'l', 'w', 'x', 'f', 'e', 'o'):
+    body = utils.split(f'.method public static {name}(Landroid/content/Context;)I')[1].split('.end method')[0]
+    assert body.count('Catppuccin header palette') == 1, name
+    assert '0x11' in body and '0x12' in body and 'Lid/b;->D3()I' in body, name
+    assert body.index('Catppuccin header palette') < body.index('Lid/b;->D3()I'), name
+print('PASS: scoped, idempotent header palette overrides saved toolbar colors.')

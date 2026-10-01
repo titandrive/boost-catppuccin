@@ -266,6 +266,40 @@ val catppuccinThemePatch = bytecodePatch(
         }
         // Media activities use a separate black theme and hard-coded backgrounds.
         // Keep their original behavior unless one of our two selections is active.
+        // Saved custom toolbar colors can otherwise override the selected Catppuccin style.
+        val headerMarker = "Catppuccin header palette"
+        for ((name, colors) in mapOf(
+            "k" to ("0xffe6e9ef" to "0xff1e2030"),
+            "l" to ("0xffe6e9ef" to "0xff1e2030"),
+            "w" to ("0xff4c4f69" to "0xffcad3f5"),
+            "e" to ("0xff4c4f69" to "0xffcad3f5"),
+            "o" to ("0xff6c6f85" to "0xffa5adcb"),
+            "x" to ("0xff4c4f69" to "0xffcad3f5"),
+            "f" to ("0xff8839ef" to "0xffc6a0f6"),
+        )) {
+            val method = utils.methods.single { it.name == name }
+            if (method.implementation!!.instructions.any {
+                ((it as? ReferenceInstruction)?.reference as? StringReference)?.string == headerMarker
+            }) continue
+            method.addInstructions(0, """
+                const-string v0, "$headerMarker"
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :cat_header_latte
+                const/16 v1, 18
+                if-ne v0, v1, :cat_header_original
+                const v0, ${colors.second}
+                return v0
+                :cat_header_latte
+                const v0, ${colors.first}
+                return v0
+                :cat_header_original
+                nop
+            """)
+        }
         if (utils.methods.none { it.name == "catppuccinViewer" }) {
             fun helper(name: String, parameters: List<String>, registers: Int, code: String) {
                 utils.directMethods.add(ImmutableMethod(utils.type, name,
