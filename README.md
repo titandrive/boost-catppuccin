@@ -1,12 +1,12 @@
 # Boost Catppuccin
 
-Adds separate **Catppuccin Latte** and **Catppuccin Macchiato** choices to Boost for Reddit **1.12.12**. Boost's original Light, Dark Grey, AMOLED Black and other themes retain their original styling. Catppuccin uses mauve accents, palette card surfaces and popup menus. Version 0.2.1 also themes image viewers and uses mauve download/HD icons. The image retains its full-window zoom area, with transparent toolbar and caption backgrounds so the picture remains visible behind the controls. Version 0.2.3 fixes headers when saved custom toolbar colors would otherwise override the Catppuccin palette. Version 0.2.4 avoids repeated Android DOM child-list copying during resource edits. Version 0.2.5 adds Catppuccin comment depth bars and username role badges, and brightens unread Macchiato titles while retaining the existing read color. Version 0.2.6 fixes a startup verification error in the unread-title hook.
+Adds separate **Catppuccin Latte** and **Catppuccin Macchiato** choices to Boost for Reddit **1.12.12**. Boost's original Light, Dark Grey, AMOLED Black and other themes retain their original styling. Catppuccin uses mauve accents, palette card surfaces and popup menus. Version 0.2.1 also themes image viewers and uses mauve download/HD icons. The image retains its full-window zoom area, with transparent toolbar and caption backgrounds so the picture remains visible behind the controls. Version 0.2.3 fixes headers when saved custom toolbar colors would otherwise override the Catppuccin palette. Version 0.2.4 avoids repeated Android DOM child-list copying during resource edits. Version 0.2.5 adds Catppuccin comment depth bars and username role badges, and brightens unread Macchiato titles while retaining the existing read color. Version 0.2.6 fixes a startup verification error in the unread-title hook. Version 0.2.7 uses Macchiato blue for unread titles.
 
 This app uses code from Patcheddit. To learn more, visit https://reddit.com/r/patcheddit
 
 ## Install or upgrade
 
-1. Download `boost-catppuccin-0.2.6.mpp` from this fork's release.
+1. Download `boost-catppuccin-0.2.7.mpp` from this fork's release.
 2. Add `https://github.com/titandrive/boost-catppuccin` in Morphe Manager under **Patch sources → Add patch source → Remote**, or import the `.mpp` under **Local**. The source is named **Boost - Catppuccin**.
    If you previously added this repository and it appeared as **Patcheddit**, remove that source and add it again; its cached upstream version is higher than this standalone bundle.
 3. For an already patched Boost APK, select only **Catppuccin theme**. For a stock APK, include the normal Patcheddit patches too.
@@ -25,7 +25,7 @@ Requires Python 3, JDK 21+, and an Android SDK with platform/build tools. Set `J
 python3 tools/build_catppuccin.py
 ```
 
-Output: `build/boost-catppuccin-0.2.6.mpp`. The standalone build uses pinned public tooling and includes JVM classes and Android DEX. The inherited full bundle still uses upstream's Gradle build and GitHub Packages dependencies.
+Output: `build/boost-catppuccin-0.2.7.mpp`. The standalone build uses pinned public tooling and includes JVM classes and Android DEX. The inherited full bundle still uses upstream's Gradle build and GitHub Packages dependencies.
 
 ## Validation
 

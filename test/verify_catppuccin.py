@@ -75,7 +75,7 @@ author = next(patched.glob('smali*/com/rubenmayayo/reddit/ui/adapters/CommentVie
 author = author.split('.method private I(')[1].split('.end method')[0]
 assert author.count('->catppuccinUsername(') == 5
 assert author.count('->catppuccinUsernameText(') == 7
-assert '0xfff4dbd6' in Path(__file__).resolve().parents[1].joinpath('patches/src/main/kotlin/app/morphe/patches/reddit/customclients/boostforreddit/theme/CatppuccinThemePatch.kt').read_text()
+assert '0xff8aadf4' in Path(__file__).resolve().parents[1].joinpath('patches/src/main/kotlin/app/morphe/patches/reddit/customclients/boostforreddit/theme/CatppuccinThemePatch.kt').read_text()
 for flavor in ('Latte', 'Macchiato'):
  assert styles['Catppuccin.'+flavor][1]['ReadTextColor'] == '@color/catppuccin_'+flavor.lower()+'_subtext0'
 # Saved read-color preferences still run through the original getter.
@@ -86,5 +86,5 @@ print('PASS: scoped comment depth/role hooks, original rainbow presets and read 
 title = utils.split('.method public static w(')[1].split('.end method')[0]
 assert 'Catppuccin unread title brightness' not in title
 assert title.count('Catppuccin header palette') == 1
-assert '-0xb242a' in title  # Macchiato Rosewater
+assert '-0x75520c' in title  # Macchiato blue
 print('PASS: unread title uses a single palette prefix.')

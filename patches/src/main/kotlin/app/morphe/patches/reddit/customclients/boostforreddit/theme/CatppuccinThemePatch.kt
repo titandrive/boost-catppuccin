@@ -277,7 +277,7 @@ val catppuccinThemePatch = bytecodePatch(
         for ((name, colors) in mapOf(
             "k" to ("0xffe6e9ef" to "0xff1e2030"),
             "l" to ("0xffe6e9ef" to "0xff1e2030"),
-            "w" to ("0xff4c4f69" to "0xfff4dbd6"),
+            "w" to ("0xff4c4f69" to "0xff8aadf4"),
             "e" to ("0xff4c4f69" to "0xffcad3f5"),
             "o" to ("0xff6c6f85" to "0xffa5adcb"),
             "x" to ("0xff4c4f69" to "0xffcad3f5"),

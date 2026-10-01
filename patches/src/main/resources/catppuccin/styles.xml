@@ -135,7 +135,7 @@
     <item name="colorOutlineVariant">@color/catppuccin_macchiato_surface0</item>
     <item name="material_drawer_selected">@color/catppuccin_macchiato_surface0</item>
     <item name="PrimaryTextColor">@color/catppuccin_macchiato_text</item>
-    <item name="TitleTextColor">#f4dbd6</item>
+    <item name="TitleTextColor">#8aadf4</item>
     <item name="IconTint">@color/catppuccin_macchiato_text</item>
     <item name="TabColorOnSurface">@color/catppuccin_macchiato_text</item>
     <item name="SpoilerText">@color/catppuccin_macchiato_text</item>
