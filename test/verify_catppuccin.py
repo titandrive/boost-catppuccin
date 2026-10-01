@@ -88,3 +88,11 @@ assert 'Catppuccin unread title brightness' not in title
 assert title.count('Catppuccin header palette') == 1
 assert '-0x75520c' in title  # Macchiato blue
 print('PASS: unread title uses a single palette prefix.')
+
+flair = next(patched.glob('smali*/com/rubenmayayo/reddit/ui/customviews/m.smali')).read_text()
+for name in ('catppuccinFlairBackground', 'catppuccinFlairText'):
+ assert flair.count('.method public static '+name+'(') == 1
+ assert 'Lid/b;->D3()I' in flair.split('.method public static '+name+'(')[1].split('.end method')[0]
+for name in ('a', 'c'):
+ assert '->catppuccinFlair' in flair.split('.method public '+name+'()I')[1].split('.end method')[0]
+print('PASS: shared flair color getters call scoped Catppuccin palette helpers.')

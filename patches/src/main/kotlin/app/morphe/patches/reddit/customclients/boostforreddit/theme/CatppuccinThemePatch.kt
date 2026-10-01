@@ -504,6 +504,277 @@ val catppuccinThemePatch = bytecodePatch(
                 }
             }
         }
+        // Shared by inline post flair, rich post flair, and rich user flair.
+        // Preserve solid badges and their hue families, replacing subreddit colors.
+        val flair = mutableClassDefBy("Lcom/rubenmayayo/reddit/ui/customviews/m;")
+        if (flair.methods.none { it.name == "catppuccinFlairBackground" }) {
+            fun flairHelper(name: String, params: List<String>, registers: Int, code: String) {
+                flair.directMethods.add(ImmutableMethod(flair.type, name,
+                    params.map { ImmutableMethodParameter(it, emptySet(), null) }, "I",
+                    AccessFlags.PUBLIC.value or AccessFlags.STATIC.value, null, null,
+                    MutableMethodImplementation(registers)).toMutable().apply { addInstructionsWithLabels(0, code) })
+            }
+            flairHelper("catppuccinFlairBackground", listOf("I"), 7, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :cat_flair
+                const/16 v1, 18
+                if-eq v0, v1, :cat_flair
+                return p0
+                :cat_flair
+                if-nez p0, :colored
+                return p0
+                :colored
+                const/4 v1, 3
+                new-array v1, v1, [F
+                invoke-static {p0, v1}, Landroid/graphics/Color;->colorToHSV(I[F)V
+                const/4 v2, 1
+                aget v3, v1, v2
+                const v4, 0x3e19999a
+                cmpg-float v3, v3, v4
+                if-gez v3, :chromatic
+                const/16 v3, 11
+                goto :palette
+                :chromatic
+                const/4 v2, 0
+                aget v3, v1, v2
+                float-to-int v3, v3
+                const/16 v4, 15
+                if-ge v3, v4, :hue0
+                const/16 v3, 0
+                goto :palette
+                :hue0
+                const/16 v4, 45
+                if-ge v3, v4, :hue1
+                const/16 v3, 1
+                goto :palette
+                :hue1
+                const/16 v4, 75
+                if-ge v3, v4, :hue2
+                const/16 v3, 2
+                goto :palette
+                :hue2
+                const/16 v4, 165
+                if-ge v3, v4, :hue3
+                const/16 v3, 3
+                goto :palette
+                :hue3
+                const/16 v4, 185
+                if-ge v3, v4, :hue4
+                const/16 v3, 4
+                goto :palette
+                :hue4
+                const/16 v4, 205
+                if-ge v3, v4, :hue5
+                const/16 v3, 5
+                goto :palette
+                :hue5
+                const/16 v4, 225
+                if-ge v3, v4, :hue6
+                const/16 v3, 6
+                goto :palette
+                :hue6
+                const/16 v4, 255
+                if-ge v3, v4, :hue7
+                const/16 v3, 7
+                goto :palette
+                :hue7
+                const/16 v4, 275
+                if-ge v3, v4, :hue8
+                const/16 v3, 8
+                goto :palette
+                :hue8
+                const/16 v4, 300
+                if-ge v3, v4, :hue9
+                const/16 v3, 9
+                goto :palette
+                :hue9
+                const/16 v4, 345
+                if-ge v3, v4, :hue10
+                const/16 v3, 10
+                goto :palette
+                :hue10
+                const/4 v3, 0
+                goto :palette
+                :palette
+                const/16 v4, 17
+                if-eq v0, v4, :latte
+                const/16 v4, 0
+                if-ne v3, v4, :m0
+                const v0, 0xffed8796
+                return v0
+                :m0
+                const/16 v4, 1
+                if-ne v3, v4, :m1
+                const v0, 0xfff5a97f
+                return v0
+                :m1
+                const/16 v4, 2
+                if-ne v3, v4, :m2
+                const v0, 0xffeed49f
+                return v0
+                :m2
+                const/16 v4, 3
+                if-ne v3, v4, :m3
+                const v0, 0xffa6da95
+                return v0
+                :m3
+                const/16 v4, 4
+                if-ne v3, v4, :m4
+                const v0, 0xff8bd5ca
+                return v0
+                :m4
+                const/16 v4, 5
+                if-ne v3, v4, :m5
+                const v0, 0xff91d7e3
+                return v0
+                :m5
+                const/16 v4, 6
+                if-ne v3, v4, :m6
+                const v0, 0xff7dc4e4
+                return v0
+                :m6
+                const/16 v4, 7
+                if-ne v3, v4, :m7
+                const v0, 0xff8aadf4
+                return v0
+                :m7
+                const/16 v4, 8
+                if-ne v3, v4, :m8
+                const v0, 0xffb7bdf8
+                return v0
+                :m8
+                const/16 v4, 9
+                if-ne v3, v4, :m9
+                const v0, 0xffc6a0f6
+                return v0
+                :m9
+                const/16 v4, 10
+                if-ne v3, v4, :m10
+                const v0, 0xfff5bde6
+                return v0
+                :m10
+                const v0, 0xff363a4f
+                return v0
+                :latte
+                const/16 v4, 0
+                if-ne v3, v4, :l0
+                const v0, 0xffd20f39
+                return v0
+                :l0
+                const/16 v4, 1
+                if-ne v3, v4, :l1
+                const v0, 0xfffe640b
+                return v0
+                :l1
+                const/16 v4, 2
+                if-ne v3, v4, :l2
+                const v0, 0xffdf8e1d
+                return v0
+                :l2
+                const/16 v4, 3
+                if-ne v3, v4, :l3
+                const v0, 0xff40a02b
+                return v0
+                :l3
+                const/16 v4, 4
+                if-ne v3, v4, :l4
+                const v0, 0xff179299
+                return v0
+                :l4
+                const/16 v4, 5
+                if-ne v3, v4, :l5
+                const v0, 0xff04a5e5
+                return v0
+                :l5
+                const/16 v4, 6
+                if-ne v3, v4, :l6
+                const v0, 0xff209fb5
+                return v0
+                :l6
+                const/16 v4, 7
+                if-ne v3, v4, :l7
+                const v0, 0xff1e66f5
+                return v0
+                :l7
+                const/16 v4, 8
+                if-ne v3, v4, :l8
+                const v0, 0xff7287fd
+                return v0
+                :l8
+                const/16 v4, 9
+                if-ne v3, v4, :l9
+                const v0, 0xff8839ef
+                return v0
+                :l9
+                const/16 v4, 10
+                if-ne v3, v4, :l10
+                const v0, 0xffea76cb
+                return v0
+                :l10
+                const v0, 0xffccd0da
+                return v0
+            """)
+            flairHelper("catppuccinFlairText", listOf("I", "I"), 6, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :original
+                if-eqz p0, :dark_neutral
+                invoke-static {p0}, Lcom/rubenmayayo/reddit/ui/customviews/m;->catppuccinFlairBackground(I)I
+                move-result v0
+                const v1, 0xff363a4f
+                if-eq v0, v1, :dark_neutral
+                const v0, 0xff24273a
+                return v0
+                :dark_neutral
+                const v0, 0xffcad3f5
+                return v0
+                :latte
+                if-eqz p0, :light_neutral
+                invoke-static {p0}, Lcom/rubenmayayo/reddit/ui/customviews/m;->catppuccinFlairBackground(I)I
+                move-result v0
+                const v1, 0xffccd0da
+                if-eq v0, v1, :light_neutral
+                const v1, 0xffd20f39
+                if-eq v0, v1, :light_ink
+                const v1, 0xff1e66f5
+                if-eq v0, v1, :light_ink
+                const v1, 0xff8839ef
+                if-eq v0, v1, :light_ink
+                const v0, 0xff181926
+                return v0
+                :light_ink
+                const v0, 0xffeff1f5
+                return v0
+                :light_neutral
+                const v0, 0xff4c4f69
+                return v0
+                :original
+                return p1
+            """)
+            val background = flair.methods.single { it.name == "a" }
+            background.replaceInstruction(background.implementation!!.instructions.indexOfFirst { it.opcode == Opcode.RETURN }, """
+                invoke-static {v0}, Lcom/rubenmayayo/reddit/ui/customviews/m;->catppuccinFlairBackground(I)I
+            """)
+            background.addInstructions(background.implementation!!.instructions.size, "move-result v0\nreturn v0")
+            val text = flair.methods.single { it.name == "c" }
+            // One local register is enough: pass the existing text color in v0,
+            // then reuse p0 for the original background after reading the field.
+            text.replaceInstruction(text.implementation!!.instructions.indexOfFirst { it.opcode == Opcode.RETURN }, "iget p0, p0, Lcom/rubenmayayo/reddit/ui/customviews/m;->a:I")
+            text.addInstructions(text.implementation!!.instructions.size, """
+                invoke-static {p0, v0}, Lcom/rubenmayayo/reddit/ui/customviews/m;->catppuccinFlairText(II)I
+                move-result v0
+                return v0
+            """)
+        }
         if (utils.methods.none { it.name == "catppuccinViewer" }) {
             fun helper(name: String, parameters: List<String>, registers: Int, code: String) {
                 utils.directMethods.add(ImmutableMethod(utils.type, name,
