@@ -3,6 +3,12 @@ package app.morphe.patches.reddit.customclients.boostforreddit.theme
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.StringReference
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import javax.xml.parsers.DocumentBuilderFactory
@@ -24,38 +30,16 @@ private fun mergeItems(target: Element, source: Element) {
     }
 }
 
-private fun isAccentVariant(name: String, base: String): Boolean =
-    name.startsWith("$base.") && name.removePrefix("$base.").matches(Regex("[A-Za-z]+[0-9]+"))
+// Resource IDs are reserved explicitly because the theme registry lives in DEX.
+private val themeStyleIds = listOf(0x7f141000, 0x7f141001)
+private val themeLabelIds = listOf(0x7f131000, 0x7f131001)
 
-private fun flavorForStyle(name: String): String? = when {
-    name == "LightTheme" || name.startsWith("LightTheme.") -> "Latte"
-    name == "DarkTheme" || name.startsWith("DarkTheme.") -> "Macchiato"
-    name == "MaterialLightTheme" || name == "MaterialLightTheme.Dynamic" || isAccentVariant(name, "MaterialLightTheme") -> "Latte"
-    name == "MaterialDarkTheme" || name == "MaterialDarkTheme.Dynamic" || isAccentVariant(name, "MaterialDarkTheme") -> "Macchiato"
-    else -> null
-}
-
-@Suppress("unused")
-val catppuccinThemePatch = resourcePatch(
-    name = "Catppuccin theme",
-    description = "Adds Latte and Macchiato with mauve accents to Boost's classic and Material theme pickers. " +
-        "Select a Catppuccin theme and disable wallpaper colors to use the palette.",
-    default = false,
-) {
-    compatibleWith(
-        Compatibility(
-            name = "Boost for Reddit",
-            packageName = "com.rubenmayayo.reddit",
-            targets = listOf(AppTarget(version = "1.12.12")),
-        ),
-    )
-
+private val catppuccinResourcesPatch = resourcePatch {
     execute {
         val templates: Document = checkNotNull(
             CatppuccinResources::class.java.classLoader.getResourceAsStream("catppuccin/styles.xml"),
         ).use { DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(it) }
         val styles = templates.documentElement.elements().associateBy { it.getAttribute("name") }
-        val seen = mutableSetOf<String>()
         val palette = checkNotNull(
             CatppuccinResources::class.java.classLoader.getResourceAsStream("catppuccin/palette.xml"),
         ).use { DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(it) }
@@ -70,73 +54,75 @@ val catppuccinThemePatch = resourcePatch(
             }
         }
 
-        // Update qualified resources too, so an API-specific style cannot undo the palette.
-        for (directory in get("res").listFiles().orEmpty()) {
-            if (!directory.isDirectory || !directory.name.startsWith("values")) continue
-            val path = "res/${directory.name}/styles.xml"
+        // Undo earlier releases without replacing unrelated Patcheddit resources.
+        val restore = checkNotNull(CatppuccinResources::class.java.classLoader
+            .getResourceAsStream("catppuccin/restore.xml")).use {
+            DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(it)
+        }
+        for (file in restore.documentElement.elements()) {
+            val path = file.getAttribute("path")
             if (!get(path).exists()) continue
             document(path).use { xml ->
-                for (style in xml.documentElement.elements()) {
-                    val name = style.getAttribute("name")
-                    val flavor = flavorForStyle(name) ?: continue
-                    mergeItems(style, styles.getValue("Catppuccin.$flavor"))
-                    seen += name
-                }
-                if (directory.name == "values") {
-                    for ((name, style) in styles) {
-                        if (name in setOf("Catppuccin.Latte", "Catppuccin.Macchiato")) continue
-                        xml.documentElement.elements()
-                            .firstOrNull { it.getAttribute("name") == name }
-                            ?.let { xml.documentElement.removeChild(it) }
-                        xml.documentElement.appendChild(xml.importNode(style, true))
+                if (file.getAttribute("mode") == "document") {
+                    xml.replaceChild(xml.importNode(file.elements().single(), true), xml.documentElement)
+                } else {
+                    for (original in file.elements()) {
+                        xml.documentElement.elements().firstOrNull {
+                            it.getAttribute("name") == original.getAttribute("name")
+                        }?.let { xml.documentElement.removeChild(it) }
+                        xml.documentElement.appendChild(xml.importNode(original, true))
                     }
                 }
-            }
-        }
-        check(seen.containsAll(listOf("LightTheme", "DarkTheme", "MaterialLightTheme", "MaterialDarkTheme"))) {
-            "Boost's expected theme resources were not found. Use Boost 1.12.12."
-        }
-
-        // These custom controls otherwise inherit wallpaper accents from Material overlays.
-        for (file in get("res/layout").listFiles().orEmpty()) {
-            if (!file.name.endsWith(".xml")) continue
-            document("res/layout/${file.name}").use { xml ->
-                val nodes = xml.getElementsByTagName("*")
-                for (index in 0 until nodes.length) {
-                    val element = nodes.item(index) as Element
-                    for (attribute in listOf("fab:menu_colorNormal", "fab:menu_colorPressed")) {
-                        if (element.hasAttribute(attribute))
-                            element.setAttribute(attribute, "?attr/HighlightTextColor")
-                    }
-                    if (element.getAttribute("android:id") == "@id/edit_text")
-                        element.setAttribute("android:textColorHint", "?attr/SecondaryTextColor")
-                    if (element.getAttribute("android:id") == "@id/send_button")
-                        element.setAttribute("android:tint", "?attr/HighlightTextColor")
+                val namespaces = restore.documentElement.attributes
+                for (index in 0 until namespaces.length) {
+                    val attribute = namespaces.item(index)
+                    if (attribute.nodeName.startsWith("xmlns:"))
+                        xml.documentElement.setAttribute(attribute.nodeName, attribute.nodeValue)
                 }
             }
         }
-        document("res/menu/menu_reply.xml").use { xml ->
-            val items = xml.getElementsByTagName("item")
-            for (index in 0 until items.length) {
-                val item = items.item(index) as Element
-                if (item.getAttribute("android:id") == "@id/action_send")
-                    item.setAttribute("app:iconTint", "?attr/HighlightTextColor")
+        document("res/values/styles.xml").use { xml ->
+            for ((name, style) in styles) {
+                xml.documentElement.elements().firstOrNull { it.getAttribute("name") == name }
+                    ?.let { xml.documentElement.removeChild(it) }
+                xml.documentElement.appendChild(xml.importNode(style, true))
             }
         }
-
-        val labels = mapOf(
-            "theme_light" to "Catppuccin Latte",
-            "theme_dark" to "Catppuccin Macchiato",
-            "theme_material_light" to "Catppuccin Latte (Material)",
-            "theme_material_dark" to "Catppuccin Macchiato (Material)",
-        )
-        for (directory in get("res").listFiles().orEmpty()) {
-            if (!directory.isDirectory || !directory.name.startsWith("values")) continue
-            val path = "res/${directory.name}/strings.xml"
-            if (!get(path).exists()) continue
-            document(path).use { xml ->
-                for (string in xml.documentElement.elements()) {
-                    labels[string.getAttribute("name")]?.let { string.textContent = it }
+        document("res/values/strings.xml").use { xml ->
+            for ((index, flavor) in listOf("Latte", "Macchiato").withIndex()) {
+                val name = "catppuccin_theme_${flavor.lowercase()}"
+                xml.documentElement.elements().firstOrNull { it.getAttribute("name") == name }
+                    ?.let { xml.documentElement.removeChild(it) }
+                xml.documentElement.appendChild(xml.createElement("string").apply {
+                    setAttribute("name", name)
+                    textContent = "Catppuccin $flavor"
+                })
+            }
+        }
+        document("res/values/public.xml").use { xml ->
+            for ((index, flavor) in listOf("Latte", "Macchiato").withIndex()) {
+                for ((type, name, id) in listOf(
+                    Triple("style", "Catppuccin.$flavor", themeStyleIds[index]),
+                    Triple("string", "catppuccin_theme_${flavor.lowercase()}", themeLabelIds[index]),
+                )) {
+                    xml.documentElement.elements().firstOrNull {
+                        it.getAttribute("type") == type && it.getAttribute("name") == name
+                    }?.let { xml.documentElement.removeChild(it) }
+                    check(xml.documentElement.elements().none { it.getAttribute("id") == "0x${id.toString(16)}" })
+                    xml.documentElement.appendChild(xml.createElement("public").apply {
+                        setAttribute("type", type); setAttribute("name", name)
+                        setAttribute("id", "0x${id.toString(16)}")
+                    })
+                }
+            }
+        }
+        document("res/values/arrays.xml").use { xml ->
+            for (array in xml.documentElement.elements()) {
+                if (array.getAttribute("name").startsWith("pref_theme_values")) {
+                    for (value in listOf("17", "18")) {
+                        if (array.elements().none { it.textContent == value })
+                            array.appendChild(xml.createElement("item").apply { textContent = value })
+                    }
                 }
             }
         }
@@ -157,6 +143,120 @@ val catppuccinThemePatch = resourcePatch(
                     .forEach { it.parentNode.removeChild(it) }
                 xml.documentElement.appendChild(preference)
             }
+        }
+    }
+}
+
+@Suppress("unused")
+val catppuccinThemePatch = bytecodePatch(
+    name = "Catppuccin theme",
+    description = "Adds separate Catppuccin Latte and Macchiato choices while preserving Boost's original themes.",
+    default = false,
+) {
+    dependsOn(catppuccinResourcesPatch)
+    compatibleWith(Compatibility(name = "Boost for Reddit", packageName = "com.rubenmayayo.reddit",
+        targets = listOf(AppTarget(version = "1.12.12"))))
+    execute {
+        val utils = mutableClassDefBy("Lhe/f0;")
+        val init = utils.methods.single { it.name == "<clinit>" }
+        val alreadyPatched = init.implementation!!.instructions.any {
+            ((it as? ReferenceInstruction)?.reference as? StringReference)?.string == "Catppuccin.Latte"
+        }
+        if (!alreadyPatched) {
+            val code = StringBuilder()
+            for ((field, type, values) in listOf(
+                Triple("b", "I", listOf("17", "18")),
+                Triple("c", "I", themeStyleIds.map { "0x${it.toString(16)}" }),
+                Triple("e", "I", themeLabelIds.map { "0x${it.toString(16)}" }),
+                Triple("d", "Ljava/lang/String;", listOf("Catppuccin.Latte", "Catppuccin.Macchiato")),
+            )) {
+                val copyType = if (type == "I") "I" else "Ljava/lang/Object;"
+                code.append("""
+                    sget-object v0, Lhe/f0;->$field:[$type
+                    const/16 v1, 19
+                    invoke-static {v0, v1}, Ljava/util/Arrays;->copyOf([${copyType}I)[$copyType
+                    move-result-object v0
+                    check-cast v0, [$type
+                """)
+                for ((i, value) in values.withIndex()) {
+                    code.append("\nconst/16 v1, ${17 + i}\n")
+                    if (type == "I") code.append("const v2, $value\naput v2, v0, v1\n")
+                    else code.append("const-string v2, \"$value\"\naput-object v2, v0, v1\n")
+                }
+                code.append("sput-object v0, Lhe/f0;->$field:[$type\n")
+            }
+            init.addInstructions(init.implementation!!.instructions.indexOfFirst { it.opcode == Opcode.RETURN_VOID }, code.toString())
+            // Both new slots use Material widgets; Latte also needs light-theme behavior.
+            utils.methods.single { it.name == "J" }.addInstructions(0, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :cat_material
+                const/16 v1, 18
+                if-ne v0, v1, :cat_original
+                :cat_material
+                const/4 v0, 1
+                return v0
+                :cat_original
+                nop
+            """)
+            utils.methods.single { it.name == "D" }.addInstructions(0, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-ne v0, v1, :cat_original
+                const/16 v0, 100
+                return v0
+                :cat_original
+                nop
+            """)
+            utils.methods.single { it.name == "H" }.addInstructions(0, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                add-int/lit8 v0, v0, -17
+                if-ltz v0, :cat_original
+                add-int/lit8 v0, v0, -1
+                if-gtz v0, :cat_original
+                const/4 v0, 0
+                return v0
+                :cat_original
+                nop
+            """)
+            val menu = mutableClassDefBy("Lcom/rubenmayayo/reddit/ui/compose/FormatActivity;")
+                .methods.single { it.name == "onCreateOptionsMenu" }
+            menu.addInstructions(0, """
+                const-string v0, "Catppuccin send accent"
+            """)
+            // Apply the tint after inflation, only for the two dedicated selections.
+            menu.addInstructionsWithLabels(menu.implementation!!.instructions.indexOfFirst { it.opcode == Opcode.RETURN } - 1, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :cat_latte
+                const/16 v1, 18
+                if-ne v0, v1, :cat_done
+                const v0, 0xffc6a0f6
+                goto :cat_tint
+                :cat_latte
+                const v0, 0xff8839ef
+                :cat_tint
+                invoke-static {v0}, Landroid/content/res/ColorStateList;->valueOf(I)Landroid/content/res/ColorStateList;
+                move-result-object v0
+                const v1, 0x7f0a009b
+                invoke-interface {p1, v1}, Landroid/view/Menu;->findItem(I)Landroid/view/MenuItem;
+                move-result-object v1
+                invoke-interface {v1, v0}, Landroid/view/MenuItem;->setIconTintList(Landroid/content/res/ColorStateList;)Landroid/view/MenuItem;
+                :cat_done
+                const/4 p1, 1
+            """)
         }
     }
 }

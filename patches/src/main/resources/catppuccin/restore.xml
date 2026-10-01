@@ -1,0 +1,1850 @@
+<?xml version='1.0' encoding='utf-8'?>
+<restore xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+  <file path="res/values/styles.xml" mode="items">
+    <style name="DarkTheme" parent="@style/Theme.Boost.Dark">
+      <item name="android:colorBackground">?attr/ContentBackground</item>
+      <item name="android:windowBackground">?attr/ContentBackground</item>
+      <item name="AccountSwitcherBackground">@drawable/triangles</item>
+      <item name="AccountSwitcherColor">#35363a</item>
+      <item name="AdBackground">?attr/SubtleBackground</item>
+      <item name="AdCTAColor">#5f626b</item>
+      <item name="AdCTATextColor">#ffffff</item>
+      <item name="AdLineColor">?attr/ContentBackground</item>
+      <item name="BadgeCollapsed">@drawable/badge_collapsed_dark</item>
+      <item name="ContentBackground">#141517</item>
+      <item name="HighlightBackground">#35363a</item>
+      <item name="HighlightTextColor">?attr/colorSecondary</item>
+      <item name="IconTint">@color/white_icon_on_dark</item>
+      <item name="IndentLineColor">?attr/LineColor</item>
+      <item name="LightContentBackground">#202124</item>
+      <item name="LineColor">#1effffff</item>
+      <item name="LinkColor">@color/BlueA100</item>
+      <item name="PopupTheme">@style/ThemeOverlay.Boost.Dark.PopupOverlay</item>
+      <item name="PostIconTint">?attr/SecondaryTextColor</item>
+      <item name="PrimaryTextColor">#e8eaed</item>
+      <item name="ReadTextColor">@color/ali_grey_text</item>
+      <item name="SecondaryTextColor">@color/ali_grey_text</item>
+      <item name="ShapeStrokeColor">#14ffffff</item>
+      <item name="SpoilerColor">#5f626b</item>
+      <item name="SpoilerText">#c8ffffff</item>
+      <item name="StickyTextColor">@color/twitter_green</item>
+      <item name="SubtleBackground">#2a2b2e</item>
+      <item name="TitleTextColor">#e8eaed</item>
+      <item name="ToolbarColor">#35363a</item>
+      <item name="colorControlNormal">@color/white_icon_on_dark</item>
+      <item name="colorOnPrimary">@color/black</item>
+      <item name="colorOnSecondary">@color/black</item>
+      <item name="colorPrimary">@color/BlueA100</item>
+      <item name="colorPrimaryVariant">#202124</item>
+      <item name="colorSecondary">@color/BlueA100</item>
+      <item name="colorSurface">#202124</item>
+      <item name="material_drawer_background">?attr/ContentBackground</item>
+      <item name="material_drawer_divider">?attr/LineColor</item>
+      <item name="material_drawer_header_selection_text">#ffffff</item>
+      <item name="material_drawer_hint_text">?attr/SecondaryTextColor</item>
+      <item name="material_drawer_primary_icon">?attr/IconTint</item>
+      <item name="material_drawer_primary_text">?attr/PrimaryTextColor</item>
+      <item name="material_drawer_secondary_text">?attr/SecondaryTextColor</item>
+      <item name="material_drawer_selected">?attr/SubtleBackground</item>
+      <item name="material_drawer_selected_text">?attr/colorSecondary</item>
+      <item name="md_background_color">#35363a</item>
+      <item name="md_dark_theme">true</item>
+    </style>
+    <style name="DarkTheme.AmberA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/AmberA100</item>
+      <item name="colorSecondary">@color/AmberA100</item>
+    </style>
+    <style name="DarkTheme.AmberA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA200</item>
+      <item name="colorSecondary">@color/AmberA200</item>
+    </style>
+    <style name="DarkTheme.AmberA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA400</item>
+      <item name="colorSecondary">@color/AmberA400</item>
+    </style>
+    <style name="DarkTheme.AmberA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA700</item>
+      <item name="colorSecondary">@color/AmberA700</item>
+    </style>
+    <style name="DarkTheme.BlueA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/BlueA100</item>
+      <item name="colorSecondary">@color/BlueA100</item>
+    </style>
+    <style name="DarkTheme.BlueA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA200</item>
+      <item name="colorSecondary">@color/BlueA200</item>
+    </style>
+    <style name="DarkTheme.BlueA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA400</item>
+      <item name="colorSecondary">@color/BlueA400</item>
+    </style>
+    <style name="DarkTheme.BlueA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA700</item>
+      <item name="colorSecondary">@color/BlueA700</item>
+    </style>
+    <style name="DarkTheme.CyanA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/CyanA100</item>
+      <item name="colorSecondary">@color/CyanA100</item>
+    </style>
+    <style name="DarkTheme.CyanA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/CyanA200</item>
+      <item name="colorSecondary">@color/CyanA200</item>
+    </style>
+    <style name="DarkTheme.CyanA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/CyanA400</item>
+      <item name="colorSecondary">@color/CyanA400</item>
+    </style>
+    <style name="DarkTheme.CyanA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/CyanA700</item>
+      <item name="colorSecondary">@color/CyanA700</item>
+    </style>
+    <style name="DarkTheme.DeepOrangeA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA100</item>
+      <item name="colorSecondary">@color/DeepOrangeA100</item>
+    </style>
+    <style name="DarkTheme.DeepOrangeA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA200</item>
+      <item name="colorSecondary">@color/DeepOrangeA200</item>
+    </style>
+    <style name="DarkTheme.DeepOrangeA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA400</item>
+      <item name="colorSecondary">@color/DeepOrangeA400</item>
+    </style>
+    <style name="DarkTheme.DeepOrangeA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA700</item>
+      <item name="colorSecondary">@color/DeepOrangeA700</item>
+    </style>
+    <style name="DarkTheme.DeepPurpleA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA100</item>
+      <item name="colorSecondary">@color/DeepPurpleA100</item>
+    </style>
+    <style name="DarkTheme.DeepPurpleA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA200</item>
+      <item name="colorSecondary">@color/DeepPurpleA200</item>
+    </style>
+    <style name="DarkTheme.DeepPurpleA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA400</item>
+      <item name="colorSecondary">@color/DeepPurpleA400</item>
+    </style>
+    <style name="DarkTheme.DeepPurpleA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA700</item>
+      <item name="colorSecondary">@color/DeepPurpleA700</item>
+    </style>
+    <style name="DarkTheme.GreenA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/GreenA100</item>
+      <item name="colorSecondary">@color/GreenA100</item>
+    </style>
+    <style name="DarkTheme.GreenA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/GreenA200</item>
+      <item name="colorSecondary">@color/GreenA200</item>
+    </style>
+    <style name="DarkTheme.GreenA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/GreenA400</item>
+      <item name="colorSecondary">@color/GreenA400</item>
+    </style>
+    <style name="DarkTheme.GreenA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/GreenA700</item>
+      <item name="colorSecondary">@color/GreenA700</item>
+    </style>
+    <style name="DarkTheme.Grey600" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/Grey600</item>
+      <item name="colorSecondary">@color/Grey600</item>
+    </style>
+    <style name="DarkTheme.Grey700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/Grey700</item>
+      <item name="colorSecondary">@color/Grey700</item>
+    </style>
+    <style name="DarkTheme.Grey800" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/Grey800</item>
+      <item name="colorSecondary">@color/Grey800</item>
+    </style>
+    <style name="DarkTheme.Grey900" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/Grey900</item>
+      <item name="colorSecondary">@color/Grey900</item>
+    </style>
+    <style name="DarkTheme.IndigoA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA100</item>
+      <item name="colorSecondary">@color/IndigoA100</item>
+    </style>
+    <style name="DarkTheme.IndigoA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA200</item>
+      <item name="colorSecondary">@color/IndigoA200</item>
+    </style>
+    <style name="DarkTheme.IndigoA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA400</item>
+      <item name="colorSecondary">@color/IndigoA400</item>
+    </style>
+    <style name="DarkTheme.IndigoA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA700</item>
+      <item name="colorSecondary">@color/IndigoA700</item>
+    </style>
+    <style name="DarkTheme.LightBlueA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LightBlueA100</item>
+      <item name="colorSecondary">@color/LightBlueA100</item>
+    </style>
+    <style name="DarkTheme.LightBlueA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA200</item>
+      <item name="colorSecondary">@color/LightBlueA200</item>
+    </style>
+    <style name="DarkTheme.LightBlueA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA400</item>
+      <item name="colorSecondary">@color/LightBlueA400</item>
+    </style>
+    <style name="DarkTheme.LightBlueA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA700</item>
+      <item name="colorSecondary">@color/LightBlueA700</item>
+    </style>
+    <style name="DarkTheme.LightGreenA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA100</item>
+      <item name="colorSecondary">@color/LightGreenA100</item>
+    </style>
+    <style name="DarkTheme.LightGreenA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA200</item>
+      <item name="colorSecondary">@color/LightGreenA200</item>
+    </style>
+    <style name="DarkTheme.LightGreenA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA400</item>
+      <item name="colorSecondary">@color/LightGreenA400</item>
+    </style>
+    <style name="DarkTheme.LightGreenA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA700</item>
+      <item name="colorSecondary">@color/LightGreenA700</item>
+    </style>
+    <style name="DarkTheme.LimeA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LimeA100</item>
+      <item name="colorSecondary">@color/LimeA100</item>
+    </style>
+    <style name="DarkTheme.LimeA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LimeA200</item>
+      <item name="colorSecondary">@color/LimeA200</item>
+    </style>
+    <style name="DarkTheme.LimeA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LimeA400</item>
+      <item name="colorSecondary">@color/LimeA400</item>
+    </style>
+    <style name="DarkTheme.LimeA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LimeA700</item>
+      <item name="colorSecondary">@color/LimeA700</item>
+    </style>
+    <style name="DarkTheme.OrangeA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/OrangeA100</item>
+      <item name="colorSecondary">@color/OrangeA100</item>
+    </style>
+    <style name="DarkTheme.OrangeA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA200</item>
+      <item name="colorSecondary">@color/OrangeA200</item>
+    </style>
+    <style name="DarkTheme.OrangeA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA400</item>
+      <item name="colorSecondary">@color/OrangeA400</item>
+    </style>
+    <style name="DarkTheme.OrangeA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA700</item>
+      <item name="colorSecondary">@color/OrangeA700</item>
+    </style>
+    <style name="DarkTheme.PinkA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA100</item>
+      <item name="colorSecondary">@color/PinkA100</item>
+    </style>
+    <style name="DarkTheme.PinkA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA200</item>
+      <item name="colorSecondary">@color/PinkA200</item>
+    </style>
+    <style name="DarkTheme.PinkA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA400</item>
+      <item name="colorSecondary">@color/PinkA400</item>
+    </style>
+    <style name="DarkTheme.PinkA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA700</item>
+      <item name="colorSecondary">@color/PinkA700</item>
+    </style>
+    <style name="DarkTheme.PurpleA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA100</item>
+      <item name="colorSecondary">@color/PurpleA100</item>
+    </style>
+    <style name="DarkTheme.PurpleA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA200</item>
+      <item name="colorSecondary">@color/PurpleA200</item>
+    </style>
+    <style name="DarkTheme.PurpleA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA400</item>
+      <item name="colorSecondary">@color/PurpleA400</item>
+    </style>
+    <style name="DarkTheme.PurpleA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA700</item>
+      <item name="colorSecondary">@color/PurpleA700</item>
+    </style>
+    <style name="DarkTheme.RedA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/RedA100</item>
+      <item name="colorSecondary">@color/RedA100</item>
+    </style>
+    <style name="DarkTheme.RedA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/RedA200</item>
+      <item name="colorSecondary">@color/RedA200</item>
+    </style>
+    <style name="DarkTheme.RedA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/RedA400</item>
+      <item name="colorSecondary">@color/RedA400</item>
+    </style>
+    <style name="DarkTheme.RedA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/RedA700</item>
+      <item name="colorSecondary">@color/RedA700</item>
+    </style>
+    <style name="DarkTheme.TealA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/TealA100</item>
+      <item name="colorSecondary">@color/TealA100</item>
+    </style>
+    <style name="DarkTheme.TealA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/TealA200</item>
+      <item name="colorSecondary">@color/TealA200</item>
+    </style>
+    <style name="DarkTheme.TealA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/TealA400</item>
+      <item name="colorSecondary">@color/TealA400</item>
+    </style>
+    <style name="DarkTheme.TealA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/TealA700</item>
+      <item name="colorSecondary">@color/TealA700</item>
+    </style>
+    <style name="DarkTheme.YellowA100" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/YellowA100</item>
+      <item name="colorSecondary">@color/YellowA100</item>
+    </style>
+    <style name="DarkTheme.YellowA200" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/YellowA200</item>
+      <item name="colorSecondary">@color/YellowA200</item>
+    </style>
+    <style name="DarkTheme.YellowA400" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/YellowA400</item>
+      <item name="colorSecondary">@color/YellowA400</item>
+    </style>
+    <style name="DarkTheme.YellowA700" parent="@style/DarkTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/YellowA700</item>
+      <item name="colorSecondary">@color/YellowA700</item>
+    </style>
+    <style name="LightTheme" parent="@style/Theme.Boost.Light">
+      <item name="android:colorBackground">?attr/ContentBackground</item>
+      <item name="android:windowBackground">?attr/ContentBackground</item>
+      <item name="AccountSwitcherBackground">@drawable/triangles</item>
+      <item name="AccountSwitcherColor">@color/blue_grey900</item>
+      <item name="AdBackground">?attr/SubtleBackground</item>
+      <item name="AdCTAColor">#e8f0fe</item>
+      <item name="AdCTATextColor">#1967d2</item>
+      <item name="AdLineColor">?attr/ContentBackground</item>
+      <item name="BadgeCollapsed">@drawable/badge_collapsed_light</item>
+      <item name="ContentBackground">#f0f1f2</item>
+      <item name="HighlightBackground">#dfefff</item>
+      <item name="HighlightTextColor">?attr/colorSecondary</item>
+      <item name="IconTint">@color/black_icon_on_light</item>
+      <item name="IndentLineColor">?attr/LineColor</item>
+      <item name="LightContentBackground">#ffffff</item>
+      <item name="LineColor">#1e000000</item>
+      <item name="LinkColor">@color/ali_blue</item>
+      <item name="PopupTheme">@style/ThemeOverlay.Boost.Light.PopupOverlay</item>
+      <item name="PostIconTint">?attr/SecondaryTextColor</item>
+      <item name="PrimaryTextColor">#202124</item>
+      <item name="ReadTextColor">@color/ali_grey_text</item>
+      <item name="SecondaryTextColor">@color/ali_grey_text</item>
+      <item name="ShapeStrokeColor">#14000000</item>
+      <item name="SpoilerColor">#4f5053</item>
+      <item name="SpoilerText">#c8ffffff</item>
+      <item name="StickyTextColor">@color/sticky_color</item>
+      <item name="SubtleBackground">#f2f4f5</item>
+      <item name="TitleTextColor">#202124</item>
+      <item name="ToolbarColor">@color/twitter_light_blue</item>
+      <item name="colorControlNormal">@color/black_icon_on_light</item>
+      <item name="colorOnPrimary">@color/black</item>
+      <item name="colorOnSecondary">@color/white</item>
+      <item name="colorPrimary">@color/RedA200</item>
+      <item name="colorPrimaryVariant">@color/twitter_dark_blue</item>
+      <item name="colorSecondary">@color/RedA200</item>
+      <item name="colorSurface">#ffffff</item>
+      <item name="material_drawer_selected_text">?attr/colorSecondary</item>
+    </style>
+    <style name="LightTheme.AmberA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/AmberA100</item>
+      <item name="colorSecondary">@color/AmberA100</item>
+    </style>
+    <style name="LightTheme.AmberA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA200</item>
+      <item name="colorSecondary">@color/AmberA200</item>
+    </style>
+    <style name="LightTheme.AmberA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA400</item>
+      <item name="colorSecondary">@color/AmberA400</item>
+    </style>
+    <style name="LightTheme.AmberA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA700</item>
+      <item name="colorSecondary">@color/AmberA700</item>
+    </style>
+    <style name="LightTheme.BlueA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/BlueA100</item>
+      <item name="colorSecondary">@color/BlueA100</item>
+    </style>
+    <style name="LightTheme.BlueA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA200</item>
+      <item name="colorSecondary">@color/BlueA200</item>
+    </style>
+    <style name="LightTheme.BlueA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA400</item>
+      <item name="colorSecondary">@color/BlueA400</item>
+    </style>
+    <style name="LightTheme.BlueA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA700</item>
+      <item name="colorSecondary">@color/BlueA700</item>
+    </style>
+    <style name="LightTheme.CyanA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/CyanA100</item>
+      <item name="colorSecondary">@color/CyanA100</item>
+    </style>
+    <style name="LightTheme.CyanA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/CyanA200</item>
+      <item name="colorSecondary">@color/CyanA200</item>
+    </style>
+    <style name="LightTheme.CyanA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/CyanA400</item>
+      <item name="colorSecondary">@color/CyanA400</item>
+    </style>
+    <style name="LightTheme.CyanA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/CyanA700</item>
+      <item name="colorSecondary">@color/CyanA700</item>
+    </style>
+    <style name="LightTheme.DeepOrangeA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA100</item>
+      <item name="colorSecondary">@color/DeepOrangeA100</item>
+    </style>
+    <style name="LightTheme.DeepOrangeA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA200</item>
+      <item name="colorSecondary">@color/DeepOrangeA200</item>
+    </style>
+    <style name="LightTheme.DeepOrangeA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA400</item>
+      <item name="colorSecondary">@color/DeepOrangeA400</item>
+    </style>
+    <style name="LightTheme.DeepOrangeA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA700</item>
+      <item name="colorSecondary">@color/DeepOrangeA700</item>
+    </style>
+    <style name="LightTheme.DeepPurpleA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA100</item>
+      <item name="colorSecondary">@color/DeepPurpleA100</item>
+    </style>
+    <style name="LightTheme.DeepPurpleA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA200</item>
+      <item name="colorSecondary">@color/DeepPurpleA200</item>
+    </style>
+    <style name="LightTheme.DeepPurpleA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA400</item>
+      <item name="colorSecondary">@color/DeepPurpleA400</item>
+    </style>
+    <style name="LightTheme.DeepPurpleA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA700</item>
+      <item name="colorSecondary">@color/DeepPurpleA700</item>
+    </style>
+    <style name="LightTheme.GreenA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/GreenA100</item>
+      <item name="colorSecondary">@color/GreenA100</item>
+    </style>
+    <style name="LightTheme.GreenA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/GreenA200</item>
+      <item name="colorSecondary">@color/GreenA200</item>
+    </style>
+    <style name="LightTheme.GreenA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/GreenA400</item>
+      <item name="colorSecondary">@color/GreenA400</item>
+    </style>
+    <style name="LightTheme.GreenA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/GreenA700</item>
+      <item name="colorSecondary">@color/GreenA700</item>
+    </style>
+    <style name="LightTheme.Grey600" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/Grey600</item>
+      <item name="colorSecondary">@color/Grey600</item>
+    </style>
+    <style name="LightTheme.Grey700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/Grey700</item>
+      <item name="colorSecondary">@color/Grey700</item>
+    </style>
+    <style name="LightTheme.Grey800" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/Grey800</item>
+      <item name="colorSecondary">@color/Grey800</item>
+    </style>
+    <style name="LightTheme.Grey900" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/Grey900</item>
+      <item name="colorSecondary">@color/Grey900</item>
+    </style>
+    <style name="LightTheme.IndigoA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA100</item>
+      <item name="colorSecondary">@color/IndigoA100</item>
+    </style>
+    <style name="LightTheme.IndigoA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA200</item>
+      <item name="colorSecondary">@color/IndigoA200</item>
+    </style>
+    <style name="LightTheme.IndigoA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA400</item>
+      <item name="colorSecondary">@color/IndigoA400</item>
+    </style>
+    <style name="LightTheme.IndigoA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA700</item>
+      <item name="colorSecondary">@color/IndigoA700</item>
+    </style>
+    <style name="LightTheme.LightBlueA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LightBlueA100</item>
+      <item name="colorSecondary">@color/LightBlueA100</item>
+    </style>
+    <style name="LightTheme.LightBlueA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA200</item>
+      <item name="colorSecondary">@color/LightBlueA200</item>
+    </style>
+    <style name="LightTheme.LightBlueA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA400</item>
+      <item name="colorSecondary">@color/LightBlueA400</item>
+    </style>
+    <style name="LightTheme.LightBlueA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA700</item>
+      <item name="colorSecondary">@color/LightBlueA700</item>
+    </style>
+    <style name="LightTheme.LightGreenA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA100</item>
+      <item name="colorSecondary">@color/LightGreenA100</item>
+    </style>
+    <style name="LightTheme.LightGreenA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA200</item>
+      <item name="colorSecondary">@color/LightGreenA200</item>
+    </style>
+    <style name="LightTheme.LightGreenA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA400</item>
+      <item name="colorSecondary">@color/LightGreenA400</item>
+    </style>
+    <style name="LightTheme.LightGreenA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA700</item>
+      <item name="colorSecondary">@color/LightGreenA700</item>
+    </style>
+    <style name="LightTheme.LimeA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LimeA100</item>
+      <item name="colorSecondary">@color/LimeA100</item>
+    </style>
+    <style name="LightTheme.LimeA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LimeA200</item>
+      <item name="colorSecondary">@color/LimeA200</item>
+    </style>
+    <style name="LightTheme.LimeA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LimeA400</item>
+      <item name="colorSecondary">@color/LimeA400</item>
+    </style>
+    <style name="LightTheme.LimeA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/LimeA700</item>
+      <item name="colorSecondary">@color/LimeA700</item>
+    </style>
+    <style name="LightTheme.OrangeA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/OrangeA100</item>
+      <item name="colorSecondary">@color/OrangeA100</item>
+    </style>
+    <style name="LightTheme.OrangeA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA200</item>
+      <item name="colorSecondary">@color/OrangeA200</item>
+    </style>
+    <style name="LightTheme.OrangeA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA400</item>
+      <item name="colorSecondary">@color/OrangeA400</item>
+    </style>
+    <style name="LightTheme.OrangeA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA700</item>
+      <item name="colorSecondary">@color/OrangeA700</item>
+    </style>
+    <style name="LightTheme.PinkA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA100</item>
+      <item name="colorSecondary">@color/PinkA100</item>
+    </style>
+    <style name="LightTheme.PinkA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA200</item>
+      <item name="colorSecondary">@color/PinkA200</item>
+    </style>
+    <style name="LightTheme.PinkA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA400</item>
+      <item name="colorSecondary">@color/PinkA400</item>
+    </style>
+    <style name="LightTheme.PinkA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA700</item>
+      <item name="colorSecondary">@color/PinkA700</item>
+    </style>
+    <style name="LightTheme.PurpleA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA100</item>
+      <item name="colorSecondary">@color/PurpleA100</item>
+    </style>
+    <style name="LightTheme.PurpleA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA200</item>
+      <item name="colorSecondary">@color/PurpleA200</item>
+    </style>
+    <style name="LightTheme.PurpleA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA400</item>
+      <item name="colorSecondary">@color/PurpleA400</item>
+    </style>
+    <style name="LightTheme.PurpleA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA700</item>
+      <item name="colorSecondary">@color/PurpleA700</item>
+    </style>
+    <style name="LightTheme.RedA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/RedA100</item>
+      <item name="colorSecondary">@color/RedA100</item>
+    </style>
+    <style name="LightTheme.RedA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/RedA200</item>
+      <item name="colorSecondary">@color/RedA200</item>
+    </style>
+    <style name="LightTheme.RedA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/RedA400</item>
+      <item name="colorSecondary">@color/RedA400</item>
+    </style>
+    <style name="LightTheme.RedA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#ffffff</item>
+      <item name="colorPrimary">@color/RedA700</item>
+      <item name="colorSecondary">@color/RedA700</item>
+    </style>
+    <style name="LightTheme.TealA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/TealA100</item>
+      <item name="colorSecondary">@color/TealA100</item>
+    </style>
+    <style name="LightTheme.TealA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/TealA200</item>
+      <item name="colorSecondary">@color/TealA200</item>
+    </style>
+    <style name="LightTheme.TealA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/TealA400</item>
+      <item name="colorSecondary">@color/TealA400</item>
+    </style>
+    <style name="LightTheme.TealA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/TealA700</item>
+      <item name="colorSecondary">@color/TealA700</item>
+    </style>
+    <style name="LightTheme.YellowA100" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/YellowA100</item>
+      <item name="colorSecondary">@color/YellowA100</item>
+    </style>
+    <style name="LightTheme.YellowA200" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/YellowA200</item>
+      <item name="colorSecondary">@color/YellowA200</item>
+    </style>
+    <style name="LightTheme.YellowA400" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/YellowA400</item>
+      <item name="colorSecondary">@color/YellowA400</item>
+    </style>
+    <style name="LightTheme.YellowA700" parent="@style/LightTheme">
+      <item name="colorOnSecondary">#000000</item>
+      <item name="colorPrimary">@color/YellowA700</item>
+      <item name="colorSecondary">@color/YellowA700</item>
+    </style>
+    <style name="MaterialDarkTheme" parent="@style/Theme.Boost.Material.Dark">
+      <item name="android:colorBackground">@color/md_theme_dark_background</item>
+      <item name="android:windowBackground">?attr/ContentBackground</item>
+      <item name="AccountSwitcherBackground">@drawable/triangles</item>
+      <item name="AccountSwitcherColor">?attr/colorSurface</item>
+      <item name="AdBackground">?attr/SubtleBackground</item>
+      <item name="AdCTAColor">?attr/colorSecondaryContainer</item>
+      <item name="AdCTATextColor">?attr/colorOnSecondaryContainer</item>
+      <item name="AdLineColor">?attr/ContentBackground</item>
+      <item name="BadgeCollapsed">@drawable/badge_collapsed_dark</item>
+      <item name="ContentBackground">?attr/colorSurface</item>
+      <item name="HighlightBackground">?attr/colorSurfaceVariant</item>
+      <item name="HighlightTextColor">?attr/colorPrimary</item>
+      <item name="IconTint">?attr/colorOnSurfaceVariant</item>
+      <item name="IndentLineColor">?attr/LineColor</item>
+      <item name="LightContentBackground">?attr/colorSurface</item>
+      <item name="LineColor">?attr/colorSurfaceVariant</item>
+      <item name="LinkColor">@color/ali_blue</item>
+      <item name="PopupTheme">@style/ThemeOverlay.Boost.Material.Dark.PopupOverlay</item>
+      <item name="PostIconTint">?attr/colorOnSurfaceVariant</item>
+      <item name="PrimaryTextColor">?attr/colorOnSurface</item>
+      <item name="ReadTextColor">?attr/SecondaryTextColor</item>
+      <item name="SecondaryTextColor">?attr/colorOnSurfaceVariant</item>
+      <item name="ShapeStrokeColor">#14ffffff</item>
+      <item name="SpoilerColor">#5f626b</item>
+      <item name="SpoilerText">#c8ffffff</item>
+      <item name="StickyTextColor">?attr/colorPrimary</item>
+      <item name="SubtleBackground">#0cffffff</item>
+      <item name="TitleTextColor">?attr/colorOnSurface</item>
+      <item name="ToolbarColor">?attr/colorSurface</item>
+      <item name="colorControlNormal">@color/white_icon_on_dark</item>
+      <item name="colorError">@color/md_theme_dark_error</item>
+      <item name="colorErrorContainer">@color/md_theme_dark_errorContainer</item>
+      <item name="colorOnBackground">@color/md_theme_dark_onBackground</item>
+      <item name="colorOnError">@color/md_theme_dark_onError</item>
+      <item name="colorOnErrorContainer">@color/md_theme_dark_onErrorContainer</item>
+      <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
+      <item name="colorOnPrimaryContainer">@color/md_theme_dark_onPrimaryContainer</item>
+      <item name="colorOnSecondary">@color/md_theme_dark_onSecondary</item>
+      <item name="colorOnSecondaryContainer">@color/md_theme_dark_onSecondaryContainer</item>
+      <item name="colorOnSurface">@color/md_theme_dark_onSurface</item>
+      <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
+      <item name="colorOnSurfaceVariant">@color/md_theme_dark_onSurfaceVariant</item>
+      <item name="colorOnTertiary">@color/md_theme_dark_onTertiary</item>
+      <item name="colorOnTertiaryContainer">@color/md_theme_dark_onTertiaryContainer</item>
+      <item name="colorOutline">@color/md_theme_dark_outline</item>
+      <item name="colorPrimary">@color/md_theme_dark_primary</item>
+      <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
+      <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
+      <item name="colorPrimaryVariant">#121315</item>
+      <item name="colorSecondary">@color/md_theme_dark_secondary</item>
+      <item name="colorSecondaryContainer">@color/md_theme_dark_secondaryContainer</item>
+      <item name="colorSurface">@color/md_theme_dark_surface</item>
+      <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
+      <item name="colorSurfaceVariant">@color/md_theme_dark_surfaceVariant</item>
+      <item name="colorTertiary">@color/md_theme_dark_tertiary</item>
+      <item name="colorTertiaryContainer">@color/md_theme_dark_tertiaryContainer</item>
+      <item name="elevationOverlayColor">#fff</item>
+      <item name="material_drawer_background">?attr/colorSurface</item>
+      <item name="material_drawer_divider">?attr/LineColor</item>
+      <item name="material_drawer_header_selection_text">#ffffff</item>
+      <item name="material_drawer_hint_text">?attr/SecondaryTextColor</item>
+      <item name="material_drawer_primary_icon">?attr/colorOnSurfaceVariant</item>
+      <item name="material_drawer_primary_text">?attr/colorOnSurfaceVariant</item>
+      <item name="material_drawer_secondary_text">?attr/SecondaryTextColor</item>
+      <item name="material_drawer_selected">?attr/HighlightBackground</item>
+      <item name="material_drawer_selected_text">?attr/colorOnSurface</item>
+      <item name="md_background_color">?attr/colorSurface</item>
+      <item name="md_dark_theme">true</item>
+    </style>
+    <style name="MaterialDarkTheme.AmberA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/AmberA100</item>
+      <item name="colorSecondary">@color/AmberA100</item>
+      <item name="colorSecondaryContainer">@color/AmberA100</item>
+    </style>
+    <style name="MaterialDarkTheme.AmberA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA200</item>
+      <item name="colorSecondary">@color/AmberA200</item>
+      <item name="colorSecondaryContainer">@color/AmberA200</item>
+    </style>
+    <style name="MaterialDarkTheme.AmberA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA400</item>
+      <item name="colorSecondary">@color/AmberA400</item>
+      <item name="colorSecondaryContainer">@color/AmberA400</item>
+    </style>
+    <style name="MaterialDarkTheme.AmberA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA700</item>
+      <item name="colorSecondary">@color/AmberA700</item>
+      <item name="colorSecondaryContainer">@color/AmberA700</item>
+    </style>
+    <style name="MaterialDarkTheme.BlueA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/BlueA100</item>
+      <item name="colorSecondary">@color/BlueA100</item>
+      <item name="colorSecondaryContainer">@color/BlueA100</item>
+    </style>
+    <style name="MaterialDarkTheme.BlueA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA200</item>
+      <item name="colorSecondary">@color/BlueA200</item>
+      <item name="colorSecondaryContainer">@color/BlueA200</item>
+    </style>
+    <style name="MaterialDarkTheme.BlueA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA400</item>
+      <item name="colorSecondary">@color/BlueA400</item>
+      <item name="colorSecondaryContainer">@color/BlueA400</item>
+    </style>
+    <style name="MaterialDarkTheme.BlueA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA700</item>
+      <item name="colorSecondary">@color/BlueA700</item>
+      <item name="colorSecondaryContainer">@color/BlueA700</item>
+    </style>
+    <style name="MaterialDarkTheme.CyanA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/CyanA100</item>
+      <item name="colorSecondary">@color/CyanA100</item>
+      <item name="colorSecondaryContainer">@color/CyanA100</item>
+    </style>
+    <style name="MaterialDarkTheme.CyanA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/CyanA200</item>
+      <item name="colorSecondary">@color/CyanA200</item>
+      <item name="colorSecondaryContainer">@color/CyanA200</item>
+    </style>
+    <style name="MaterialDarkTheme.CyanA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/CyanA400</item>
+      <item name="colorSecondary">@color/CyanA400</item>
+      <item name="colorSecondaryContainer">@color/CyanA400</item>
+    </style>
+    <style name="MaterialDarkTheme.CyanA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/CyanA700</item>
+      <item name="colorSecondary">@color/CyanA700</item>
+      <item name="colorSecondaryContainer">@color/CyanA700</item>
+    </style>
+    <style name="MaterialDarkTheme.DeepOrangeA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA100</item>
+      <item name="colorSecondary">@color/DeepOrangeA100</item>
+      <item name="colorSecondaryContainer">@color/DeepOrangeA100</item>
+    </style>
+    <style name="MaterialDarkTheme.DeepOrangeA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA200</item>
+      <item name="colorSecondary">@color/DeepOrangeA200</item>
+      <item name="colorSecondaryContainer">@color/DeepOrangeA200</item>
+    </style>
+    <style name="MaterialDarkTheme.DeepOrangeA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA400</item>
+      <item name="colorSecondary">@color/DeepOrangeA400</item>
+      <item name="colorSecondaryContainer">@color/DeepOrangeA400</item>
+    </style>
+    <style name="MaterialDarkTheme.DeepOrangeA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA700</item>
+      <item name="colorSecondary">@color/DeepOrangeA700</item>
+      <item name="colorSecondaryContainer">@color/DeepOrangeA700</item>
+    </style>
+    <style name="MaterialDarkTheme.DeepPurpleA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA100</item>
+      <item name="colorSecondary">@color/DeepPurpleA100</item>
+      <item name="colorSecondaryContainer">@color/DeepPurpleA100</item>
+    </style>
+    <style name="MaterialDarkTheme.DeepPurpleA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA200</item>
+      <item name="colorSecondary">@color/DeepPurpleA200</item>
+      <item name="colorSecondaryContainer">@color/DeepPurpleA200</item>
+    </style>
+    <style name="MaterialDarkTheme.DeepPurpleA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA400</item>
+      <item name="colorSecondary">@color/DeepPurpleA400</item>
+      <item name="colorSecondaryContainer">@color/DeepPurpleA400</item>
+    </style>
+    <style name="MaterialDarkTheme.DeepPurpleA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA700</item>
+      <item name="colorSecondary">@color/DeepPurpleA700</item>
+      <item name="colorSecondaryContainer">@color/DeepPurpleA700</item>
+    </style>
+    <style name="MaterialDarkTheme.Dynamic" parent="@style/MaterialDarkTheme">
+      <item name="PopupTheme">@style/ThemeOverlay.Boost.Material.Dark.Dynamic.PopupOverlay</item>
+      <item name="ToolbarTheme">@null</item>
+    </style>
+    <style name="MaterialDarkTheme.GreenA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/GreenA100</item>
+      <item name="colorSecondary">@color/GreenA100</item>
+      <item name="colorSecondaryContainer">@color/GreenA100</item>
+    </style>
+    <style name="MaterialDarkTheme.GreenA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/GreenA200</item>
+      <item name="colorSecondary">@color/GreenA200</item>
+      <item name="colorSecondaryContainer">@color/GreenA200</item>
+    </style>
+    <style name="MaterialDarkTheme.GreenA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/GreenA400</item>
+      <item name="colorSecondary">@color/GreenA400</item>
+      <item name="colorSecondaryContainer">@color/GreenA400</item>
+    </style>
+    <style name="MaterialDarkTheme.GreenA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/GreenA700</item>
+      <item name="colorSecondary">@color/GreenA700</item>
+      <item name="colorSecondaryContainer">@color/GreenA700</item>
+    </style>
+    <style name="MaterialDarkTheme.Grey600" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/Grey600</item>
+      <item name="colorSecondary">@color/Grey600</item>
+      <item name="colorSecondaryContainer">@color/Grey600</item>
+    </style>
+    <style name="MaterialDarkTheme.Grey700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/Grey700</item>
+      <item name="colorSecondary">@color/Grey700</item>
+      <item name="colorSecondaryContainer">@color/Grey700</item>
+    </style>
+    <style name="MaterialDarkTheme.Grey800" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/Grey800</item>
+      <item name="colorSecondary">@color/Grey800</item>
+      <item name="colorSecondaryContainer">@color/Grey800</item>
+    </style>
+    <style name="MaterialDarkTheme.Grey900" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/Grey900</item>
+      <item name="colorSecondary">@color/Grey900</item>
+      <item name="colorSecondaryContainer">@color/Grey900</item>
+    </style>
+    <style name="MaterialDarkTheme.IndigoA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA100</item>
+      <item name="colorSecondary">@color/IndigoA100</item>
+      <item name="colorSecondaryContainer">@color/IndigoA100</item>
+    </style>
+    <style name="MaterialDarkTheme.IndigoA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA200</item>
+      <item name="colorSecondary">@color/IndigoA200</item>
+      <item name="colorSecondaryContainer">@color/IndigoA200</item>
+    </style>
+    <style name="MaterialDarkTheme.IndigoA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA400</item>
+      <item name="colorSecondary">@color/IndigoA400</item>
+      <item name="colorSecondaryContainer">@color/IndigoA400</item>
+    </style>
+    <style name="MaterialDarkTheme.IndigoA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA700</item>
+      <item name="colorSecondary">@color/IndigoA700</item>
+      <item name="colorSecondaryContainer">@color/IndigoA700</item>
+    </style>
+    <style name="MaterialDarkTheme.LightBlueA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LightBlueA100</item>
+      <item name="colorSecondary">@color/LightBlueA100</item>
+      <item name="colorSecondaryContainer">@color/LightBlueA100</item>
+    </style>
+    <style name="MaterialDarkTheme.LightBlueA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA200</item>
+      <item name="colorSecondary">@color/LightBlueA200</item>
+      <item name="colorSecondaryContainer">@color/LightBlueA200</item>
+    </style>
+    <style name="MaterialDarkTheme.LightBlueA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA400</item>
+      <item name="colorSecondary">@color/LightBlueA400</item>
+      <item name="colorSecondaryContainer">@color/LightBlueA400</item>
+    </style>
+    <style name="MaterialDarkTheme.LightBlueA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA700</item>
+      <item name="colorSecondary">@color/LightBlueA700</item>
+      <item name="colorSecondaryContainer">@color/LightBlueA700</item>
+    </style>
+    <style name="MaterialDarkTheme.LightGreenA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA100</item>
+      <item name="colorSecondary">@color/LightGreenA100</item>
+      <item name="colorSecondaryContainer">@color/LightGreenA100</item>
+    </style>
+    <style name="MaterialDarkTheme.LightGreenA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA200</item>
+      <item name="colorSecondary">@color/LightGreenA200</item>
+      <item name="colorSecondaryContainer">@color/LightGreenA200</item>
+    </style>
+    <style name="MaterialDarkTheme.LightGreenA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA400</item>
+      <item name="colorSecondary">@color/LightGreenA400</item>
+      <item name="colorSecondaryContainer">@color/LightGreenA400</item>
+    </style>
+    <style name="MaterialDarkTheme.LightGreenA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA700</item>
+      <item name="colorSecondary">@color/LightGreenA700</item>
+      <item name="colorSecondaryContainer">@color/LightGreenA700</item>
+    </style>
+    <style name="MaterialDarkTheme.LimeA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LimeA100</item>
+      <item name="colorSecondary">@color/LimeA100</item>
+      <item name="colorSecondaryContainer">@color/LimeA100</item>
+    </style>
+    <style name="MaterialDarkTheme.LimeA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LimeA200</item>
+      <item name="colorSecondary">@color/LimeA200</item>
+      <item name="colorSecondaryContainer">@color/LimeA200</item>
+    </style>
+    <style name="MaterialDarkTheme.LimeA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LimeA400</item>
+      <item name="colorSecondary">@color/LimeA400</item>
+      <item name="colorSecondaryContainer">@color/LimeA400</item>
+    </style>
+    <style name="MaterialDarkTheme.LimeA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LimeA700</item>
+      <item name="colorSecondary">@color/LimeA700</item>
+      <item name="colorSecondaryContainer">@color/LimeA700</item>
+    </style>
+    <style name="MaterialDarkTheme.OrangeA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/OrangeA100</item>
+      <item name="colorSecondary">@color/OrangeA100</item>
+      <item name="colorSecondaryContainer">@color/OrangeA100</item>
+    </style>
+    <style name="MaterialDarkTheme.OrangeA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA200</item>
+      <item name="colorSecondary">@color/OrangeA200</item>
+      <item name="colorSecondaryContainer">@color/OrangeA200</item>
+    </style>
+    <style name="MaterialDarkTheme.OrangeA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA400</item>
+      <item name="colorSecondary">@color/OrangeA400</item>
+      <item name="colorSecondaryContainer">@color/OrangeA400</item>
+    </style>
+    <style name="MaterialDarkTheme.OrangeA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA700</item>
+      <item name="colorSecondary">@color/OrangeA700</item>
+      <item name="colorSecondaryContainer">@color/OrangeA700</item>
+    </style>
+    <style name="MaterialDarkTheme.PinkA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA100</item>
+      <item name="colorSecondary">@color/PinkA100</item>
+      <item name="colorSecondaryContainer">@color/PinkA100</item>
+    </style>
+    <style name="MaterialDarkTheme.PinkA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA200</item>
+      <item name="colorSecondary">@color/PinkA200</item>
+      <item name="colorSecondaryContainer">@color/PinkA200</item>
+    </style>
+    <style name="MaterialDarkTheme.PinkA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA400</item>
+      <item name="colorSecondary">@color/PinkA400</item>
+      <item name="colorSecondaryContainer">@color/PinkA400</item>
+    </style>
+    <style name="MaterialDarkTheme.PinkA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA700</item>
+      <item name="colorSecondary">@color/PinkA700</item>
+      <item name="colorSecondaryContainer">@color/PinkA700</item>
+    </style>
+    <style name="MaterialDarkTheme.PurpleA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA100</item>
+      <item name="colorSecondary">@color/PurpleA100</item>
+      <item name="colorSecondaryContainer">@color/PurpleA100</item>
+    </style>
+    <style name="MaterialDarkTheme.PurpleA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA200</item>
+      <item name="colorSecondary">@color/PurpleA200</item>
+      <item name="colorSecondaryContainer">@color/PurpleA200</item>
+    </style>
+    <style name="MaterialDarkTheme.PurpleA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA400</item>
+      <item name="colorSecondary">@color/PurpleA400</item>
+      <item name="colorSecondaryContainer">@color/PurpleA400</item>
+    </style>
+    <style name="MaterialDarkTheme.PurpleA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA700</item>
+      <item name="colorSecondary">@color/PurpleA700</item>
+      <item name="colorSecondaryContainer">@color/PurpleA700</item>
+    </style>
+    <style name="MaterialDarkTheme.RedA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/RedA100</item>
+      <item name="colorSecondary">@color/RedA100</item>
+      <item name="colorSecondaryContainer">@color/RedA100</item>
+    </style>
+    <style name="MaterialDarkTheme.RedA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/RedA200</item>
+      <item name="colorSecondary">@color/RedA200</item>
+      <item name="colorSecondaryContainer">@color/RedA200</item>
+    </style>
+    <style name="MaterialDarkTheme.RedA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/RedA400</item>
+      <item name="colorSecondary">@color/RedA400</item>
+      <item name="colorSecondaryContainer">@color/RedA400</item>
+    </style>
+    <style name="MaterialDarkTheme.RedA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/RedA700</item>
+      <item name="colorSecondary">@color/RedA700</item>
+      <item name="colorSecondaryContainer">@color/RedA700</item>
+    </style>
+    <style name="MaterialDarkTheme.TealA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/TealA100</item>
+      <item name="colorSecondary">@color/TealA100</item>
+      <item name="colorSecondaryContainer">@color/TealA100</item>
+    </style>
+    <style name="MaterialDarkTheme.TealA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/TealA200</item>
+      <item name="colorSecondary">@color/TealA200</item>
+      <item name="colorSecondaryContainer">@color/TealA200</item>
+    </style>
+    <style name="MaterialDarkTheme.TealA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/TealA400</item>
+      <item name="colorSecondary">@color/TealA400</item>
+      <item name="colorSecondaryContainer">@color/TealA400</item>
+    </style>
+    <style name="MaterialDarkTheme.TealA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/TealA700</item>
+      <item name="colorSecondary">@color/TealA700</item>
+      <item name="colorSecondaryContainer">@color/TealA700</item>
+    </style>
+    <style name="MaterialDarkTheme.YellowA100" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/YellowA100</item>
+      <item name="colorSecondary">@color/YellowA100</item>
+      <item name="colorSecondaryContainer">@color/YellowA100</item>
+    </style>
+    <style name="MaterialDarkTheme.YellowA200" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/YellowA200</item>
+      <item name="colorSecondary">@color/YellowA200</item>
+      <item name="colorSecondaryContainer">@color/YellowA200</item>
+    </style>
+    <style name="MaterialDarkTheme.YellowA400" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/YellowA400</item>
+      <item name="colorSecondary">@color/YellowA400</item>
+      <item name="colorSecondaryContainer">@color/YellowA400</item>
+    </style>
+    <style name="MaterialDarkTheme.YellowA700" parent="@style/MaterialDarkTheme">
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/YellowA700</item>
+      <item name="colorSecondary">@color/YellowA700</item>
+      <item name="colorSecondaryContainer">@color/YellowA700</item>
+    </style>
+    <style name="MaterialLightTheme" parent="@style/Theme.Boost.Material.Light">
+      <item name="android:colorBackground">@color/md_theme_light_background</item>
+      <item name="AccountSwitcherBackground">@drawable/triangles</item>
+      <item name="AccountSwitcherColor">?attr/colorSurface</item>
+      <item name="AdBackground">?attr/LightContentBackground</item>
+      <item name="AdCTAColor">?attr/colorSecondaryContainer</item>
+      <item name="AdCTATextColor">?attr/colorOnSecondaryContainer</item>
+      <item name="AdLineColor">?attr/ContentBackground</item>
+      <item name="BadgeCollapsed">@drawable/badge_collapsed_light</item>
+      <item name="ContentBackground">?attr/colorSurfaceVariant</item>
+      <item name="HighlightBackground">?attr/colorSecondaryContainer</item>
+      <item name="HighlightTextColor">?attr/colorPrimary</item>
+      <item name="IconTint">?attr/colorOnSurfaceVariant</item>
+      <item name="IndentLineColor">?attr/LineColor</item>
+      <item name="LightContentBackground">?attr/colorSurface</item>
+      <item name="LineColor">?attr/colorSurfaceVariant</item>
+      <item name="LinkColor">@color/ali_blue</item>
+      <item name="PopupTheme">@style/ThemeOverlay.Boost.Material.Light.PopupOverlay</item>
+      <item name="PostIconTint">?attr/SecondaryTextColor</item>
+      <item name="PrimaryTextColor">?attr/colorOnSurface</item>
+      <item name="ReadTextColor">?attr/SecondaryTextColor</item>
+      <item name="SecondaryTextColor">#6a000000</item>
+      <item name="ShapeStrokeColor">#14000000</item>
+      <item name="SpoilerColor">#4f5053</item>
+      <item name="SpoilerText">#c8ffffff</item>
+      <item name="StickyTextColor">?attr/colorPrimary</item>
+      <item name="SubtleBackground">#0a000000</item>
+      <item name="TitleTextColor">?attr/colorOnSurface</item>
+      <item name="ToolbarColor">?attr/colorSurface</item>
+      <item name="colorError">@color/md_theme_light_error</item>
+      <item name="colorErrorContainer">@color/md_theme_light_errorContainer</item>
+      <item name="colorOnBackground">@color/md_theme_light_onBackground</item>
+      <item name="colorOnError">@color/md_theme_light_onError</item>
+      <item name="colorOnErrorContainer">@color/md_theme_light_onErrorContainer</item>
+      <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+      <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+      <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
+      <item name="colorOnSecondaryContainer">@color/md_theme_light_onSecondaryContainer</item>
+      <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+      <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
+      <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
+      <item name="colorOnTertiary">@color/md_theme_light_onTertiary</item>
+      <item name="colorOnTertiaryContainer">@color/md_theme_light_onTertiaryContainer</item>
+      <item name="colorOutline">@color/md_theme_light_outline</item>
+      <item name="colorPrimary">@color/md_theme_light_primary</item>
+      <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+      <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
+      <item name="colorPrimaryVariant">#e5e5e5</item>
+      <item name="colorSecondary">@color/md_theme_light_secondary</item>
+      <item name="colorSecondaryContainer">@color/md_theme_light_secondaryContainer</item>
+      <item name="colorSurface">@color/md_theme_light_surface</item>
+      <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
+      <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+      <item name="colorTertiary">@color/md_theme_light_tertiary</item>
+      <item name="colorTertiaryContainer">@color/md_theme_light_tertiaryContainer</item>
+      <item name="material_drawer_background">?attr/colorSurface</item>
+      <item name="material_drawer_divider">?attr/LineColor</item>
+      <item name="material_drawer_header_selection_text">#ffffff</item>
+      <item name="material_drawer_hint_text">?attr/SecondaryTextColor</item>
+      <item name="material_drawer_primary_icon">?attr/colorOnSurfaceVariant</item>
+      <item name="material_drawer_primary_text">?attr/colorOnSurfaceVariant</item>
+      <item name="material_drawer_secondary_text">?attr/SecondaryTextColor</item>
+      <item name="material_drawer_selected">?attr/HighlightBackground</item>
+      <item name="material_drawer_selected_text">?attr/colorOnSurface</item>
+      <item name="md_background_color">?attr/colorSurface</item>
+    </style>
+    <style name="MaterialLightTheme.AmberA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Amber100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/AmberA100</item>
+      <item name="colorSecondary">@color/AmberA100</item>
+      <item name="colorSecondaryContainer">@color/AmberA100</item>
+    </style>
+    <style name="MaterialLightTheme.AmberA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Amber100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA200</item>
+      <item name="colorSecondary">@color/AmberA200</item>
+      <item name="colorSecondaryContainer">@color/AmberA200</item>
+    </style>
+    <style name="MaterialLightTheme.AmberA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Amber100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA400</item>
+      <item name="colorSecondary">@color/AmberA400</item>
+      <item name="colorSecondaryContainer">@color/AmberA400</item>
+    </style>
+    <style name="MaterialLightTheme.AmberA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Amber100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/AmberA700</item>
+      <item name="colorSecondary">@color/AmberA700</item>
+      <item name="colorSecondaryContainer">@color/AmberA700</item>
+    </style>
+    <style name="MaterialLightTheme.BlueA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Blue100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/BlueA100</item>
+      <item name="colorSecondary">@color/BlueA100</item>
+      <item name="colorSecondaryContainer">@color/BlueA100</item>
+    </style>
+    <style name="MaterialLightTheme.BlueA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Blue100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA200</item>
+      <item name="colorSecondary">@color/BlueA200</item>
+      <item name="colorSecondaryContainer">@color/BlueA200</item>
+    </style>
+    <style name="MaterialLightTheme.BlueA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Blue100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA400</item>
+      <item name="colorSecondary">@color/BlueA400</item>
+      <item name="colorSecondaryContainer">@color/BlueA400</item>
+    </style>
+    <style name="MaterialLightTheme.BlueA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Blue100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/BlueA700</item>
+      <item name="colorSecondary">@color/BlueA700</item>
+      <item name="colorSecondaryContainer">@color/BlueA700</item>
+    </style>
+    <style name="MaterialLightTheme.CyanA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Cyan100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/CyanA100</item>
+      <item name="colorSecondary">@color/CyanA100</item>
+      <item name="colorSecondaryContainer">@color/CyanA100</item>
+    </style>
+    <style name="MaterialLightTheme.CyanA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Cyan100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/CyanA200</item>
+      <item name="colorSecondary">@color/CyanA200</item>
+      <item name="colorSecondaryContainer">@color/CyanA200</item>
+    </style>
+    <style name="MaterialLightTheme.CyanA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Cyan100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/CyanA400</item>
+      <item name="colorSecondary">@color/CyanA400</item>
+      <item name="colorSecondaryContainer">@color/CyanA400</item>
+    </style>
+    <style name="MaterialLightTheme.CyanA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Cyan100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/CyanA700</item>
+      <item name="colorSecondary">@color/CyanA700</item>
+      <item name="colorSecondaryContainer">@color/CyanA700</item>
+    </style>
+    <style name="MaterialLightTheme.DeepOrangeA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/DeepOrange100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA100</item>
+      <item name="colorSecondary">@color/DeepOrangeA100</item>
+      <item name="colorSecondaryContainer">@color/DeepOrangeA100</item>
+    </style>
+    <style name="MaterialLightTheme.DeepOrangeA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/DeepOrange100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA200</item>
+      <item name="colorSecondary">@color/DeepOrangeA200</item>
+      <item name="colorSecondaryContainer">@color/DeepOrangeA200</item>
+    </style>
+    <style name="MaterialLightTheme.DeepOrangeA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/DeepOrange100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA400</item>
+      <item name="colorSecondary">@color/DeepOrangeA400</item>
+      <item name="colorSecondaryContainer">@color/DeepOrangeA400</item>
+    </style>
+    <style name="MaterialLightTheme.DeepOrangeA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/DeepOrange100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepOrangeA700</item>
+      <item name="colorSecondary">@color/DeepOrangeA700</item>
+      <item name="colorSecondaryContainer">@color/DeepOrangeA700</item>
+    </style>
+    <style name="MaterialLightTheme.DeepPurpleA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/DeepPurple100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA100</item>
+      <item name="colorSecondary">@color/DeepPurpleA100</item>
+      <item name="colorSecondaryContainer">@color/DeepPurpleA100</item>
+    </style>
+    <style name="MaterialLightTheme.DeepPurpleA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/DeepPurple100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA200</item>
+      <item name="colorSecondary">@color/DeepPurpleA200</item>
+      <item name="colorSecondaryContainer">@color/DeepPurpleA200</item>
+    </style>
+    <style name="MaterialLightTheme.DeepPurpleA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/DeepPurple100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA400</item>
+      <item name="colorSecondary">@color/DeepPurpleA400</item>
+      <item name="colorSecondaryContainer">@color/DeepPurpleA400</item>
+    </style>
+    <style name="MaterialLightTheme.DeepPurpleA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/DeepPurple100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/DeepPurpleA700</item>
+      <item name="colorSecondary">@color/DeepPurpleA700</item>
+      <item name="colorSecondaryContainer">@color/DeepPurpleA700</item>
+    </style>
+    <style name="MaterialLightTheme.Dynamic" parent="@style/MaterialLightTheme">
+      <item name="PopupTheme">@style/ThemeOverlay.Boost.Material.Light.Dynamic.PopupOverlay</item>
+      <item name="ToolbarTheme">@null</item>
+    </style>
+    <style name="MaterialLightTheme.GreenA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Green100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/GreenA100</item>
+      <item name="colorSecondary">@color/GreenA100</item>
+      <item name="colorSecondaryContainer">@color/GreenA100</item>
+    </style>
+    <style name="MaterialLightTheme.GreenA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Green100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/GreenA200</item>
+      <item name="colorSecondary">@color/GreenA200</item>
+      <item name="colorSecondaryContainer">@color/GreenA200</item>
+    </style>
+    <style name="MaterialLightTheme.GreenA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Green100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/GreenA400</item>
+      <item name="colorSecondary">@color/GreenA400</item>
+      <item name="colorSecondaryContainer">@color/GreenA400</item>
+    </style>
+    <style name="MaterialLightTheme.GreenA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Green100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/GreenA700</item>
+      <item name="colorSecondary">@color/GreenA700</item>
+      <item name="colorSecondaryContainer">@color/GreenA700</item>
+    </style>
+    <style name="MaterialLightTheme.Grey600" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Grey100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/Grey600</item>
+      <item name="colorSecondary">@color/Grey600</item>
+      <item name="colorSecondaryContainer">@color/Grey600</item>
+    </style>
+    <style name="MaterialLightTheme.Grey700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Grey100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/Grey700</item>
+      <item name="colorSecondary">@color/Grey700</item>
+      <item name="colorSecondaryContainer">@color/Grey700</item>
+    </style>
+    <style name="MaterialLightTheme.Grey800" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Grey100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/Grey800</item>
+      <item name="colorSecondary">@color/Grey800</item>
+      <item name="colorSecondaryContainer">@color/Grey800</item>
+    </style>
+    <style name="MaterialLightTheme.Grey900" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Grey100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/Grey900</item>
+      <item name="colorSecondary">@color/Grey900</item>
+      <item name="colorSecondaryContainer">@color/Grey900</item>
+    </style>
+    <style name="MaterialLightTheme.IndigoA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Indigo100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA100</item>
+      <item name="colorSecondary">@color/IndigoA100</item>
+      <item name="colorSecondaryContainer">@color/IndigoA100</item>
+    </style>
+    <style name="MaterialLightTheme.IndigoA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Indigo100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA200</item>
+      <item name="colorSecondary">@color/IndigoA200</item>
+      <item name="colorSecondaryContainer">@color/IndigoA200</item>
+    </style>
+    <style name="MaterialLightTheme.IndigoA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Indigo100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA400</item>
+      <item name="colorSecondary">@color/IndigoA400</item>
+      <item name="colorSecondaryContainer">@color/IndigoA400</item>
+    </style>
+    <style name="MaterialLightTheme.IndigoA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Indigo100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/IndigoA700</item>
+      <item name="colorSecondary">@color/IndigoA700</item>
+      <item name="colorSecondaryContainer">@color/IndigoA700</item>
+    </style>
+    <style name="MaterialLightTheme.LightBlueA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/LightBlue100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LightBlueA100</item>
+      <item name="colorSecondary">@color/LightBlueA100</item>
+      <item name="colorSecondaryContainer">@color/LightBlueA100</item>
+    </style>
+    <style name="MaterialLightTheme.LightBlueA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/LightBlue100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA200</item>
+      <item name="colorSecondary">@color/LightBlueA200</item>
+      <item name="colorSecondaryContainer">@color/LightBlueA200</item>
+    </style>
+    <style name="MaterialLightTheme.LightBlueA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/LightBlue100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA400</item>
+      <item name="colorSecondary">@color/LightBlueA400</item>
+      <item name="colorSecondaryContainer">@color/LightBlueA400</item>
+    </style>
+    <style name="MaterialLightTheme.LightBlueA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/LightBlue100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/LightBlueA700</item>
+      <item name="colorSecondary">@color/LightBlueA700</item>
+      <item name="colorSecondaryContainer">@color/LightBlueA700</item>
+    </style>
+    <style name="MaterialLightTheme.LightGreenA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/LightGreen100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA100</item>
+      <item name="colorSecondary">@color/LightGreenA100</item>
+      <item name="colorSecondaryContainer">@color/LightGreenA100</item>
+    </style>
+    <style name="MaterialLightTheme.LightGreenA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/LightGreen100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA200</item>
+      <item name="colorSecondary">@color/LightGreenA200</item>
+      <item name="colorSecondaryContainer">@color/LightGreenA200</item>
+    </style>
+    <style name="MaterialLightTheme.LightGreenA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/LightGreen100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA400</item>
+      <item name="colorSecondary">@color/LightGreenA400</item>
+      <item name="colorSecondaryContainer">@color/LightGreenA400</item>
+    </style>
+    <style name="MaterialLightTheme.LightGreenA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/LightGreen100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LightGreenA700</item>
+      <item name="colorSecondary">@color/LightGreenA700</item>
+      <item name="colorSecondaryContainer">@color/LightGreenA700</item>
+    </style>
+    <style name="MaterialLightTheme.LimeA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Lime100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LimeA100</item>
+      <item name="colorSecondary">@color/LimeA100</item>
+      <item name="colorSecondaryContainer">@color/LimeA100</item>
+    </style>
+    <style name="MaterialLightTheme.LimeA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Lime100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LimeA200</item>
+      <item name="colorSecondary">@color/LimeA200</item>
+      <item name="colorSecondaryContainer">@color/LimeA200</item>
+    </style>
+    <style name="MaterialLightTheme.LimeA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Lime100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LimeA400</item>
+      <item name="colorSecondary">@color/LimeA400</item>
+      <item name="colorSecondaryContainer">@color/LimeA400</item>
+    </style>
+    <style name="MaterialLightTheme.LimeA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Lime100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/LimeA700</item>
+      <item name="colorSecondary">@color/LimeA700</item>
+      <item name="colorSecondaryContainer">@color/LimeA700</item>
+    </style>
+    <style name="MaterialLightTheme.OrangeA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Orange100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/OrangeA100</item>
+      <item name="colorSecondary">@color/OrangeA100</item>
+      <item name="colorSecondaryContainer">@color/OrangeA100</item>
+    </style>
+    <style name="MaterialLightTheme.OrangeA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Orange100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA200</item>
+      <item name="colorSecondary">@color/OrangeA200</item>
+      <item name="colorSecondaryContainer">@color/OrangeA200</item>
+    </style>
+    <style name="MaterialLightTheme.OrangeA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Orange100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA400</item>
+      <item name="colorSecondary">@color/OrangeA400</item>
+      <item name="colorSecondaryContainer">@color/OrangeA400</item>
+    </style>
+    <style name="MaterialLightTheme.OrangeA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Orange100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/OrangeA700</item>
+      <item name="colorSecondary">@color/OrangeA700</item>
+      <item name="colorSecondaryContainer">@color/OrangeA700</item>
+    </style>
+    <style name="MaterialLightTheme.PinkA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Pink100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA100</item>
+      <item name="colorSecondary">@color/PinkA100</item>
+      <item name="colorSecondaryContainer">@color/PinkA100</item>
+    </style>
+    <style name="MaterialLightTheme.PinkA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Pink100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA200</item>
+      <item name="colorSecondary">@color/PinkA200</item>
+      <item name="colorSecondaryContainer">@color/PinkA200</item>
+    </style>
+    <style name="MaterialLightTheme.PinkA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Pink100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA400</item>
+      <item name="colorSecondary">@color/PinkA400</item>
+      <item name="colorSecondaryContainer">@color/PinkA400</item>
+    </style>
+    <style name="MaterialLightTheme.PinkA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Pink100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PinkA700</item>
+      <item name="colorSecondary">@color/PinkA700</item>
+      <item name="colorSecondaryContainer">@color/PinkA700</item>
+    </style>
+    <style name="MaterialLightTheme.PurpleA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Purple100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA100</item>
+      <item name="colorSecondary">@color/PurpleA100</item>
+      <item name="colorSecondaryContainer">@color/PurpleA100</item>
+    </style>
+    <style name="MaterialLightTheme.PurpleA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Purple100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA200</item>
+      <item name="colorSecondary">@color/PurpleA200</item>
+      <item name="colorSecondaryContainer">@color/PurpleA200</item>
+    </style>
+    <style name="MaterialLightTheme.PurpleA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Purple100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA400</item>
+      <item name="colorSecondary">@color/PurpleA400</item>
+      <item name="colorSecondaryContainer">@color/PurpleA400</item>
+    </style>
+    <style name="MaterialLightTheme.PurpleA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Purple100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/PurpleA700</item>
+      <item name="colorSecondary">@color/PurpleA700</item>
+      <item name="colorSecondaryContainer">@color/PurpleA700</item>
+    </style>
+    <style name="MaterialLightTheme.RedA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Red100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/RedA100</item>
+      <item name="colorSecondary">@color/RedA100</item>
+      <item name="colorSecondaryContainer">@color/RedA100</item>
+    </style>
+    <style name="MaterialLightTheme.RedA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Red100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/RedA200</item>
+      <item name="colorSecondary">@color/RedA200</item>
+      <item name="colorSecondaryContainer">@color/RedA200</item>
+    </style>
+    <style name="MaterialLightTheme.RedA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Red100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/RedA400</item>
+      <item name="colorSecondary">@color/RedA400</item>
+      <item name="colorSecondaryContainer">@color/RedA400</item>
+    </style>
+    <style name="MaterialLightTheme.RedA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Red100</item>
+      <item name="colorOnSecondaryContainer">#ffffff</item>
+      <item name="colorPrimary">@color/RedA700</item>
+      <item name="colorSecondary">@color/RedA700</item>
+      <item name="colorSecondaryContainer">@color/RedA700</item>
+    </style>
+    <style name="MaterialLightTheme.TealA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Teal100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/TealA100</item>
+      <item name="colorSecondary">@color/TealA100</item>
+      <item name="colorSecondaryContainer">@color/TealA100</item>
+    </style>
+    <style name="MaterialLightTheme.TealA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Teal100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/TealA200</item>
+      <item name="colorSecondary">@color/TealA200</item>
+      <item name="colorSecondaryContainer">@color/TealA200</item>
+    </style>
+    <style name="MaterialLightTheme.TealA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Teal100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/TealA400</item>
+      <item name="colorSecondary">@color/TealA400</item>
+      <item name="colorSecondaryContainer">@color/TealA400</item>
+    </style>
+    <style name="MaterialLightTheme.TealA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Teal100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/TealA700</item>
+      <item name="colorSecondary">@color/TealA700</item>
+      <item name="colorSecondaryContainer">@color/TealA700</item>
+    </style>
+    <style name="MaterialLightTheme.YellowA100" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Yellow100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/YellowA100</item>
+      <item name="colorSecondary">@color/YellowA100</item>
+      <item name="colorSecondaryContainer">@color/YellowA100</item>
+    </style>
+    <style name="MaterialLightTheme.YellowA200" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Yellow100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/YellowA200</item>
+      <item name="colorSecondary">@color/YellowA200</item>
+      <item name="colorSecondaryContainer">@color/YellowA200</item>
+    </style>
+    <style name="MaterialLightTheme.YellowA400" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Yellow100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/YellowA400</item>
+      <item name="colorSecondary">@color/YellowA400</item>
+      <item name="colorSecondaryContainer">@color/YellowA400</item>
+    </style>
+    <style name="MaterialLightTheme.YellowA700" parent="@style/MaterialLightTheme">
+      <item name="HighlightBackground">@color/Yellow100</item>
+      <item name="colorOnSecondaryContainer">#000000</item>
+      <item name="colorPrimary">@color/YellowA700</item>
+      <item name="colorSecondary">@color/YellowA700</item>
+      <item name="colorSecondaryContainer">@color/YellowA700</item>
+    </style>
+  </file>
+  <file path="res/values-es/strings.xml" mode="items">
+    <string name="theme_dark">Gris Oscuro</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_material_dark">Material Gris</string>
+    <string name="theme_material_light">Material Claro</string>
+  </file>
+  <file path="res/values/strings.xml" mode="items">
+    <string name="theme_dark">Dark Grey</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_material_dark">Material Grey</string>
+    <string name="theme_material_light">Material Light</string>
+  </file>
+  <file path="res/layout/fab_subscriptions.xml" mode="document">
+    <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionMenu android:layout_gravity="end|bottom" android:id="@id/fab_menu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" android:layout_alignParentEnd="true" app:menu_animationDelayPerItem="50" app:menu_backgroundColor="@android:color/transparent" app:menu_buttonSpacing="@dimen/fab_spacing" app:menu_colorNormal="?attr/colorAccent" app:menu_colorPressed="?attr/colorAccent" app:menu_colorRipple="#99ffffff" app:menu_fab_size="normal" app:menu_icon="@drawable/ic_add_white_24dp" app:menu_labels_colorNormal="?attr/ContentBackground" app:menu_labels_colorPressed="?attr/ContentBackground" app:menu_labels_colorRipple="#66ffffff" app:menu_labels_cornerRadius="3.0dp" app:menu_labels_ellipsize="none" app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right" app:menu_labels_margin="4.0dp" app:menu_labels_maxLines="-1" app:menu_labels_padding="4.0dp" app:menu_labels_paddingBottom="4.0dp" app:menu_labels_paddingLeft="8.0dp" app:menu_labels_paddingRight="8.0dp" app:menu_labels_paddingTop="4.0dp" app:menu_labels_position="@integer/fab_menu_position" app:menu_labels_showAnimation="@anim/fab_slide_in_from_right" app:menu_labels_showShadow="true" app:menu_labels_singleLine="false" app:menu_labels_textColor="?attr/PrimaryTextColor" app:menu_labels_textSize="13.0sp" app:menu_openDirection="up" app:menu_shadowColor="#33000000" app:menu_shadowXOffset="1.0dp" app:menu_shadowYOffset="1.0dp" app:menu_showShadow="true" style="?attr/floatingActionButtonStyle">
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/fab_create_multi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_playlist_add_black_24dp" app:fabSize="mini" app:fab_label="@string/multireddit_create" style="?attr/floatingActionButtonSmallStyle" />
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/fab_add_sub" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_search_24dp" app:fabSize="mini" app:fab_label="@string/menu_add_subreddit" style="?attr/floatingActionButtonSmallStyle" />
+    </com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionMenu>
+  </file>
+  <file path="res/layout/fab_subreddit.xml" mode="document">
+    <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionMenu android:layout_gravity="end|bottom" android:id="@id/subreddit_fab_menu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" android:layout_alignParentEnd="true" app:menu_animationDelayPerItem="50" app:menu_backgroundColor="@android:color/transparent" app:menu_buttonSpacing="@dimen/fab_spacing" app:menu_colorNormal="?attr/colorAccent" app:menu_colorPressed="?attr/colorAccent" app:menu_colorRipple="#99ffffff" app:menu_fab_size="normal" app:menu_icon="@drawable/ic_add_white_24dp" app:menu_labels_colorNormal="?attr/ContentBackground" app:menu_labels_colorPressed="?attr/ContentBackground" app:menu_labels_colorRipple="#66ffffff" app:menu_labels_cornerRadius="3.0dp" app:menu_labels_ellipsize="none" app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right" app:menu_labels_margin="4.0dp" app:menu_labels_maxLines="-1" app:menu_labels_padding="4.0dp" app:menu_labels_paddingBottom="4.0dp" app:menu_labels_paddingLeft="8.0dp" app:menu_labels_paddingRight="8.0dp" app:menu_labels_paddingTop="4.0dp" app:menu_labels_position="@integer/fab_menu_position" app:menu_labels_showAnimation="@anim/fab_slide_in_from_right" app:menu_labels_showShadow="true" app:menu_labels_singleLine="false" app:menu_labels_textColor="?attr/PrimaryTextColor" app:menu_labels_textSize="13.0sp" app:menu_openDirection="up" app:menu_shadowColor="#33000000" app:menu_shadowXOffset="1.0dp" app:menu_shadowYOffset="1.0dp" app:menu_showShadow="true" style="?attr/floatingActionButtonStyle">
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/subreddit_fab_go_top" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_keyboard_arrow_up_24dp" app:fabSize="mini" app:fab_label="@string/go_to_top" style="?attr/floatingActionButtonSmallStyle" />
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/subreddit_fab_refresh" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_refresh_white_24dp" app:fabSize="mini" app:fab_label="@string/menu_refresh" style="?attr/floatingActionButtonSmallStyle" />
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/subreddit_fab_submit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_mode_edit_white_24dp" app:fabSize="mini" app:fab_label="@string/submit_activity_title" style="?attr/floatingActionButtonSmallStyle" />
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/subreddit_fab_filter_read" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_clear_all_white_24dp" app:fabSize="mini" app:fab_label="@string/clear_read" style="?attr/floatingActionButtonSmallStyle" />
+    </com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionMenu>
+  </file>
+  <file path="res/layout/fab_comments.xml" mode="document">
+    <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionMenu android:layout_gravity="end|bottom" android:id="@id/menu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" android:layout_alignParentEnd="true" app:menu_animationDelayPerItem="50" app:menu_backgroundColor="@android:color/transparent" app:menu_buttonSpacing="@dimen/fab_spacing" app:menu_colorNormal="?attr/colorAccent" app:menu_colorPressed="?attr/colorAccent" app:menu_colorRipple="#99ffffff" app:menu_fab_size="normal" app:menu_icon="@drawable/ic_add_white_24dp" app:menu_labels_colorNormal="#333333" app:menu_labels_colorPressed="#444444" app:menu_labels_colorRipple="#66ffffff" app:menu_labels_cornerRadius="3.0dp" app:menu_labels_ellipsize="none" app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right" app:menu_labels_margin="4.0dp" app:menu_labels_maxLines="-1" app:menu_labels_padding="8.0dp" app:menu_labels_paddingBottom="4.0dp" app:menu_labels_paddingLeft="8.0dp" app:menu_labels_paddingRight="8.0dp" app:menu_labels_paddingTop="4.0dp" app:menu_labels_position="@integer/fab_menu_position" app:menu_labels_showAnimation="@anim/fab_slide_in_from_right" app:menu_labels_showShadow="true" app:menu_labels_singleLine="false" app:menu_labels_textColor="#ffffff" app:menu_labels_textSize="14.0sp" app:menu_openDirection="up" app:menu_shadowColor="#33000000" app:menu_shadowXOffset="1.0dp" app:menu_shadowYOffset="1.0dp" app:menu_showShadow="true" style="?attr/floatingActionButtonStyle">
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/fab_reply" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_reply_white_24dp" app:fabSize="mini" style="?attr/floatingActionButtonSmallStyle" />
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/fab_navigation" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_search_24dp" app:fabSize="mini" style="?attr/floatingActionButtonSmallStyle" />
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/fab_up" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_keyboard_arrow_up_24dp" app:fabSize="mini" style="?attr/floatingActionButtonSmallStyle" />
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/fab_down" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_keyboard_arrow_down_24dp" app:fabSize="mini" style="?attr/floatingActionButtonSmallStyle" />
+      <com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionSubmenu android:id="@id/fab_collapse" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_format_align_justify_white_24dp" app:fabSize="mini" style="?attr/floatingActionButtonSmallStyle" />
+    </com.rubenmayayo.reddit.ui.customviews.fab.FloatingActionMenu>
+  </file>
+  <file path="res/layout/view_reply_field.xml" mode="document">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:animateLayoutChanges="true">
+      <EditText android:textSize="15.0sp" android:id="@id/edit_text" android:paddingLeft="16.0dp" android:paddingTop="4.0dp" android:paddingBottom="4.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="8.0dp" android:layout_marginTop="6.0dp" android:layout_marginRight="8.0dp" android:layout_marginBottom="6.0dp" android:maxHeight="150.0dp" android:minHeight="40.0dp" android:layout_toLeftOf="@id/send_button" android:layout_centerVertical="true" android:inputType="textLongMessage|textCapSentences|textAutoCorrect|textMultiLine" android:paddingStart="16.0dp" android:paddingEnd="48.0dp" android:layout_toStartOf="@id/send_button" android:layout_alignParentStart="true" />
+      <ImageButton android:id="@id/full_button" android:background="@null" android:layout_width="48.0dp" android:layout_height="48.0dp" android:src="@drawable/ic_round_fullscreen_24" android:layout_toLeftOf="@id/send_button" android:layout_centerVertical="true" android:layout_alignWithParentIfMissing="true" android:layout_marginEnd="8.0dp" android:layout_toStartOf="@id/send_button" />
+      <ImageButton android:id="@id/send_button" android:visibility="gone" android:layout_width="48.0dp" android:layout_height="48.0dp" android:src="@drawable/ic_round_send_24" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_alignParentEnd="true" style="@style/IconButton" />
+    </RelativeLayout>
+  </file>
+  <file path="res/menu/menu_reply.xml" mode="document">
+    <menu>
+      <item android:icon="@drawable/ic_send_white_24dp" android:id="@id/action_send" android:orderInCategory="10" android:title="@string/action_send" app:showAsAction="ifRoom" />
+      <item android:icon="@drawable/ic_forum_24dp" android:id="@id/action_parent" android:orderInCategory="2" android:title="@string/action_parent" app:showAsAction="ifRoom" />
+      <item android:id="@id/action_settings" android:visible="false" android:orderInCategory="100" android:title="@string/action_settings" app:showAsAction="never" />
+    </menu>
+  </file>
+</restore>

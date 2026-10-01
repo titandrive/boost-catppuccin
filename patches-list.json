@@ -1,9 +1,9 @@
 {
-  "version": "0.1.2",
+  "version": "0.2.0",
   "patches": [
     {
       "name": "Catppuccin theme",
-      "description": "Latte and Macchiato with mauve accents for classic and Material Boost themes.",
+      "description": "Adds separate Latte and Macchiato themes while preserving the original Boost themes.",
       "use": false,
       "dependencies": [],
       "compatiblePackages": {

@@ -1,67 +1,40 @@
 # Boost Catppuccin
 
-Catppuccin Latte and Macchiato with mauve accents for **Boost for Reddit 1.12.12**.
-The optional **Catppuccin theme** patch covers classic and Material themes. It replaces
-Light and Dark Grey (and their Material equivalents) in the existing theme picker.
-Other base themes remain available. Classic and Material accent variants use mauve while a
-Catppuccin base is selected; saved custom text colors may still override defaults.
+Adds separate **Catppuccin Latte** and **Catppuccin Macchiato** choices to Boost for Reddit **1.12.12**. Boost's original Light, Dark Grey, AMOLED Black and other themes retain their original styling. Catppuccin uses mauve accents, palette card surfaces and popup menus.
 
 This app uses code from Patcheddit. To learn more, visit https://reddit.com/r/patcheddit
 
-Version 0.1.2 refines all three card layouts with palette surfaces and subtle outlines,
-uses mauve floating buttons and reply arrows, and themes popup menu backgrounds.
+## Install or upgrade
 
-## Recover from the 0.1.0 startup crash
+1. Download `boost-catppuccin-0.2.0.mpp` from this fork's release.
+2. Import it in Morphe Manager under **Patch sources → Add patch source → Local**.
+3. For an already patched Boost APK, select only **Catppuccin theme**. For a stock APK, include the normal Patcheddit patches too.
+4. Patch and install with your existing Manager signing key.
+5. In Boost's theme selector, choose **Catppuccin Latte** or **Catppuccin Macchiato**. These appear alongside the original themes. Wallpaper accents are bypassed only for these two selections.
 
-Version 0.1.1 fixes a bottom-navigation crash caused by raw text-color values.
-Import the new `.mpp` to replace the local 0.1.0 source, then apply only
-**Catppuccin theme** to your installed Boost using the same Manager/signing key.
-The patch can safely be reapplied and does not require clearing app data.
+Version 0.2.0 restores theme styles, labels and shared layouts changed by 0.1.x. After upgrading, select a new Catppuccin entry explicitly; an existing Light or Dark Grey selection returns to Boost's original appearance. No app-data reset is required.
 
-## Install the standalone theme patch
+This patch modifies Boost's theme registry and applies reply-arrow tint conditionally. It preserves existing API configuration. This repository does not distribute Boost APKs or API credentials.
 
-1. Download `boost-catppuccin-0.1.2.mpp` from this fork's release.
-2. In Morphe Manager, open **Patch sources**, choose **Add patch source → Local**,
-   and select the `.mpp` file. Enable advanced/expert mode to combine sources.
-3. Select Boost **1.12.12** and enable **Catppuccin theme**. Keep your existing
-   Patcheddit patches when patching a stock APK. When applying only this theme to
-   an already patched APK, select only **Catppuccin theme**.
-4. Patch and install using the same Morphe signing key as your installed Boost.
-5. In Boost's **Settings → Theme**, turn off **Wallpaper colors** (dynamic colors).
-   Select **Catppuccin Latte** for the light theme and **Catppuccin Macchiato** for
-   the dark theme. The Material equivalents work with Boost's Material UI.
+## Build
 
-The theme-only patch preserves the APK's app bytecode, including existing API
-configuration. This repository does not distribute Boost APKs or API credentials.
-
-## Build without a GitHub Packages token
-
-Requires Python 3, JDK 21+, and an Android SDK with platform/build tools installed.
-Set `JAVA_HOME` and `ANDROID_HOME`, then run:
+Requires Python 3, JDK 21+, and an Android SDK with platform/build tools. Set `JAVA_HOME` and `ANDROID_HOME`, then run:
 
 ```sh
 python3 tools/build_catppuccin.py
 ```
 
-Output: `build/boost-catppuccin-0.1.2.mpp`. This standalone build downloads pinned
-public Morphe Desktop and Kotlin tooling and includes both JVM classes and Android
-DEX. The full inherited patch bundle still uses upstream's Gradle build and its
-GitHub Packages dependencies.
+Output: `build/boost-catppuccin-0.2.0.mpp`. The standalone build uses pinned public tooling and includes JVM classes and Android DEX. The inherited full bundle still uses upstream's Gradle build and GitHub Packages dependencies.
 
 ## Validation
 
-Apply the standalone bundle with Morphe Desktop, decode the output with Apktool,
-then run:
+Apply the bundle over a 0.1.x patched APK, decode with Apktool including DEX, then run:
 
 ```sh
-python3 test/verify_catppuccin.py original.apk patched.apk original-decoded patched-decoded
+python3 test/verify_catppuccin.py stock.apk patched.apk stock-decoded patched-decoded
 ```
 
-This checks that application bytecode and existing resource IDs are unchanged and verifies the compiled
-classic/Material theme palettes, accent variants, snackbar styling, theme names,
-and required attribution. A separate test copy of 0.1.1 also launched successfully
-on a Samsung phone running Android 17, with bottom navigation working. The check verifies that Material navigation text colors
-have nonzero resource IDs to prevent the 0.1.0 startup crash. Test APKs and build caches are excluded from Git.
+Checks preserve all original theme/widget styles and resource IDs, restore shared layouts, and verify separate theme registration and conditional reply-arrow tint. Test APKs and build caches are excluded from Git.
 
 ---
 

@@ -53,9 +53,9 @@ def main():
         'org.jetbrains.kotlin.cli.jvm.K2JVMCompiler', '-no-stdlib', '-no-reflect',
         '-classpath', os.pathsep.join(map(str, (morphe, annotations))),
         '-language-version', '2.2', '-jvm-target', '11', '-d', classes, SOURCE)
-    bundle = ROOT / 'build/boost-catppuccin-0.1.2.mpp'
+    bundle = ROOT / 'build/boost-catppuccin-0.2.0.mpp'
     manifest = ('Manifest-Version: 1.0\nName: Boost Catppuccin\n'
-        'Description: Catppuccin themes for Boost\nVersion: 0.1.2\n'
+        'Description: Catppuccin themes for Boost\nVersion: 0.2.0\n'
         'Author: titandrive\nSource: https://github.com/titandrive/boost-catppuccin\n'
         'License: GPL-3.0 with upstream NOTICE conditions\n\n')
     with zipfile.ZipFile(bundle, 'w', zipfile.ZIP_DEFLATED) as archive:
@@ -65,6 +65,7 @@ def main():
                 archive.write(path, path.relative_to(classes))
         archive.write(ROOT / 'patches/src/main/resources/catppuccin/styles.xml', 'catppuccin/styles.xml')
         archive.write(ROOT / 'patches/src/main/resources/catppuccin/palette.xml', 'catppuccin/palette.xml')
+        archive.write(ROOT / 'patches/src/main/resources/catppuccin/restore.xml', 'catppuccin/restore.xml')
         for name in ('LICENSE', 'NOTICE'):
             archive.write(ROOT / name, name)
     dex = BUILD / 'classes.zip'
