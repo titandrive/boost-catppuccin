@@ -3,9 +3,11 @@ import java.util.HashMap;
 public class SurfaceProbe {
  public static class ProbeView extends View {
   int color;
+  android.graphics.drawable.Drawable background;
   HashMap<Integer,View> children;
   private ProbeView(){super(null);}
   public void setBackgroundColor(int value){color=value;}
+  public void setBackground(android.graphics.drawable.Drawable d){background=d;}
   protected View findViewTraversal(int id){return children.get(id);}
  }
  static ProbeView view() throws Exception {
@@ -29,7 +31,16 @@ public class SurfaceProbe {
    for(int id:new int[]{0x7f0a05b2,0x7f0a05c0})post.children.put(id,view());
    utils.getMethod("catppuccinPostBody",View.class).invoke(null,post);
    color(post,0xff123456);for(View v:post.children.values())color((ProbeView)v,wanted);
-   System.out.println("PASS theme="+theme+" media/page/player surfaces and text-post body backgrounds");
+
+   java.lang.reflect.Field viewId=View.class.getDeclaredField("mID");viewId.setAccessible(true);
+   for(int panelId:new int[]{0x7f0a05b2,0x7f0a05c0,0x7f0a015c}) {
+    ProbeView panel=view();viewId.setInt(panel,panelId);
+    Class.forName("he.h0").getMethod("z0",View.class,int.class,int.class).invoke(null,panel,8,0xff1e2030);
+    android.graphics.drawable.GradientDrawable rounded=(android.graphics.drawable.GradientDrawable)panel.background;
+    int expected=(theme==0 || panelId==0x7f0a015c)?0xff1e2030:wanted;
+    if(rounded.getColor().getDefaultColor()!=expected || rounded.getCornerRadius()!=8f)throw new AssertionError("Rounded override failed");
+   }
+   System.out.println("PASS theme="+theme+" rounded panel color survives final drawable creation; corners and other panels preserved");
   }
  }
 }

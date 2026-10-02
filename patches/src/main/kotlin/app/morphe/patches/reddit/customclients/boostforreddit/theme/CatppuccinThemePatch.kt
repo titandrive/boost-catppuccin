@@ -1108,5 +1108,42 @@ val catppuccinThemePatch = bytecodePatch(
             }
         }
 
+        // Rounded backgrounds are applied after the view-holder's initial setup.
+        // Replace the color at the final drawable creation point, preserving corners.
+        if (utils.methods.none { it.name == "catppuccinPostPanelColor" }) {
+            utils.directMethods.add(ImmutableMethod(utils.type, "catppuccinPostPanelColor",
+                listOf("Landroid/view/View;", "I").map { ImmutableMethodParameter(it, emptySet(), null) }, "I",
+                AccessFlags.PUBLIC.value or AccessFlags.STATIC.value, null, null,
+                MutableMethodImplementation(5)).toMutable().apply { addInstructionsWithLabels(0, """
+                invoke-virtual {p0}, Landroid/view/View;->getId()I
+                move-result v0
+                const v1, 0x7f0a05b2
+                if-eq v0, v1, :post_panel
+                const v1, 0x7f0a05c0
+                if-ne v0, v1, :original
+                :post_panel
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :original
+                const v0, 0xff24273a
+                return v0
+                :latte
+                const v0, 0xffeff1f5
+                return v0
+                :original
+                return p1
+            """) })
+            val rounded = mutableClassDefBy("Lhe/h0;").methods.single { it.name == "z0" }
+            rounded.addInstructionsWithLabels(0, """
+                invoke-static {p0, p2}, Lhe/f0;->catppuccinPostPanelColor(Landroid/view/View;I)I
+                move-result p2
+            """)
+        }
+
     }
 }

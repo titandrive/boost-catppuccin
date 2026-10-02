@@ -114,3 +114,11 @@ assert '0x11' in surface and '0x12' in surface
 for name in ('container', 'main_content', 'video_view', 'video_cover_layout', 'exo_shutter'):
  assert public['id',name].lower() in surface
 print('PASS: lazy gallery pages, video/GIF players and text-post bodies use scoped surface hooks.')
+
+# The holder setup is later overwritten by D0 -> z0's rounded drawable.
+# The final drawable color must be overridden while preserving its radius.
+view_utils = next(patched.glob('smali*/he/h0.smali')).read_text()
+rounded = view_utils.split('.method public static z0(')[1].split('.end method')[0]
+assert rounded.count('->catppuccinPostPanelColor(') == 1
+assert rounded.index('->catppuccinPostPanelColor(') < rounded.index('->j(II)') < rounded.index('->setBackground(')
+print('PASS: text-post matching color is applied at final rounded drawable construction.')
