@@ -780,7 +780,7 @@ val catppuccinThemePatch = bytecodePatch(
                 utils.directMethods.add(ImmutableMethod(utils.type, name,
                     parameters.map { ImmutableMethodParameter(it, emptySet(), null) }, "V",
                     AccessFlags.PUBLIC.value or AccessFlags.STATIC.value, null, null,
-                    MutableMethodImplementation(registers)).toMutable().apply { addInstructions(0, code) })
+                    MutableMethodImplementation(registers)).toMutable().apply { addInstructionsWithLabels(0, code) })
             }
             helper("catppuccinViewerTheme", listOf("Landroid/app/Activity;"), 3, """
                 invoke-static {}, Lid/b;->v0()Lid/b;
@@ -1175,9 +1175,21 @@ val catppuccinThemePatch = bytecodePatch(
                 :done
                 return-void
             """) })
-            // The aggregate methods collection is cached before helpers are added on fresh APKs.
-            utils.directMethods.single { it.name == "catppuccinViewer" }.addInstructionsWithLabels(0,
-                "invoke-static/range {p0 .. p0}, Lhe/f0;->catppuccinMediaToolbar(Landroid/app/Activity;)V")
+            // Hook parsed activity methods rather than modifying a freshly assembled helper:
+            // older patchers can corrupt its branch offsets when prepending instructions.
+            for (name in listOf("ImageActivity", "MediaImageActivity", "HDImageActivity", "GalleryActivity")) {
+                val activity = mutableClassDefBy("Lcom/rubenmayayo/reddit/ui/activities/$name;")
+                for (method in activity.methods.filter { it.name == "onCreate" || it.name == "onCreateOptionsMenu" }) {
+                    val calls = method.implementation!!.instructions.mapIndexedNotNull { index, instruction ->
+                        val reference = (instruction as? ReferenceInstruction)?.reference as? MethodReference
+                        if (reference?.definingClass == utils.type && reference.name == "catppuccinViewer") index else null
+                    }
+                    for (index in calls.asReversed()) {
+                        method.addInstructionsWithLabels(index + 1,
+                            "invoke-static/range {p0 .. p0}, Lhe/f0;->catppuccinMediaToolbar(Landroid/app/Activity;)V")
+                    }
+                }
+            }
         }
 
     }

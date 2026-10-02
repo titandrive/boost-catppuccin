@@ -124,7 +124,10 @@ assert rounded.index('->catppuccinPostPanelColor(') < rounded.index('->j(II)') <
 print('PASS: text-post matching color is applied at final rounded drawable construction.')
 
 viewer = utils.split('.method public static catppuccinViewer(')[1].split('.end method')[0]
-assert viewer.count('->catppuccinMediaToolbar(') == 1
+assert '->catppuccinMediaToolbar(' not in viewer
+for activity in ('ImageActivity', 'MediaImageActivity', 'HDImageActivity', 'GalleryActivity'):
+    code = next(patched.glob(f'smali*/com/rubenmayayo/reddit/ui/activities/{activity}.smali')).read_text()
+    assert code.count('->catppuccinMediaToolbar(') == code.count('->catppuccinViewer('), activity
 album_toolbar = utils.split('.method public static catppuccinMediaToolbar(')[1].split('.end method')[0]
 assert public['id','my_awesome_toolbar'] in album_toolbar
 assert 'setBackgroundColor' in album_toolbar and 'setElevation' in album_toolbar
