@@ -952,5 +952,161 @@ val catppuccinThemePatch = bytecodePatch(
                     "invoke-static {p0}, Lhe/f0;->catppuccinViewerTheme(Landroid/app/Activity;)V")
             }
         }
+        // Gallery pages are inflated lazily, independently of the activity root.
+        // Video/GIF players also have their own cover and shutter surfaces.
+        if (utils.methods.none { it.name == "catppuccinMediaSurface" }) {
+            fun surfaceHelper(name: String, parameters: List<String>, registers: Int, code: String) {
+                utils.directMethods.add(ImmutableMethod(utils.type, name,
+                    parameters.map { ImmutableMethodParameter(it, emptySet(), null) }, "V",
+                    AccessFlags.PUBLIC.value or AccessFlags.STATIC.value, null, null,
+                    MutableMethodImplementation(registers)).toMutable().apply { addInstructionsWithLabels(0, code) })
+            }
+            surfaceHelper("catppuccinMediaSurface", listOf("Landroid/view/View;"), 7, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :done
+                const v1, 0xff24273a
+                const v2, 0xffcad3f5
+                goto :apply
+                :latte
+                const v1, 0xffeff1f5
+                const v2, 0xff4c4f69
+                :apply
+                invoke-virtual {p0, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                const v4, 0x7f0a01ac
+                invoke-virtual {p0, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+                move-result-object v3
+                if-eqz v3, :surface0
+                invoke-virtual {v3, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                :surface0
+                const v4, 0x7f0a0374
+                invoke-virtual {p0, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+                move-result-object v3
+                if-eqz v3, :surface1
+                invoke-virtual {v3, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                :surface1
+                const v4, 0x7f0a06be
+                invoke-virtual {p0, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+                move-result-object v3
+                if-eqz v3, :surface2
+                invoke-virtual {v3, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                :surface2
+                const v4, 0x7f0a06bb
+                invoke-virtual {p0, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+                move-result-object v3
+                if-eqz v3, :surface3
+                invoke-virtual {v3, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                :surface3
+                const v4, 0x7f0a0243
+                invoke-virtual {p0, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+                move-result-object v3
+                if-eqz v3, :surface4
+                invoke-virtual {v3, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                :surface4
+                const v4, 0x7f0a06ba
+                invoke-virtual {p0, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+                move-result-object v3
+                if-eqz v3, :surface5
+                invoke-virtual {v3, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                :surface5
+                const v4, 0x7f0a03e7
+                invoke-virtual {p0, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+                move-result-object v3
+                if-eqz v3, :done
+                const/4 v4, 0
+                invoke-virtual {v3, v4}, Landroid/view/View;->setBackgroundColor(I)V
+                invoke-static {v3, v2}, Lhe/f0;->catppuccinViewerControls(Landroid/view/View;I)V
+                :done
+                return-void
+            """)
+            surfaceHelper("catppuccinMediaActivity", listOf("Landroid/app/Activity;"), 3, """
+                invoke-static {p0}, Lhe/f0;->catppuccinViewer(Landroid/app/Activity;)V
+                invoke-virtual {p0}, Landroid/app/Activity;->getWindow()Landroid/view/Window;
+                move-result-object v0
+                invoke-virtual {v0}, Landroid/view/Window;->getDecorView()Landroid/view/View;
+                move-result-object v0
+                invoke-static {v0}, Lhe/f0;->catppuccinMediaSurface(Landroid/view/View;)V
+                return-void
+            """)
+            surfaceHelper("catppuccinPostBody", listOf("Landroid/view/View;"), 5, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :done
+                const v1, 0xff24273a
+                const v2, 0xffcad3f5
+                goto :apply
+                :latte
+                const v1, 0xffeff1f5
+                const v2, 0xff4c4f69
+                :apply
+                const v2, 0x7f0a05b2
+                invoke-virtual {p0, v2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+                move-result-object v2
+                if-eqz v2, :preview
+                invoke-virtual {v2, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                :preview
+                const v2, 0x7f0a05c0
+                invoke-virtual {p0, v2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+                move-result-object v2
+                if-eqz v2, :done
+                invoke-virtual {v2, v1}, Landroid/view/View;->setBackgroundColor(I)V
+                :done
+                return-void
+            """)
+            val holder = mutableClassDefBy("Lcom/rubenmayayo/reddit/ui/adapters/SubmissionViewHolder;")
+                .methods.single { it.name == "<init>" }
+            val bind = holder.implementation!!.instructions.indexOfFirst {
+                val ref = (it as? ReferenceInstruction)?.reference as? MethodReference
+                ref?.definingClass == "Lbutterknife/ButterKnife;" && ref.name == "bind"
+            }
+            require(bind >= 0)
+            holder.addInstructionsWithLabels(bind + 1, "invoke-static/range {p1 .. p1}, Lhe/f0;->catppuccinPostBody(Landroid/view/View;)V")
+            fun hookInflatedView(type: String, methodName: String) {
+                val method = mutableClassDefBy(type).methods.single { it.name == methodName }
+                val index = method.implementation!!.instructions.indexOfFirst {
+                    val ref = (it as? ReferenceInstruction)?.reference as? MethodReference
+                    ref?.definingClass == "Landroid/view/LayoutInflater;" && ref.name == "inflate"
+                }
+                require(index >= 0)
+                val result = method.implementation!!.instructions.elementAt(index + 1)
+                    as com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+                method.addInstructionsWithLabels(index + 2,
+                    "invoke-static/range {v${result.registerA} .. v${result.registerA}}, Lhe/f0;->catppuccinMediaSurface(Landroid/view/View;)V")
+            }
+            hookInflatedView("Lcom/rubenmayayo/reddit/ui/fragments/imagemodel/ImageModelFragment;", "onCreateView")
+            // Inline gallery carousel pages also inflate their own image root.
+            val pager = mutableClassDefBy("Lcom/rubenmayayo/reddit/ui/customviews/GalleryPagerView\$d;")
+            val pageMethod = pager.methods.single { method ->
+                method.implementation?.instructions?.any {
+                    val ref = (it as? ReferenceInstruction)?.reference as? MethodReference
+                    ref?.definingClass == "Landroid/view/LayoutInflater;" && ref.name == "inflate"
+                } == true
+            }
+            hookInflatedView(pager.type, pageMethod.name)
+            for (name in listOf("MediaVideoActivity", "GifActivity", "VideoActivity")) {
+                val activity = mutableClassDefBy("Lcom/rubenmayayo/reddit/ui/activities/$name;")
+                val create = activity.methods.single { it.name == "onCreate" }
+                val content = create.implementation!!.instructions.indexOfFirst {
+                    ((it as? ReferenceInstruction)?.reference as? MethodReference)?.name == "setContentView"
+                }
+                require(content >= 0)
+                create.addInstructionsWithLabels(content + 1,
+                    "invoke-static/range {p0 .. p0}, Lhe/f0;->catppuccinMediaActivity(Landroid/app/Activity;)V")
+                // YouTube's activity handles its own non-AppCompat theme setup.
+                if (name != "VideoActivity") create.addInstructionsWithLabels(0,
+                    "invoke-static/range {p0 .. p0}, Lhe/f0;->catppuccinViewerTheme(Landroid/app/Activity;)V")
+            }
+        }
+
     }
 }

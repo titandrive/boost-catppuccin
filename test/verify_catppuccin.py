@@ -96,3 +96,21 @@ for name in ('catppuccinFlairBackground', 'catppuccinFlairText'):
 for name in ('a', 'c'):
  assert '->catppuccinFlair' in flair.split('.method public '+name+'()I')[1].split('.end method')[0]
 print('PASS: shared flair color getters call scoped Catppuccin palette helpers.')
+
+# Every gallery page must be themed after inflation, including pages created later.
+fragment = next(patched.glob('smali*/com/rubenmayayo/reddit/ui/fragments/imagemodel/ImageModelFragment.smali')).read_text()
+create = fragment.split('.method public onCreateView(')[1].split('.end method')[0]
+assert create.index('->inflate(') < create.index('->catppuccinMediaSurface(') < create.index('Lbutterknife/ButterKnife;->bind')
+pager = next(patched.glob('smali*/com/rubenmayayo/reddit/ui/customviews/GalleryPagerView$d.smali')).read_text()
+assert pager.count('->catppuccinMediaSurface(') == 1
+for name in ('MediaVideoActivity', 'GifActivity', 'VideoActivity'):
+ code = next(patched.glob('smali*/com/rubenmayayo/reddit/ui/activities/'+name+'.smali')).read_text()
+ create = code.split('.method protected onCreate(')[1].split('.end method')[0]
+ assert create.index('setContentView') < create.index('->catppuccinMediaActivity('), name
+holder = next(patched.glob('smali*/com/rubenmayayo/reddit/ui/adapters/SubmissionViewHolder.smali')).read_text()
+assert holder.count('->catppuccinPostBody(') == 1
+surface = utils.split('.method public static catppuccinMediaSurface(')[1].split('.end method')[0]
+assert '0x11' in surface and '0x12' in surface
+for name in ('container', 'main_content', 'video_view', 'video_cover_layout', 'exo_shutter'):
+ assert public['id',name].lower() in surface
+print('PASS: lazy gallery pages, video/GIF players and text-post bodies use scoped surface hooks.')
