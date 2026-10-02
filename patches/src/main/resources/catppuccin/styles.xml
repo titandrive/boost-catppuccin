@@ -1,25 +1,25 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <style name="Catppuccin.Latte" parent="@style/MaterialLightTheme">
-    <item name="android:colorBackground">@color/catppuccin_latte_base</item>
-    <item name="android:windowBackground">@color/catppuccin_latte_base</item>
-    <item name="colorSurface">@color/catppuccin_latte_base</item>
-    <item name="ContentBackground">@color/catppuccin_latte_base</item>
-    <item name="LightContentBackground">@color/catppuccin_latte_base</item>
-    <item name="material_drawer_background">@color/catppuccin_latte_base</item>
-    <item name="md_background_color">@color/catppuccin_latte_base</item>
-    <item name="ToolbarColor">@color/catppuccin_latte_mantle</item>
-    <item name="AccountSwitcherBackground">@color/catppuccin_latte_mantle</item>
-    <item name="AccountSwitcherColor">@color/catppuccin_latte_mantle</item>
+    <item name="android:colorBackground">@color/catppuccin_latte_mantle</item>
+    <item name="android:windowBackground">@color/catppuccin_latte_mantle</item>
+    <item name="colorSurface">@color/catppuccin_latte_mantle</item>
+    <item name="ContentBackground">@color/catppuccin_latte_mantle</item>
+    <item name="LightContentBackground">@color/catppuccin_latte_mantle</item>
+    <item name="material_drawer_background">@color/catppuccin_latte_mantle</item>
+    <item name="md_background_color">@color/catppuccin_latte_mantle</item>
+    <item name="ToolbarColor">@color/catppuccin_latte_surface0</item>
+    <item name="AccountSwitcherBackground">@color/catppuccin_latte_surface0</item>
+    <item name="AccountSwitcherColor">@color/catppuccin_latte_surface0</item>
     <item name="SubtleBackground">@color/catppuccin_latte_mantle</item>
-    <item name="colorPrimaryVariant">@color/catppuccin_latte_mantle</item>
-    <item name="colorPrimaryDark">@color/catppuccin_latte_mantle</item>
-    <item name="android:statusBarColor">@color/catppuccin_latte_mantle</item>
-    <item name="android:navigationBarColor">@color/catppuccin_latte_mantle</item>
+    <item name="colorPrimaryVariant">@color/catppuccin_latte_surface0</item>
+    <item name="colorPrimaryDark">@color/catppuccin_latte_surface0</item>
+    <item name="android:statusBarColor">@color/catppuccin_latte_surface0</item>
+    <item name="android:navigationBarColor">@color/catppuccin_latte_surface0</item>
     <item name="HighlightBackground">@color/catppuccin_latte_surface0</item>
-    <item name="ShapeStrokeColor">@color/catppuccin_latte_surface0</item>
-    <item name="LineColor">@color/catppuccin_latte_surface0</item>
-    <item name="IndentLineColor">@color/catppuccin_latte_surface0</item>
+    <item name="ShapeStrokeColor">@color/catppuccin_latte_overlay0</item>
+    <item name="LineColor">@color/catppuccin_latte_overlay0</item>
+    <item name="IndentLineColor">@color/catppuccin_latte_overlay0</item>
     <item name="AdCTAColor">@color/catppuccin_latte_surface0</item>
     <item name="SpoilerColor">@color/catppuccin_latte_surface0</item>
     <item name="colorSurfaceVariant">@color/catppuccin_latte_surface0</item>
@@ -27,7 +27,7 @@
     <item name="colorSecondaryContainer">@color/catppuccin_latte_mauve</item>
     <item name="colorTertiaryContainer">@color/catppuccin_latte_surface0</item>
     <item name="colorErrorContainer">@color/catppuccin_latte_surface0</item>
-    <item name="colorOutlineVariant">@color/catppuccin_latte_surface0</item>
+    <item name="colorOutlineVariant">@color/catppuccin_latte_overlay0</item>
     <item name="material_drawer_selected">@color/catppuccin_latte_surface0</item>
     <item name="PrimaryTextColor">@color/catppuccin_latte_text</item>
     <item name="TitleTextColor">@color/catppuccin_latte_text</item>
@@ -84,15 +84,24 @@
     <item name="FeedMiniCardStyle">@style/Catppuccin.Latte.MiniCard</item>
     <item name="floatingActionButtonStyle">@style/Catppuccin.Latte.floatingActionButtonStyle</item>
     <item name="floatingActionButtonSmallStyle">@style/Catppuccin.Latte.floatingActionButtonSmallStyle</item>
+    <item name="materialDividerStyle">@style/Catppuccin.Latte.Divider</item>
+    <item name="ToolbarStyle">@style/Catppuccin.Latte.ToolbarWidget</item>
+    <item name="toolbarStyle">@style/Catppuccin.Latte.ToolbarWidget</item>
   </style>
   <style name="Catppuccin.Latte.Snackbar" parent="@style/Widget.MaterialComponents.Snackbar">
     <item name="backgroundTint">@color/catppuccin_latte_mantle</item>
   </style>
-  <style name="Catppuccin.Latte.Toolbar" parent="@style/ThemeOverlay.MaterialComponents.Light">
+  <style name="Catppuccin.Latte.Toolbar" parent="">
     <item name="colorControlNormal">@color/catppuccin_latte_text</item>
     <item name="android:textColorPrimary">@color/catppuccin_latte_text</item>
     <item name="android:textColorSecondary">@color/catppuccin_latte_subtext0</item>
     <item name="colorOnSurface">@color/catppuccin_latte_text</item>
+    <item name="colorOnSurfaceVariant">@color/catppuccin_latte_text</item>
+    <item name="navigationIconTint">@color/catppuccin_latte_text</item>
+    <item name="android:textColorPrimaryInverse">@color/catppuccin_latte_text</item>
+    <item name="actionMenuTextColor">@color/catppuccin_latte_text</item>
+    <item name="ToolbarStyle">@style/Catppuccin.Latte.ToolbarWidget</item>
+    <item name="toolbarStyle">@style/Catppuccin.Latte.ToolbarWidget</item>
   </style>
   <style name="Catppuccin.Latte.Popup" parent="@style/ThemeOverlay.MaterialComponents.Light">
     <item name="android:colorBackground">@color/catppuccin_latte_base</item>
@@ -189,15 +198,24 @@
     <item name="FeedMiniCardStyle">@style/Catppuccin.Macchiato.MiniCard</item>
     <item name="floatingActionButtonStyle">@style/Catppuccin.Macchiato.floatingActionButtonStyle</item>
     <item name="floatingActionButtonSmallStyle">@style/Catppuccin.Macchiato.floatingActionButtonSmallStyle</item>
+    <item name="materialDividerStyle">@style/Catppuccin.Macchiato.Divider</item>
+    <item name="ToolbarStyle">@style/Catppuccin.Macchiato.ToolbarWidget</item>
+    <item name="toolbarStyle">@style/Catppuccin.Macchiato.ToolbarWidget</item>
   </style>
   <style name="Catppuccin.Macchiato.Snackbar" parent="@style/Widget.MaterialComponents.Snackbar">
     <item name="backgroundTint">@color/catppuccin_macchiato_mantle</item>
   </style>
-  <style name="Catppuccin.Macchiato.Toolbar" parent="@style/ThemeOverlay.MaterialComponents.Dark">
+  <style name="Catppuccin.Macchiato.Toolbar" parent="">
     <item name="colorControlNormal">@color/catppuccin_macchiato_text</item>
     <item name="android:textColorPrimary">@color/catppuccin_macchiato_text</item>
     <item name="android:textColorSecondary">@color/catppuccin_macchiato_subtext0</item>
     <item name="colorOnSurface">@color/catppuccin_macchiato_text</item>
+    <item name="colorOnSurfaceVariant">@color/catppuccin_macchiato_text</item>
+    <item name="navigationIconTint">@color/catppuccin_macchiato_text</item>
+    <item name="android:textColorPrimaryInverse">@color/catppuccin_macchiato_text</item>
+    <item name="actionMenuTextColor">@color/catppuccin_macchiato_text</item>
+    <item name="ToolbarStyle">@style/Catppuccin.Macchiato.ToolbarWidget</item>
+    <item name="toolbarStyle">@style/Catppuccin.Macchiato.ToolbarWidget</item>
   </style>
   <style name="Catppuccin.Macchiato.Popup" parent="@style/ThemeOverlay.MaterialComponents.Dark">
     <item name="android:colorBackground">@color/catppuccin_macchiato_base</item>
@@ -827,4 +845,16 @@
   <style name="Catppuccin.Macchiato.YellowA200" parent="@style/Catppuccin.Macchiato" />
   <style name="Catppuccin.Macchiato.YellowA400" parent="@style/Catppuccin.Macchiato" />
   <style name="Catppuccin.Macchiato.YellowA700" parent="@style/Catppuccin.Macchiato" />
+  <style name="Catppuccin.Latte.Divider" parent="@style/Widget.Material3.MaterialDivider">
+    <item name="dividerColor">@color/catppuccin_latte_overlay0</item>
+  </style>
+  <style name="Catppuccin.Latte.ToolbarWidget" parent="@style/Widget.Boost.Material.Toolbar">
+    <item name="materialThemeOverlay">@style/Catppuccin.Latte.Toolbar</item>
+  </style>
+  <style name="Catppuccin.Macchiato.Divider" parent="@style/Widget.Material3.MaterialDivider">
+    <item name="dividerColor">@color/catppuccin_macchiato_surface0</item>
+  </style>
+  <style name="Catppuccin.Macchiato.ToolbarWidget" parent="@style/Widget.Boost.Material.Toolbar">
+    <item name="materialThemeOverlay">@style/Catppuccin.Macchiato.Toolbar</item>
+  </style>
 </resources>

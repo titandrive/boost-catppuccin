@@ -27,17 +27,18 @@ public class SurfaceProbe {
    for(int id:new int[]{0x7f0a01ac,0x7f0a0374,0x7f0a06be,0x7f0a06bb,0x7f0a0243,0x7f0a06ba})media.children.put(id,view());
    utils.getMethod("catppuccinMediaSurface",View.class).invoke(null,media);
    color(media,wanted);for(View v:media.children.values())color((ProbeView)v,wanted);
+   int bodyWanted=theme==17?0xffe6e9ef:wanted;
    ProbeView post=view();
    for(int id:new int[]{0x7f0a05b2,0x7f0a05c0})post.children.put(id,view());
    utils.getMethod("catppuccinPostBody",View.class).invoke(null,post);
-   color(post,0xff123456);for(View v:post.children.values())color((ProbeView)v,wanted);
+   color(post,0xff123456);for(View v:post.children.values())color((ProbeView)v,bodyWanted);
 
    java.lang.reflect.Field viewId=View.class.getDeclaredField("mID");viewId.setAccessible(true);
    for(int panelId:new int[]{0x7f0a05b2,0x7f0a05c0,0x7f0a015c}) {
     ProbeView panel=view();viewId.setInt(panel,panelId);
     Class.forName("he.h0").getMethod("z0",View.class,int.class,int.class).invoke(null,panel,8,0xff1e2030);
     android.graphics.drawable.GradientDrawable rounded=(android.graphics.drawable.GradientDrawable)panel.background;
-    int expected=(theme==0 || panelId==0x7f0a015c)?0xff1e2030:wanted;
+    int expected=(theme==0 || panelId==0x7f0a015c)?0xff1e2030:bodyWanted;
     if(rounded.getColor().getDefaultColor()!=expected || rounded.getCornerRadius()!=8f)throw new AssertionError("Rounded override failed");
    }
    System.out.println("PASS theme="+theme+" rounded panel color survives final drawable creation; corners and other panels preserved");

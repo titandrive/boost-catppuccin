@@ -115,6 +115,7 @@ private val catppuccinResourcesPatch = resourcePatch {
             for ((index, flavor) in listOf("Latte", "Macchiato").withIndex()) {
                 for ((type, name, id) in listOf(
                     Triple("style", "Catppuccin.$flavor", themeStyleIds[index]),
+                    Triple("style", "Catppuccin.$flavor.Toolbar", listOf(0x7f141003, 0x7f141006)[index]),
                     Triple("string", "catppuccin_theme_${flavor.lowercase()}", themeLabelIds[index]),
                 )) {
                     xml.documentElement.elements().firstOrNull {
@@ -275,8 +276,8 @@ val catppuccinThemePatch = bytecodePatch(
         // Saved custom toolbar colors can otherwise override the selected Catppuccin style.
         val headerMarker = "Catppuccin header palette"
         for ((name, colors) in mapOf(
-            "k" to ("0xffe6e9ef" to "0xff1e2030"),
-            "l" to ("0xffe6e9ef" to "0xff1e2030"),
+            "k" to ("0xffccd0da" to "0xff1e2030"),
+            "l" to ("0xffccd0da" to "0xff1e2030"),
             "w" to ("0xff4c4f69" to "0xff8aadf4"),
             "e" to ("0xff4c4f69" to "0xffcad3f5"),
             "o" to ("0xff6c6f85" to "0xffa5adcb"),
@@ -296,7 +297,12 @@ val catppuccinThemePatch = bytecodePatch(
             }
             if (method.implementation!!.instructions.any {
                 ((it as? ReferenceInstruction)?.reference as? StringReference)?.string == headerMarker
-            }) continue
+            }) {
+                if (name != "k" && name != "l") continue
+                val end = method.implementation!!.instructions.indexOfFirst { it.opcode == Opcode.NOP }
+                require(end >= 0)
+                method.removeInstructions(0, end + 1)
+            }
             method.addInstructionsWithLabels(0, """
                 const-string v0, "$headerMarker"
                 invoke-static {}, Lid/b;->v0()Lid/b;
@@ -1046,7 +1052,7 @@ val catppuccinThemePatch = bytecodePatch(
                 const v2, 0xffcad3f5
                 goto :apply
                 :latte
-                const v1, 0xffeff1f5
+                const v1, 0xffe6e9ef
                 const v2, 0xff4c4f69
                 :apply
                 const v2, 0x7f0a05b2
@@ -1133,7 +1139,7 @@ val catppuccinThemePatch = bytecodePatch(
                 const v0, 0xff24273a
                 return v0
                 :latte
-                const v0, 0xffeff1f5
+                const v0, 0xffe6e9ef
                 return v0
                 :original
                 return p1
@@ -1190,6 +1196,201 @@ val catppuccinThemePatch = bytecodePatch(
                     }
                 }
             }
+        }
+
+        if (utils.directMethods.none { it.name == "catppuccinRefresh" }) {
+            fun contrastHelper(name: String, parameters: List<String>, registers: Int, result: String = "V", code: String) {
+                utils.directMethods.add(ImmutableMethod(utils.type, name,
+                    parameters.map { ImmutableMethodParameter(it, emptySet(), null) }, result,
+                    AccessFlags.PUBLIC.value or AccessFlags.STATIC.value, null, null,
+                    MutableMethodImplementation(registers)).toMutable().apply { addInstructionsWithLabels(0, code) })
+            }
+            contrastHelper("catppuccinToolbarStyle", listOf("I"), 3, "I", """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :original
+                const p0, 0x7f141006
+                return p0
+                :latte
+                const p0, 0x7f141003
+                :original
+                return p0
+            """)
+            val toolbarStyle = utils.methods.single { it.name == "C" }
+            val styleReturn = toolbarStyle.implementation!!.instructions.indexOfLast { it.opcode == Opcode.RETURN }
+            toolbarStyle.addInstructionsWithLabels(styleReturn, """
+                invoke-static {p0}, Lhe/f0;->catppuccinToolbarStyle(I)I
+                move-result p0
+            """)
+            contrastHelper("catppuccinFollow", listOf("Lcom/google/android/material/chip/Chip;"), 4, code = """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :done
+                const v1, 0xff24273a
+                const v2, 0xffc6a0f6
+                goto :apply
+                :latte
+                const v1, 0xffeff1f5
+                const v2, 0xff8839ef
+                :apply
+                invoke-virtual {p0, v1}, Landroid/widget/TextView;->setTextColor(I)V
+                invoke-static {v1}, Landroid/content/res/ColorStateList;->valueOf(I)Landroid/content/res/ColorStateList;
+                move-result-object v1
+                invoke-virtual {p0, v1}, Lcom/google/android/material/chip/Chip;->setChipIconTint(Landroid/content/res/ColorStateList;)V
+                invoke-static {v2}, Landroid/content/res/ColorStateList;->valueOf(I)Landroid/content/res/ColorStateList;
+                move-result-object v2
+                invoke-virtual {p0, v2}, Lcom/google/android/material/chip/Chip;->setChipBackgroundColor(Landroid/content/res/ColorStateList;)V
+                invoke-virtual {p0, v2}, Lcom/google/android/material/chip/Chip;->setChipStrokeColor(Landroid/content/res/ColorStateList;)V
+                :done
+                return-void
+            """)
+            val chip = mutableClassDefBy("Lcom/rubenmayayo/reddit/ui/customviews/SubscribeChip;")
+            for (method in chip.methods.filter { it.name in listOf("<init>", "setColor", "setSubscribed", "I") }) {
+                val returns = method.implementation!!.instructions.mapIndexedNotNull { index, instruction ->
+                    if (instruction.opcode == Opcode.RETURN_VOID) index else null
+                }
+                for (index in returns.asReversed()) method.addInstructionsWithLabels(index,
+                    "invoke-static/range {p0 .. p0}, Lhe/f0;->catppuccinFollow(Lcom/google/android/material/chip/Chip;)V")
+            }
+            contrastHelper("catppuccinRefresh", listOf("Landroidx/swiperefreshlayout/widget/SwipeRefreshLayout;", "[I"), 4, code = """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :original
+                const v0, 0xffc6a0f6
+                const v1, 0xff363a4f
+                goto :apply
+                :latte
+                const v0, 0xff8839ef
+                const v1, 0xffccd0da
+                :apply
+                invoke-virtual {p0, v1}, Landroidx/swiperefreshlayout/widget/SwipeRefreshLayout;->setProgressBackgroundColorSchemeColor(I)V
+                const/4 v1, 1
+                new-array p1, v1, [I
+                const/4 v1, 0
+                aput v0, p1, v1
+                invoke-virtual {p0, p1}, Landroidx/swiperefreshlayout/widget/SwipeRefreshLayout;->setColorSchemeColors([I)V
+                return-void
+                :original
+                invoke-virtual {p0, p1}, Landroidx/swiperefreshlayout/widget/SwipeRefreshLayout;->setColorSchemeResources([I)V
+                return-void
+            """)
+            for (type in listOf(
+                "ui/activities/WebViewActivity", "ui/comments/CommentsFragment",
+                "ui/fragments/SubmissionRecyclerViewFragment", "ui/friends/ImportantUsersFragment",
+                "ui/messages/fragment/ContributionListFragment", "ui/moderation/ModerationLogFragment",
+                "ui/moderation/ModerationListFragment", "ui/sidebar/MultiredditFragment",
+                "ui/profile/UserContributionListFragment", "ui/sidebar/TrendingFragment",
+            )) {
+                for (method in mutableClassDefBy("Lcom/rubenmayayo/reddit/$type;").methods) {
+                    val instructions = method.implementation?.instructions?.toList() ?: continue
+                    for ((index, instruction) in instructions.withIndex()) {
+                        val reference = (instruction as? ReferenceInstruction)?.reference as? MethodReference
+                        if (reference?.definingClass != "Landroidx/swiperefreshlayout/widget/SwipeRefreshLayout;" || reference.name != "setColorSchemeResources") continue
+                        val call = instruction as com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+                        method.replaceInstruction(index,
+                            "invoke-static {v${call.registerC}, v${call.registerD}}, Lhe/f0;->catppuccinRefresh(Landroidx/swiperefreshlayout/widget/SwipeRefreshLayout;[I)V")
+                    }
+                }
+            }
+            contrastHelper("catppuccinPattern", listOf("Landroid/widget/ImageView;"), 5, code = """
+                if-eqz p0, :done
+                invoke-virtual {p0}, Landroid/view/View;->getId()I
+                move-result v0
+                const v1, 0x7f0a0383
+                if-ne v0, v1, :done
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :done
+                const/16 v0, 20
+                new-array v0, v0, [F
+                fill-array-data v0, :mac_matrix
+                goto :apply
+                :latte
+                const/16 v0, 20
+                new-array v0, v0, [F
+                fill-array-data v0, :latte_matrix
+                :apply
+                new-instance v1, Landroid/graphics/ColorMatrixColorFilter;
+                invoke-direct {v1, v0}, Landroid/graphics/ColorMatrixColorFilter;-><init>([F)V
+                invoke-virtual {p0, v1}, Landroid/widget/ImageView;->setColorFilter(Landroid/graphics/ColorFilter;)V
+                :done
+                return-void
+                :mac_matrix
+                .array-data 4
+                0x3d7532a3
+                0x3e4dc53d
+                0x3ca5c47d
+                0x00000000
+                0x400b4b4b
+                0x3d804d1a
+                0x3e575757
+                0x3cad7a47
+                0x00000000
+                0x40387878
+                0x3d944257
+                0x3e78d6b5
+                0x3cc8768b
+                0x00000000
+                0x4165a5a6
+                0x00000000
+                0x00000000
+                0x00000000
+                0x3f800000
+                0x00000000
+                .end array-data
+                :latte_matrix
+                .array-data 4
+                0x3cb67908
+                0x3d9921aa
+                0x3bf6b949
+                0x00000000
+                0x4341a5a6
+                0x3cb67908
+                0x3d9921aa
+                0x3bf6b949
+                0x00000000
+                0x4345a5a6
+                0x3c9fa9e7
+                0x3d85fd75
+                0x3bd7e220
+                0x00000000
+                0x4350f0f1
+                0x00000000
+                0x00000000
+                0x00000000
+                0x3f800000
+                0x00000000
+                .end array-data
+            """)
+            val drawer = mutableClassDefBy("Lqa/c;").methods.single { it.name == "c" }
+            val load = drawer.implementation!!.instructions.indexOfFirst {
+                val ref = (it as? ReferenceInstruction)?.reference as? MethodReference
+                ref?.definingClass == "Lab/c;" && ref.name == "b"
+            }
+            require(load >= 0)
+            val loadCall = drawer.implementation!!.instructions.elementAt(load) as com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+            drawer.addInstructionsWithLabels(load + 1,
+                "invoke-static {v${loadCall.registerD}}, Lhe/f0;->catppuccinPattern(Landroid/widget/ImageView;)V")
         }
 
     }

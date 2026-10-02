@@ -23,6 +23,7 @@ for flavor in ['Latte','Macchiato']:
   assert 'catppuccin' in styles[f'Catppuccin.{flavor}.{role}'][1]['cardBackgroundColor']
 public={(e.get('type'),e.get('name')):e.get('id') for e in E.parse(patched/'res/values/public.xml').getroot()}
 for e in E.parse(stock/'res/values/public.xml').getroot():
+ if e.get('name', '').startswith('Catppuccin.'): continue
  assert public[e.get('type'),e.get('name')]==e.get('id')
 assert public['style','Catppuccin.Latte']=='0x7f141000'
 assert public['style','Catppuccin.Macchiato']=='0x7f141001'
@@ -133,3 +134,21 @@ assert public['id','my_awesome_toolbar'] in album_toolbar
 assert 'setBackgroundColor' in album_toolbar and 'setElevation' in album_toolbar
 assert '0x11' in album_toolbar and '0x12' in album_toolbar
 print('PASS: gallery toolbar uses scoped transparent background instead of its stock gradient.')
+
+latte = styles['Catppuccin.Latte'][1]
+assert latte['ContentBackground'] == '@color/catppuccin_latte_mantle'
+assert latte['ToolbarColor'] == '@color/catppuccin_latte_surface0'
+assert latte['LineColor'] == '@color/catppuccin_latte_overlay0'
+for flavor in ('Latte', 'Macchiato'):
+ assert styles[f'Catppuccin.{flavor}.Divider'][1]['dividerColor'] == ('@color/catppuccin_latte_overlay0' if flavor == 'Latte' else '@color/catppuccin_macchiato_surface0')
+ assert styles[f'Catppuccin.{flavor}.Toolbar'][0] == ''
+ assert styles[f'Catppuccin.{flavor}.ToolbarWidget'][1]['materialThemeOverlay'] == f'@style/Catppuccin.{flavor}.Toolbar'
+chip = next(patched.glob('smali*/com/rubenmayayo/reddit/ui/customviews/SubscribeChip.smali')).read_text()
+assert chip.count('->catppuccinFollow(') == 4
+drawer = next(patched.glob('smali*/qa/c.smali')).read_text()
+assert drawer.count('->catppuccinPattern(') == 1
+for helper in ('catppuccinFollow', 'catppuccinRefresh', 'catppuccinPattern', 'catppuccinToolbarStyle'):
+ assert helper in utils
+print('PASS: contrasting Latte surfaces, scoped toolbar overlays, follow chips, refresh and profile pattern hooks.')
+assert public['style', 'Catppuccin.Latte.Toolbar'] == '0x7f141003'
+assert public['style', 'Catppuccin.Macchiato.Toolbar'] == '0x7f141006'
