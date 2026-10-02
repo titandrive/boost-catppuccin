@@ -1145,5 +1145,39 @@ val catppuccinThemePatch = bytecodePatch(
             """)
         }
 
+        // Album/gallery viewers name their toolbar differently from image viewers.
+        if (utils.methods.none { it.name == "catppuccinMediaToolbar" }) {
+            utils.directMethods.add(ImmutableMethod(utils.type, "catppuccinMediaToolbar",
+                listOf(ImmutableMethodParameter("Landroid/app/Activity;", emptySet(), null)), "V",
+                AccessFlags.PUBLIC.value or AccessFlags.STATIC.value, null, null,
+                MutableMethodImplementation(5)).toMutable().apply { addInstructionsWithLabels(0, """
+                invoke-static {}, Lid/b;->v0()Lid/b;
+                move-result-object v0
+                invoke-virtual {v0}, Lid/b;->D3()I
+                move-result v0
+                const/16 v1, 17
+                if-eq v0, v1, :latte
+                const/16 v1, 18
+                if-ne v0, v1, :done
+                const v1, 0xffcad3f5
+                goto :apply
+                :latte
+                const v1, 0xff4c4f69
+                :apply
+                const v2, 0x7f0a0434
+                invoke-virtual {p0, v2}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
+                move-result-object v0
+                if-eqz v0, :done
+                const/4 v2, 0
+                invoke-virtual {v0, v2}, Landroid/view/View;->setBackgroundColor(I)V
+                invoke-virtual {v0, v2}, Landroid/view/View;->setElevation(F)V
+                invoke-static {v0, v1}, Lhe/f0;->catppuccinViewerControls(Landroid/view/View;I)V
+                :done
+                return-void
+            """) })
+            utils.methods.single { it.name == "catppuccinViewer" }.addInstructionsWithLabels(0,
+                "invoke-static/range {p0 .. p0}, Lhe/f0;->catppuccinMediaToolbar(Landroid/app/Activity;)V")
+        }
+
     }
 }

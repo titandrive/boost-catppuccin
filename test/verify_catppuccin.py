@@ -122,3 +122,11 @@ rounded = view_utils.split('.method public static z0(')[1].split('.end method')[
 assert rounded.count('->catppuccinPostPanelColor(') == 1
 assert rounded.index('->catppuccinPostPanelColor(') < rounded.index('->j(II)') < rounded.index('->setBackground(')
 print('PASS: text-post matching color is applied at final rounded drawable construction.')
+
+viewer = utils.split('.method public static catppuccinViewer(')[1].split('.end method')[0]
+assert viewer.count('->catppuccinMediaToolbar(') == 1
+album_toolbar = utils.split('.method public static catppuccinMediaToolbar(')[1].split('.end method')[0]
+assert public['id','my_awesome_toolbar'] in album_toolbar
+assert 'setBackgroundColor' in album_toolbar and 'setElevation' in album_toolbar
+assert '0x11' in album_toolbar and '0x12' in album_toolbar
+print('PASS: gallery toolbar uses scoped transparent background instead of its stock gradient.')
