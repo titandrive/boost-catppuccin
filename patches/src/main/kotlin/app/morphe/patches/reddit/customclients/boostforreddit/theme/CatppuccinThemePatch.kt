@@ -1175,7 +1175,8 @@ val catppuccinThemePatch = bytecodePatch(
                 :done
                 return-void
             """) })
-            utils.methods.single { it.name == "catppuccinViewer" }.addInstructionsWithLabels(0,
+            // The aggregate methods collection is cached before helpers are added on fresh APKs.
+            utils.directMethods.single { it.name == "catppuccinViewer" }.addInstructionsWithLabels(0,
                 "invoke-static/range {p0 .. p0}, Lhe/f0;->catppuccinMediaToolbar(Landroid/app/Activity;)V")
         }
 
